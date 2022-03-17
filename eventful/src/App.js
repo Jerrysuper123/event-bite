@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "react-bootstrap/Navbar";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    active: "map",
+    data: [],
+  };
+
+  setActive = (activePage) => {
+    this.setState({
+      active: activePage,
+    });
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link">eventful</a>
+          </li>
+
+          <li className="nav-item">
+            <button
+              className="nav-link"
+              onClick={() => {
+                this.setActive("map");
+              }}
+            >
+              map
+            </button>
+          </li>
+
+          <li>
+            <button
+              className="nav-link"
+              onClick={() => {
+                this.setActive("calendar");
+              }}
+            >
+              calendar
+            </button>
+          </li>
+
+          <li>
+            <button
+              className="nav-link"
+              onClick={() => {
+                this.setActive("addNew");
+              }}
+            >
+              add new event
+            </button>
+          </li>
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default App;
