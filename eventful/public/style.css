@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap");
+
+/*font family setting*/
+html {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.highlightText {
+  font-family: "Raleway Dots", cursive !important;
+  color: #e27d60 !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Roboto", sans-serif !important;
+}
+
+/*text color setting*/
+
+.primaryColor {
+  color: #e27d60;
+}
+
+.secondaryColor {
+  color: #85dcb8;
+}
+
+.accentOneColor {
+  color: #e8a87c;
+}
+
+.accentTwoColor {
+  color: #c38d9e;
+}
+
+.accentThreeColor {
+  color: #41b3a3;
+}
+
+/*background color setting*/
+
+.primaryBgColor {
+  background-color: #e27d60;
+}
+
+.secondaryBgColor {
+  background-color: #85dcb8;
+}
+
+.accentOneBgColor {
+  background-color: #e8a87c;
+}
+
+.accentTwoBgColor {
+  background-color: #c38d9e;
+}
+
+.accentThreeBgColor {
+  background-color: #41b3a3;
+}

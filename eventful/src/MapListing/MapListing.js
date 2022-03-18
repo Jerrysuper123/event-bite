@@ -5,6 +5,7 @@ export default function MapListing(props) {
   return (
     <React.Fragment>
       <h1>Map</h1>
+      <h3 className="highlightText">highlight text</h3>
       <MapContainer
         center={[1.3521, 103.8198]}
         zoom={13}
