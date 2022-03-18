@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "react-bootstrap/Navbar";
 
 import MapListing from "./MapListing/MapListing";
 import CalendarListing from "./CalendarListing/CalendarListing";
@@ -64,6 +63,13 @@ class App extends React.Component {
       },
     ],
   };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
+  }
 
   setActive = (activePage) => {
     this.setState({
