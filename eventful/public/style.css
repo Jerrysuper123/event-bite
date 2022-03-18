@@ -1,15 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap");
 /*font family setting*/
 html {
   font-family: "Montserrat", sans-serif !important;
 }
 
 .highlightText {
-  font-family: "Raleway Dots", cursive !important;
   color: #e27d60 !important;
+}
+
+.logoText {
+  font-family: "Lobster Two", cursive;
+  font-size: 1.5rem;
+  color: #e27d60 !important;
+}
+
+.subText {
+  font-family: "Montserrat", sans-serif !important;
+  color: grey;
+  font-size: 0.7rem;
+  font-style: italic;
 }
 
 h1,

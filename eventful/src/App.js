@@ -86,7 +86,7 @@ class App extends React.Component {
       <div className="container">
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link">eventful</a>
+            <a className="nav-link logoText">eventful</a>
           </li>
 
           <li className="nav-item">
