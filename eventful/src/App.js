@@ -78,15 +78,15 @@ class App extends React.Component {
     });
   };
 
-  renderPage = () => {
-    if (this.state.active === "map") {
-      return <MapListing data={this.state.data} />;
-    } else if (this.state.active === "calendar") {
-      return <CalendarListing />;
-    } else if (this.state.active === "addNew") {
-      return <AddEvent />;
-    }
-  };
+  // renderPage = () => {
+  //   if (this.state.active === "map") {
+  //     return <MapListing data={this.state.data} />;
+  //   } else if (this.state.active === "calendar") {
+  //     return <CalendarListing />;
+  //   } else if (this.state.active === "addNew") {
+  //     return <AddEvent />;
+  //   }
+  // };
 
   render() {
     return (
@@ -129,7 +129,9 @@ class App extends React.Component {
             </button>
           </li>
         </ul>
-        {this.renderPage()}
+        {/* {this.renderPage()} */}
+        {/* <MapListing data={this.state.data} /> */}
+        <CalendarListing />
       </div>
     );
   }
