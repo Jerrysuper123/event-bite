@@ -1,5 +1,34 @@
 # event-bite
 
+```
+let date = new Date();
+console.log("current date GTM", new Date())
+//2022-03-21T03:57:51.847Z
+//this is ISO date, for Singapore we should plus GMT+8
+//add 8 hours for singagpore
+date.setHours(date.getHours() + 8);
+console.log("Current date Singapore GMT+8",date);
+//Current date Singapore GMT+8
+//2022-03-21T13:35:13.776Z
+
+document.querySelector("#dateTime").addEventListener("change",function(){
+  let dateTime = document.querySelector("#dateTime").value;
+  console.log("datetime picker", dateTime )
+})
+
+//    <input id="dateTime" type="datetime-local"/>
+//datetime picker 2022-03-15T14:10
+
+//test color
+  // <input id="colorPicker" type="color" value="#ff0000">
+document.querySelector("#colorPicker").addEventListener("change",function(){
+  let colorPicked = document.querySelector("#colorPicker").value;
+  console.log("color picked", colorPicked )
+})
+
+
+```
+
 # pharmacy-pal
 
 ![brand](./READMESources/readMeFrontImg.png)
