@@ -23,7 +23,8 @@ class App extends React.Component {
           "https://saltandlight.sg/wp-content/uploads/2018/12/fullsizeoutput_265.jpeg",
         descriptionSummary: "get earth cleaned with our own hands",
         description: "this is a description",
-        customizedMapMarker: "",
+        customizedMapMarker:
+          "http://assets.stickpng.com/thumbs/585990604f6ae202fedf28d3.png",
         hashtags: ["adventure", "nature", "environmental-friendly"],
       },
       {
@@ -40,7 +41,8 @@ class App extends React.Component {
           "https://static-cdn.giftano.com/fls/merchants/hm-profile-image_retail-shop-front.png",
         descriptionSummary: "Get all pieces at 10% discount store wide",
         description: "this is a description",
-        customizedMapMarker: "",
+        customizedMapMarker:
+          "http://assets.stickpng.com/thumbs/585990604f6ae202fedf28d3.png",
         hashtags: ["promotion", "close sales", "shopping"],
       },
       {
@@ -57,7 +59,7 @@ class App extends React.Component {
           "https://scontent.fsin4-1.fna.fbcdn.net/v/t39.30808-6/241498903_4357298927641396_5094941826354704194_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=e3f864&_nc_ohc=TBuPmK-vKyYAX-UiVlh&_nc_ht=scontent.fsin4-1.fna&oh=00_AT_DxBVP8g99i4bkS4o8QacaHepo7bgkN_QGmE-1DXd0dg&oe=62393C3E",
         descriptionSummary: "Watch lion dance to bring prosperity",
         description: "this is a description",
-        customizedMapMarker: "",
+        customizedMapMarker: null,
         hashtags: ["fengshui", "school", "student"],
       },
     ],

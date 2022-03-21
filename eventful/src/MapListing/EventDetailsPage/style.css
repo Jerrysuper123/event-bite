@@ -1,9 +1,0 @@
-/* .modal-dialog {
-  width: 80vw !important;
-  min-height: fit-content;
-} */
-
-.modal-body {
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
-}

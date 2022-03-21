@@ -14,3 +14,13 @@
 .mapEventListContainer {
   position: relative;
 }
+
+#my-leaflet-map {
+  background: #e27d60;
+}
+
+.leaflet-tile {
+  /* -webkit-filter: grayscale(100%); Safari 6.0 - 9.0 */
+  filter: grayscale(20%);
+  /* color: black; */
+}

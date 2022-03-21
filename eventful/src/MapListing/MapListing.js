@@ -9,6 +9,7 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 //import detailevenpage
 import EventCard from "./EventCard/EventCard";
 import EventDetailsPage from "./EventDetailsPage/EventDetailsPage";
+import defaultMarker from "../images/defaultMarker.png";
 
 export default function MapListing(props) {
   //state to manage if our map has been initialized
@@ -90,6 +91,27 @@ export default function MapListing(props) {
   const setOneEvent = (oneEvent) => {
     setOneEventDetails(oneEvent);
   };
+
+  //custom marker
+  function createCustomMarkerIcon(imageUrl) {
+    //customized pharmacy location marker
+    let icon = L.Icon.extend({
+      options: {
+        //iconsize - width and height
+        iconSize: [37, 40],
+        //iconAnchor: x axis in pixel, y axis in pixel (based on left up corner of image as 0,0 coord)
+        iconAnchor: [0, 0],
+        //popupachor: x axis in pixel, y axis in pixel (based on image anchor)
+        popupAnchor: [16, -3],
+      },
+    });
+
+    let customIcon = new icon({
+      iconUrl: imageUrl,
+    });
+    return customIcon;
+  }
+
   return (
     <div
       style={{
@@ -106,6 +128,7 @@ export default function MapListing(props) {
             height: "900px",
             zIndex: 0,
           }}
+          id="my-leaflet-map"
           //change the state of map when created
           whenCreated={(map) => setMap(map)}
         >
@@ -117,7 +140,15 @@ export default function MapListing(props) {
           {props.data.map((eachEvent) => {
             return (
               <React.Fragment key={eachEvent._id}>
-                <Marker position={eachEvent.latLng} key={eachEvent._id}>
+                <Marker
+                  position={eachEvent.latLng}
+                  key={eachEvent._id}
+                  icon={
+                    eachEvent.customizedMapMarker
+                      ? createCustomMarkerIcon(eachEvent.customizedMapMarker)
+                      : createCustomMarkerIcon(defaultMarker)
+                  }
+                >
                   <Popup>
                     <EventCard
                       eachEvent={eachEvent}
