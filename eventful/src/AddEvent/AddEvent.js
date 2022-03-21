@@ -1,9 +1,13 @@
 import React from "react";
 
-export default function AddEvent() {
+export default function AddEvent(props) {
   return (
-    <React.Fragment>
+    <div
+      style={{
+        display: props.display,
+      }}
+    >
       <h1>Add new event</h1>
-    </React.Fragment>
+    </div>
   );
 }

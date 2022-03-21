@@ -68,7 +68,11 @@ export default function CalendarListing(props) {
   };
 
   return (
-    <React.Fragment>
+    <div
+      style={{
+        display: props.display,
+      }}
+    >
       <Kalend
         // onEventClick={onEventClick}
         // onNewEventClick={onNewEventClick}
@@ -91,6 +95,6 @@ export default function CalendarListing(props) {
           Kalend
         </a>
       </div>
-    </React.Fragment>
+    </div>
   );
 }

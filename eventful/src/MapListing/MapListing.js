@@ -89,10 +89,14 @@ export default function MapListing(props) {
     setOneEventDetails(oneEvent);
   };
   return (
-    <React.Fragment>
+    <div
+      style={{
+        display: props.display,
+      }}
+    >
       <EventDetailsPage data={oneEventDetails ? oneEventDetails : {}} />
-      <h1>Map</h1>
-      <h3 className="subText">highlight text</h3>
+      <h1></h1>
+      <h3 className="subText"></h3>
       <MapContainer
         center={[1.3521, 103.8198]}
         zoom={13}
@@ -165,6 +169,6 @@ export default function MapListing(props) {
             </Popup>
           </Marker> */}
       </MapContainer>
-    </React.Fragment>
+    </div>
   );
 }

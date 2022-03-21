@@ -1,7 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import MapListing from "./MapListing/MapListing";
 import CalendarListing from "./CalendarListing/CalendarListing";
@@ -85,54 +82,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <ul className="nav nav-tabs">
-          <li className="nav-item">
-            <a className="nav-link logoText" href="">
-              eventful
-            </a>
-          </li>
-
-          <li className="nav-item">
-            <button
-              className="nav-link"
-              onClick={() => {
-                this.setActive("map");
-              }}
-            >
-              map
-            </button>
-          </li>
-
-          <li>
-            <button
-              className="nav-link"
-              onClick={() => {
-                this.setActive("calendar");
-              }}
-            >
-              calendar
-            </button>
-          </li>
-
-          <li>
-            <button
-              className="nav-link"
-              onClick={() => {
-                this.setActive("addNew");
-              }}
-            >
-              add new event
-            </button>
-          </li>
-        </ul>
-
-        {/* true nav bar that will be used later */}
+      <React.Fragment>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              Navbar
-            </a>
+            <a className="navbar-brand logoText">eventful</a>
             <button
               className="navbar-toggler"
               type="button"
@@ -150,13 +103,34 @@ class App extends React.Component {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    Home
+                  <a
+                    className="nav-link"
+                    aria-current="page"
+                    onClick={() => {
+                      this.setActive("map");
+                    }}
+                  >
+                    map view
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Link
+                  <a
+                    className="nav-link"
+                    onClick={() => {
+                      this.setActive("calendar");
+                    }}
+                  >
+                    calendar view
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    onClick={() => {
+                      this.setActive("addNew");
+                    }}
+                  >
+                    add new event
                   </a>
                 </li>
                 <li className="nav-item dropdown">
@@ -185,21 +159,14 @@ class App extends React.Component {
                       </a>
                     </li>
                     <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
                       <a className="dropdown-item" href="#">
                         Something else here
                       </a>
                     </li>
                   </ul>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link disabled"
-                    href="#"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    Disabled
-                  </a>
                 </li>
               </ul>
               <form className="d-flex">
@@ -217,10 +184,19 @@ class App extends React.Component {
           </div>
         </nav>
 
-        {this.renderPage()}
+        {/* {this.renderPage()} */}
         {/* <MapListing data={this.state.data} />
         <CalendarListing /> */}
-      </div>
+        <MapListing
+          data={this.state}
+          display={this.state.active === "map" ? "block" : "none"}
+        />
+        <CalendarListing
+          data={this.state.data}
+          display={this.state.active === "calendar" ? "block" : "none"}
+        />
+        <AddEvent display={this.state.active === "addNew" ? "block" : "none"} />
+      </React.Fragment>
     );
   }
 }
