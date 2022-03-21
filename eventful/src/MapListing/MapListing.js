@@ -5,6 +5,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
+//import detailevenpage
+import EventDetailsPage from "./EventDetailsPage/EventDetailsPage";
+
 export default function MapListing(props) {
   //state to manage if our map has been initialized
   const [map, setMap] = useState(null);
@@ -81,8 +84,13 @@ export default function MapListing(props) {
     // remove dependancy on routingMachine, just depends router to change from true to false
   }, [router]);
 
+  const [oneEventDetails, setOneEventDetails] = useState(null);
+  const setOneEvent = (oneEvent) => {
+    setOneEventDetails(oneEvent);
+  };
   return (
     <React.Fragment>
+      <EventDetailsPage data={oneEventDetails ? oneEventDetails : {}} />
       <h1>Map</h1>
       <h3 className="subText">highlight text</h3>
       <MapContainer
@@ -91,6 +99,7 @@ export default function MapListing(props) {
         style={{
           width: "100%",
           height: "900px",
+          zIndex: 0,
         }}
         //change the state of map when created
         whenCreated={(map) => setMap(map)}
@@ -102,35 +111,51 @@ export default function MapListing(props) {
 
         {props.data.data.map((eachEvent) => {
           return (
-            <Marker position={eachEvent.latLng} key={eachEvent._id}>
-              <Popup>
-                <div className="card" style={{ width: "18rem" }}>
-                  <img
-                    src={eachEvent.eventImage}
-                    className="card-img-top"
-                    alt="image"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{eachEvent.title}</h5>
-                    <p>{eachEvent.startDateTime}</p>
-                    <p>event in progress now...</p>
-                    <p className="card-text">{eachEvent.descriptionSummary}</p>
-                    <p>{eachEvent.organizer}</p>
-                    <div className="d-flex justify-content-between">
-                      <button className="btn btn-info">more info</button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => {
-                          showRouter(eachEvent.latLng);
-                        }}
-                      >
-                        direction
-                      </button>
+            <React.Fragment key={eachEvent._id}>
+              <Marker position={eachEvent.latLng} key={eachEvent._id}>
+                <Popup>
+                  <div className="card" style={{ width: "18rem" }}>
+                    <img
+                      src={eachEvent.eventImage}
+                      className="card-img-top"
+                      alt="image"
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{eachEvent.title}</h5>
+                      <p>{eachEvent.startDateTime}</p>
+                      <p>event in progress now...</p>
+                      <p className="card-text">
+                        {eachEvent.descriptionSummary}
+                      </p>
+                      <p>{eachEvent.organizer}</p>
+                      <div className="d-flex justify-content-between">
+                        <button
+                          className="btn btn-info"
+                          data-bs-toggle="modal"
+                          // moreInfoModel
+                          data-bs-target="#moreInfoModel"
+                          onClick={() => {
+                            setOneEvent(eachEvent);
+                          }}
+                        >
+                          more info
+                        </button>
+                        {/* modal to show the event details */}
+
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => {
+                            showRouter(eachEvent.latLng);
+                          }}
+                        >
+                          direction
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Popup>
-            </Marker>
+                </Popup>
+              </Marker>
+            </React.Fragment>
           );
         })}
 
