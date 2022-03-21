@@ -45,11 +45,13 @@ export default function EventDetailsPage(props) {
             </p>
             <p>{props.data.descriptionSummary}</p>
             <p>{props.data.description}</p>
-            {props.data.hashtags
-              ? props.data.hashtags.map((tag) => {
-                  return <HashTagComponent key={props.data._id} tag={tag} />;
-                })
-              : null}
+            <div>
+              {props.data.hashtags
+                ? props.data.hashtags.map((tag) => {
+                    return <HashTagComponent key={props.data._id} tag={tag} />;
+                  })
+                : null}
+            </div>
           </div>
           <div className="modal-footer">
             <button

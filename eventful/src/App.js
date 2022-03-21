@@ -70,15 +70,15 @@ class App extends React.Component {
     });
   };
 
-  renderPage = () => {
-    if (this.state.active === "map") {
-      return <MapListing data={this.state} />;
-    } else if (this.state.active === "calendar") {
-      return <CalendarListing data={this.state.data} />;
-    } else if (this.state.active === "addNew") {
-      return <AddEvent />;
-    }
-  };
+  // renderPage = () => {
+  //   if (this.state.active === "map") {
+  //     return <MapListing data={this.state.data} />;
+  //   } else if (this.state.active === "calendar") {
+  //     return <CalendarListing data={this.state.data} />;
+  //   } else if (this.state.active === "addNew") {
+  //     return <AddEvent />;
+  //   }
+  // };
 
   render() {
     return (
@@ -188,7 +188,7 @@ class App extends React.Component {
         {/* <MapListing data={this.state.data} />
         <CalendarListing /> */}
         <MapListing
-          data={this.state}
+          data={this.state.data}
           display={this.state.active === "map" ? "block" : "none"}
         />
         <CalendarListing

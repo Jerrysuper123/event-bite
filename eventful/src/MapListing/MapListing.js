@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";
+import "./style.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 //import detailevenpage
+import EventCard from "./EventCard/EventCard";
 import EventDetailsPage from "./EventDetailsPage/EventDetailsPage";
 
 export default function MapListing(props) {
@@ -95,80 +97,53 @@ export default function MapListing(props) {
       }}
     >
       <EventDetailsPage data={oneEventDetails ? oneEventDetails : {}} />
-      <h1></h1>
-      <h3 className="subText"></h3>
-      <MapContainer
-        center={[1.3521, 103.8198]}
-        zoom={13}
-        style={{
-          width: "100%",
-          height: "900px",
-          zIndex: 0,
-        }}
-        //change the state of map when created
-        whenCreated={(map) => setMap(map)}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+      <div className="mapEventListContainer">
+        <MapContainer
+          center={[1.3521, 103.8198]}
+          zoom={13}
+          style={{
+            width: "100%",
+            height: "900px",
+            zIndex: 0,
+          }}
+          //change the state of map when created
+          whenCreated={(map) => setMap(map)}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
 
-        {props.data.data.map((eachEvent) => {
-          return (
-            <React.Fragment key={eachEvent._id}>
-              <Marker position={eachEvent.latLng} key={eachEvent._id}>
-                <Popup>
-                  <div className="card" style={{ width: "18rem" }}>
-                    <img
-                      src={eachEvent.eventImage}
-                      className="card-img-top"
-                      alt="image"
+          {props.data.map((eachEvent) => {
+            return (
+              <React.Fragment key={eachEvent._id}>
+                <Marker position={eachEvent.latLng} key={eachEvent._id}>
+                  <Popup>
+                    <EventCard
+                      eachEvent={eachEvent}
+                      setOneEvent={setOneEvent}
+                      showRouter={showRouter}
                     />
-                    <div className="card-body">
-                      <h5 className="card-title">{eachEvent.title}</h5>
-                      <p>{eachEvent.startDateTime}</p>
-                      <p>event in progress now...</p>
-                      <p className="card-text">
-                        {eachEvent.descriptionSummary}
-                      </p>
-                      <p>{eachEvent.organizer}</p>
-                      <div className="d-flex justify-content-between">
-                        <button
-                          className="btn btn-info"
-                          data-bs-toggle="modal"
-                          // moreInfoModel
-                          data-bs-target="#moreInfoModel"
-                          onClick={() => {
-                            setOneEvent(eachEvent);
-                          }}
-                        >
-                          more info
-                        </button>
-                        {/* modal to show the event details */}
-
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => {
-                            showRouter(eachEvent.latLng);
-                          }}
-                        >
-                          direction
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            </React.Fragment>
-          );
-        })}
-
-        {/* <Marker position={[1.3477, 103.755]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker> */}
-      </MapContainer>
+                  </Popup>
+                </Marker>
+              </React.Fragment>
+            );
+          })}
+        </MapContainer>
+        <section className="eventList">
+          <h2>Event list Mar 22, 2022</h2>
+          {props.data.map((eachEvent) => {
+            return (
+              <EventCard
+                eachEvent={eachEvent}
+                setOneEvent={setOneEvent}
+                showRouter={showRouter}
+                margin={"2em"}
+              />
+            );
+          })}
+        </section>
+      </div>
     </div>
   );
 }

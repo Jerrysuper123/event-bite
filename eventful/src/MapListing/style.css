@@ -1,0 +1,16 @@
+.eventList {
+  width: 24rem;
+  height: 30rem;
+  background-color: white;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 1rem;
+  left: 0;
+}
+
+.mapEventListContainer {
+  position: relative;
+}
