@@ -65,24 +65,6 @@ class App extends React.Component {
     userLocationLatLng: [],
   };
 
-  getUserLocation = () => {
-    // must use arrow function inside getCurrentPosition in order to acess this.setState
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
-      let lat = position.coords.latitude;
-      let lng = position.coords.longitude;
-      this.setState({
-        userLocationLatLng: [lat, lng],
-      });
-    });
-  };
-
-  componentDidMount() {
-    // able to get user location
-    this.getUserLocation();
-  }
-
   setActive = (activePage) => {
     this.setState({
       active: activePage,

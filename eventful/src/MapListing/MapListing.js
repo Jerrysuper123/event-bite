@@ -9,18 +9,42 @@ export default function MapListing(props) {
   //state to manage if our map has been initialized
   const [map, setMap] = useState(null);
   //show or not show
-  const [router, setRouter] = useState(false);
-  const showRouter = () => {
-    setRouter(true);
+  const [router, setRouter] = useState(0);
+  const showRouter = async (endLatLng) => {
+    // use await to wait for setState and for the route to redraw
+    // clear previous routing drawn
+    await setEnd(endLatLng);
+    if (router === 0) {
+      setRouter(1);
+    } else {
+      setRouter(0);
+    }
   };
 
   //state to manage our routing machine instance:
   const [routingMachine, setRoutingMachine] = useState(null);
 
-  // Start-End points for the routing machine:
-  const [start, setStart] = useState([1.3335, 103.7437]);
-  const [end, setEnd] = useState([1.3076, 103.8808]);
+  const getUserLocation = () => {
+    // must use arrow function inside getCurrentPosition in order to acess this.setState
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      let lat = position.coords.latitude;
+      let lng = position.coords.longitude;
+      setStart([lat, lng]);
+    });
+  };
 
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+  // Start-End points for the routing machine:
+  //set start as the user currentlocation
+  //[1.3077699, 103.8812231]
+  const [start, setStart] = useState([]);
+  console.log("start", start);
+  const [end, setEnd] = useState([]);
+  console.log("end", end);
   // Ref for our routing machine instace:
   const RoutingMachineRef = useRef(null);
 
@@ -45,7 +69,8 @@ export default function MapListing(props) {
       // Save instance to state:
       setRoutingMachine(RoutingMachineRef.current);
     }
-  }, [map]);
+    // route will be redraw if there map, start and end points of map changes
+  }, [map, start, end]);
 
   // Once routing machine instance is ready, add to map:
   useEffect(() => {
@@ -93,7 +118,12 @@ export default function MapListing(props) {
                     <p>{eachEvent.organizer}</p>
                     <div className="d-flex justify-content-between">
                       <button className="btn btn-info">more info</button>
-                      <button className="btn btn-danger" onClick={showRouter}>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          showRouter(eachEvent.latLng);
+                        }}
+                      >
                         direction
                       </button>
                     </div>
