@@ -62,14 +62,25 @@ class App extends React.Component {
         hashtags: ["fengshui", "school", "student"],
       },
     ],
+    userLocationLatLng: [],
+  };
+
+  getUserLocation = () => {
+    // must use arrow function inside getCurrentPosition in order to acess this.setState
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      let lat = position.coords.latitude;
+      let lng = position.coords.longitude;
+      this.setState({
+        userLocationLatLng: [lat, lng],
+      });
+    });
   };
 
   componentDidMount() {
     // able to get user location
-    navigator.geolocation.getCurrentPosition(function (position) {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
-    });
+    this.getUserLocation();
   }
 
   setActive = (activePage) => {
@@ -80,7 +91,7 @@ class App extends React.Component {
 
   renderPage = () => {
     if (this.state.active === "map") {
-      return <MapListing data={this.state.data} />;
+      return <MapListing data={this.state} />;
     } else if (this.state.active === "calendar") {
       return <CalendarListing />;
     } else if (this.state.active === "addNew") {

@@ -75,7 +75,7 @@ export default function MapListing(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {props.data.map((eachEvent) => {
+        {props.data.data.map((eachEvent) => {
           return (
             <Marker position={eachEvent.latLng} key={eachEvent._id}>
               <Popup>
