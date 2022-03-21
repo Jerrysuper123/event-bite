@@ -8,6 +8,11 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 export default function MapListing(props) {
   //state to manage if our map has been initialized
   const [map, setMap] = useState(null);
+  //show or not show
+  const [router, setRouter] = useState(false);
+  const showRouter = () => {
+    setRouter(true);
+  };
 
   //state to manage our routing machine instance:
   const [routingMachine, setRoutingMachine] = useState(null);
@@ -48,7 +53,8 @@ export default function MapListing(props) {
     if (routingMachine) {
       routingMachine.addTo(map);
     }
-  }, [routingMachine]);
+    // remove dependancy on routingMachine, just depends router to change from true to false
+  }, [router]);
 
   return (
     <React.Fragment>
@@ -87,7 +93,9 @@ export default function MapListing(props) {
                     <p>{eachEvent.organizer}</p>
                     <div className="d-flex justify-content-between">
                       <button className="btn btn-info">more info</button>
-                      <button className="btn btn-danger">direction</button>
+                      <button className="btn btn-danger" onClick={showRouter}>
+                        direction
+                      </button>
                     </div>
                   </div>
                 </div>

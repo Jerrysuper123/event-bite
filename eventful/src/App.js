@@ -78,22 +78,24 @@ class App extends React.Component {
     });
   };
 
-  // renderPage = () => {
-  //   if (this.state.active === "map") {
-  //     return <MapListing data={this.state.data} />;
-  //   } else if (this.state.active === "calendar") {
-  //     return <CalendarListing />;
-  //   } else if (this.state.active === "addNew") {
-  //     return <AddEvent />;
-  //   }
-  // };
+  renderPage = () => {
+    if (this.state.active === "map") {
+      return <MapListing data={this.state.data} />;
+    } else if (this.state.active === "calendar") {
+      return <CalendarListing />;
+    } else if (this.state.active === "addNew") {
+      return <AddEvent />;
+    }
+  };
 
   render() {
     return (
       <div className="container">
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link logoText">eventful</a>
+            <a className="nav-link logoText" href="">
+              eventful
+            </a>
           </li>
 
           <li className="nav-item">
@@ -129,9 +131,9 @@ class App extends React.Component {
             </button>
           </li>
         </ul>
-        {/* {this.renderPage()} */}
-        {/* <MapListing data={this.state.data} /> */}
-        <CalendarListing />
+        {this.renderPage()}
+        {/* <MapListing data={this.state.data} />
+        <CalendarListing /> */}
       </div>
     );
   }

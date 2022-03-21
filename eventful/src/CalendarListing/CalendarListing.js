@@ -56,21 +56,29 @@ export default function CalendarListing(props) {
   };
 
   return (
-    <Kalend
-      // onEventClick={onEventClick}
-      // onNewEventClick={onNewEventClick}
-      events={events}
-      initialDate={new Date().toISOString()}
-      hourHeight={60}
-      initialView={CalendarView.WEEK}
-      disabledViews={[CalendarView.AGENDA]}
-      // onSelectView={onSelectView}
-      // selectedView={selectedView}
-      // onPageChange={onPageChange}
-      timeFormat={"24"}
-      weekDayStart={"Monday"}
-      calendarIDsHidden={["work"]}
-      language={"en"}
-    />
+    <React.Fragment>
+      <Kalend
+        // onEventClick={onEventClick}
+        // onNewEventClick={onNewEventClick}
+        events={events}
+        initialDate={new Date().toISOString()}
+        hourHeight={60}
+        initialView={CalendarView.WEEK}
+        disabledViews={[CalendarView.AGENDA]}
+        // onSelectView={onSelectView}
+        // selectedView={selectedView}
+        // onPageChange={onPageChange}
+        timeFormat={"24"}
+        weekDayStart={"Monday"}
+        calendarIDsHidden={["work"]}
+        language={"en"}
+      />
+      <div className="subText">
+        credit:{" "}
+        <a href="https://github.com/nibdo/kalend" target="_blank">
+          Kalend
+        </a>
+      </div>
+    </React.Fragment>
   );
 }
