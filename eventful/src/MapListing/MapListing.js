@@ -10,6 +10,8 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import EventCard from "./EventCard/EventCard";
 import EventDetailsPage from "./EventDetailsPage/EventDetailsPage";
 import defaultMarker from "../images/defaultMarker.png";
+import userLocationMarker from "../images/userLocationMarker.png";
+import destinationMarker from "../images/destinationMarker.png";
 
 export default function MapListing(props) {
   //state to manage if our map has been initialized
@@ -53,24 +55,59 @@ export default function MapListing(props) {
   console.log("end", end);
   // Ref for our routing machine instace:
   const RoutingMachineRef = useRef(null);
+  function removeRouteDrawn(map) {
+    if (RoutingMachineRef.current !== null) {
+      map.removeControl(RoutingMachineRef.current);
 
+      RoutingMachineRef.current = null;
+    }
+  }
   // Create the routing-machine instance:
   useEffect(() => {
     // Check For the map instance:
     if (!map) return;
     if (map) {
       // Assign Control to React Ref:
+      removeRouteDrawn(map);
       RoutingMachineRef.current = L.Routing.control({
         position: "topright", // Where to position control on map
         lineOptions: {
           // Options for the routing line
           styles: [
             {
-              color: "#757de8",
+              color: "#e27d60",
+              weight: 5,
             },
           ],
         },
         waypoints: [start, end], // Point A - Point B
+        createMarker: function (i, start, n) {
+          let marker_icon = null;
+          if (i === 0) {
+            // This is the first marker, indicating start
+            marker_icon = createCustomMarkerIcon(userLocationMarker);
+          } else if (i === n - 1) {
+            //This is the last marker indicating destination
+            marker_icon = createCustomMarkerIcon(destinationMarker);
+          }
+          let marker = L.marker(start.latLng, {
+            draggable: true,
+            bounceOnAdd: false,
+            bounceOnAddOptions: {
+              duration: 1000,
+              height: 800,
+            },
+            icon: marker_icon,
+          });
+          //below addes pop up only to the destination
+          if (i === 0) {
+            marker.bindPopup("You are here!");
+          } else if (i === n - 1) {
+            //This is the last marker indicating destination
+            marker.bindPopup("destination");
+          }
+          return marker;
+        },
       });
       // Save instance to state:
       setRoutingMachine(RoutingMachineRef.current);
@@ -83,6 +120,9 @@ export default function MapListing(props) {
     if (!routingMachine) return;
     if (routingMachine) {
       routingMachine.addTo(map);
+      let pop1 = L.popup().setLatLng(end).setContent("desination").openOn(map);
+
+      map.flyTo(end, 10);
     }
     // remove dependancy on routingMachine, just depends router to change from true to false
   }, [router]);

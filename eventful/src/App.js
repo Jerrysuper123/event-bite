@@ -41,7 +41,7 @@ class App extends React.Component {
         descriptionSummary: "Get all pieces at 10% discount store wide",
         description: "this is a description",
         customizedMapMarker:
-          "http://assets.stickpng.com/thumbs/585990604f6ae202fedf28d3.png",
+          "https://image.winudf.com/v2/image/Y29tLmhtX2ljb25fMTUzMTEzNzU1NV8wNDk/icon.png?fakeurl=1&h=240&type=webp",
         hashtags: ["promotion", "close sales", "shopping"],
       },
       {
