@@ -5,14 +5,13 @@ export default class AddEvent extends React.Component {
   state = {
     active: "basicInfo",
 
+    editedId: "",
     /*Basic info */
     title: "",
     organizer: "",
     category: "",
     hashtags: ["adventurous", "fun", "exciting", "nature"],
     /*location */
-    customizedMapMarker: "",
-    brandColor: "",
     address: "",
     postalCode: "",
     latLng: [],
@@ -21,6 +20,8 @@ export default class AddEvent extends React.Component {
     endDateTime: "",
     /*main event image */
     eventImage: "",
+    customizedMapMarker: "",
+    brandColor: "",
     /*description */
     descriptionSummary: "",
     description: "",
@@ -318,76 +319,158 @@ export default class AddEvent extends React.Component {
       );
     }
   };
+
+  updateEventBegins = (eachEvent) => {
+    // let clone = this.state.slice();
+    // clone.active = this.state.active;
+    // this.setState({})
+    let activeState = this.state.active;
+    this.setState({
+      activeState,
+      ...eachEvent,
+      // editedId: eachEvent._id,
+      // title: eachEvent.title,
+      // organizer: eachEvent.organizer,
+      // category: eachEvent.category,
+      // hashtags: ["adventurous", "fun", "exciting", "nature"],
+      // /*location */
+      // address: "",
+      // postalCode: "",
+      // latLng: [],
+      // /*date time*/
+      // startDateTime: "",
+      // endDateTime: "",
+      // /*main event image */
+      // eventImage: "",
+      // customizedMapMarker: "",
+      // brandColor: "",
+      // /*description */
+      // descriptionSummary: "",
+      // description: "",
+    });
+  };
   render() {
     return (
-      <div
-        style={{
-          display: this.props.display,
-          height: "80vh",
-        }}
-        className="createNewForm"
-      >
-        <div className="container">
-          <div className="leftbox">
-            <nav className="createNewForm">
-              <a
-                id="basicInfo"
-                className={this.state.active === "basicInfo" ? "active" : null}
-                onClick={() => {
-                  this.updateActive("basicInfo");
-                }}
-              >
-                <i className="fa fa-user">1. basic info</i>
-              </a>
-              <a
-                id="location"
-                className={this.state.active === "location" ? "active" : null}
-                onClick={() => {
-                  this.updateActive("location");
-                }}
-              >
-                <i className="fa fa-credit-card">2. location</i>
-              </a>
-              <a
-                id="dateTime"
-                className={this.state.active === "dateTime" ? "active" : null}
-                onClick={() => {
-                  this.updateActive("dateTime");
-                }}
-              >
-                <i className="fa fa-tv">3. date & time</i>
-              </a>
-              <a
-                id="eventImage"
-                className={this.state.active === "eventImage" ? "active" : null}
-                onClick={() => {
-                  this.updateActive("eventImage");
-                }}
-              >
-                <i className="fa fa-tasks">4. event image</i>
-              </a>
-              <a
-                id="description"
-                className={
-                  this.state.active === "description" ? "active" : null
-                }
-                onClick={() => {
-                  this.updateActive("description");
-                }}
-              >
-                <i className="fa fa-cog">5. description</i>
-              </a>
-            </nav>
+      <React.Fragment>
+        <section
+          style={{
+            display: this.props.display,
+            // height: "80vh",
+          }}
+        >
+          <div className="createNewForm">
+            <div className="container">
+              <div className="leftbox">
+                <nav className="createNewForm">
+                  <a
+                    id="basicInfo"
+                    className={
+                      this.state.active === "basicInfo" ? "active" : null
+                    }
+                    onClick={() => {
+                      this.updateActive("basicInfo");
+                    }}
+                  >
+                    <i className="fa fa-user">1. basic info</i>
+                  </a>
+                  <a
+                    id="location"
+                    className={
+                      this.state.active === "location" ? "active" : null
+                    }
+                    onClick={() => {
+                      this.updateActive("location");
+                    }}
+                  >
+                    <i className="fa fa-credit-card">2. location</i>
+                  </a>
+                  <a
+                    id="dateTime"
+                    className={
+                      this.state.active === "dateTime" ? "active" : null
+                    }
+                    onClick={() => {
+                      this.updateActive("dateTime");
+                    }}
+                  >
+                    <i className="fa fa-tv">3. date & time</i>
+                  </a>
+                  <a
+                    id="eventImage"
+                    className={
+                      this.state.active === "eventImage" ? "active" : null
+                    }
+                    onClick={() => {
+                      this.updateActive("eventImage");
+                    }}
+                  >
+                    <i className="fa fa-tasks">4. event image</i>
+                  </a>
+                  <a
+                    id="description"
+                    className={
+                      this.state.active === "description" ? "active" : null
+                    }
+                    onClick={() => {
+                      this.updateActive("description");
+                    }}
+                  >
+                    <i className="fa fa-cog">5. description</i>
+                  </a>
+                </nav>
+              </div>
+              <div className="rightbox">{this.renderFormPage()}</div>
+            </div>
           </div>
-          <div className="rightbox">{this.renderFormPage()}</div>
-        </div>
 
-        {/* <footer>
-          <p>
-            Credit: <a href="https://codepen.io/juliepark"> Julie</a>
-          </p>
-        </footer> */}
-      </div>
+          {/* bootstrap accordian */}
+          <div
+            className="accordion accordion-flush container"
+            id="accordionFlushExample"
+          >
+            {this.props.data.map((eachEvent) => {
+              return (
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="flush-headingOne">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseOne"
+                      aria-expanded="false"
+                      aria-controls="flush-collapseOne"
+                    >
+                      {eachEvent.title}
+                    </button>
+                    <span>{eachEvent.startDateTime}</span>
+                    <span>{eachEvent.organizer}</span>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        this.updateEventBegins(eachEvent);
+                      }}
+                    >
+                      update
+                    </button>
+                    <button className="btn btn-danger">delete</button>
+                  </h2>
+                  <div
+                    id="flush-collapseOne"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample"
+                  >
+                    <div className="accordion-body">
+                      <p>{eachEvent.descriptionSummary}</p>
+                      <p>{eachEvent.description}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      </React.Fragment>
     );
   }
 }
