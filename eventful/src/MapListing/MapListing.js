@@ -18,10 +18,10 @@ export default function MapListing(props) {
   const [map, setMap] = useState(null);
   //show or not show
   const [router, setRouter] = useState(0);
-  const showRouter = async (endLatLng) => {
+  const showRouter = async (eachEvent) => {
     // use await to wait for setState and for the route to redraw
     // clear previous routing drawn
-    await setEnd(endLatLng);
+    await setEndEvent(eachEvent);
     if (router === 0) {
       setRouter(1);
     } else {
@@ -51,8 +51,18 @@ export default function MapListing(props) {
   //[1.3077699, 103.8812231]
   const [start, setStart] = useState([]);
   console.log("start", start);
-  const [end, setEnd] = useState([]);
-  console.log("end", end);
+  const [endEvent, setEndEvent] = useState({});
+
+  const showDestinationPopUp = () => {
+    return (
+      <EventCard
+        eachEvent={endEvent}
+        setOneEvent={setOneEvent}
+        showRouter={showRouter}
+      />
+    );
+  };
+  // console.log("end", end);
   // Ref for our routing machine instace:
   const RoutingMachineRef = useRef(null);
   function removeRouteDrawn(map) {
@@ -80,7 +90,7 @@ export default function MapListing(props) {
             },
           ],
         },
-        waypoints: [start, end], // Point A - Point B
+        waypoints: [start, endEvent.latLng], // Point A - Point B
         createMarker: function (i, start, n) {
           let marker_icon = null;
           if (i === 0) {
@@ -104,7 +114,7 @@ export default function MapListing(props) {
             marker.bindPopup("You are here!");
           } else if (i === n - 1) {
             //This is the last marker indicating destination
-            marker.bindPopup("destination");
+            marker.bindPopup(endEvent.title);
           }
           return marker;
         },
@@ -113,16 +123,19 @@ export default function MapListing(props) {
       setRoutingMachine(RoutingMachineRef.current);
     }
     // route will be redraw if there map, start and end points of map changes
-  }, [map, start, end]);
+  }, [map, start, endEvent]);
 
   // Once routing machine instance is ready, add to map:
   useEffect(() => {
     if (!routingMachine) return;
     if (routingMachine) {
       routingMachine.addTo(map);
-      let pop1 = L.popup().setLatLng(end).setContent("desination").openOn(map);
+      let pop1 = L.popup()
+        .setLatLng(endEvent.latLng)
+        .setContent(endEvent.title)
+        .openOn(map);
 
-      map.flyTo(end, 10);
+      map.flyTo(endEvent.latLng, 10);
     }
     // remove dependancy on routingMachine, just depends router to change from true to false
   }, [router]);

@@ -24,3 +24,7 @@
   filter: grayscale(20%);
   /* color: black; */
 }
+
+.leaflet-routing-container {
+  display: none;
+}

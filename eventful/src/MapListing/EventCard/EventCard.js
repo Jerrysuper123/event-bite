@@ -35,7 +35,7 @@ export default function EventCard(props) {
           <button
             className="btn btn-danger"
             onClick={() => {
-              props.showRouter(props.eachEvent.latLng);
+              props.showRouter(props.eachEvent);
             }}
           >
             direction
