@@ -114,7 +114,11 @@ export default function MapListing(props) {
             marker.bindPopup("You are here!");
           } else if (i === n - 1) {
             //This is the last marker indicating destination
-            marker.bindPopup(endEvent.title);
+            marker.bindPopup(`<EventCard
+            eachEvent=${endEvent}
+            setOneEvent=${setOneEvent}
+            showRouter=${showRouter}
+          />`);
           }
           return marker;
         },
@@ -132,7 +136,13 @@ export default function MapListing(props) {
       routingMachine.addTo(map);
       let pop1 = L.popup()
         .setLatLng(endEvent.latLng)
-        .setContent(endEvent.title)
+        .setContent(
+          `<EventCard
+        eachEvent=${endEvent}
+        setOneEvent=${setOneEvent}
+        showRouter=${showRouter}
+      />`
+        )
         .openOn(map);
 
       map.flyTo(endEvent.latLng, 10);
@@ -187,7 +197,11 @@ export default function MapListing(props) {
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            // credir: https://docs.stadiamaps.com/themes/
+            //https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png
+            //https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png
+            url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+            // id="mapbox/dark-v10"
           />
 
           {props.data.map((eachEvent) => {

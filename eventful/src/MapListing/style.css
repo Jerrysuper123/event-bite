@@ -21,7 +21,7 @@
 
 .leaflet-tile {
   /* -webkit-filter: grayscale(100%); Safari 6.0 - 9.0 */
-  filter: grayscale(20%);
+  /* filter: grayscale(20%); */
   /* color: black; */
 }
 
