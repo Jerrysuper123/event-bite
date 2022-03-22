@@ -4,6 +4,26 @@ import "./style.scss";
 export default class AddEvent extends React.Component {
   state = {
     active: "basicInfo",
+
+    /*Basic info */
+    title: "",
+    organizer: "",
+    category: "",
+    hashtags: [],
+    /*location */
+    customizedMapMarker: "",
+    brandColor: "",
+    address: "",
+    postalCode: "",
+    latLng: [],
+    /*date time*/
+    startDateTime: "",
+    endDateTime: "",
+    /*main event image */
+    eventImage: "",
+    /*description */
+    descriptionSummary: "",
+    description: "",
   };
 
   updateActive = (active) => {
@@ -17,126 +37,194 @@ export default class AddEvent extends React.Component {
       return (
         <div className="basicInfo">
           <h1>Basic Info</h1>
-          <h2>Full Name</h2>
-          <p>
-            Julie Park <button className="btn">update</button>
-          </p>
-          <h2>Birthday</h2>
-          <p>July 21</p>
-          <h2>Gender</h2>
-          <p>Female</p>
-          <h2>Email</h2>
-          <p>
-            example@example.com <button className="btn">update</button>
-          </p>
-          <h2>Password </h2>
-          <p>
-            ••••••• <button className="btn">Change</button>
-          </p>
+          <div>
+            <h2>Event title:</h2>
+            <input
+              type="text"
+              placeholder="Be clear and concise"
+              value={this.state.title}
+            />
+            <button className="btn">clear</button>
+          </div>
+
+          <div>
+            <h2>Organizer:</h2>
+            <input
+              type="text"
+              placeholder="Tell attendees who is organizing the event"
+              value={this.state.organizer}
+            />
+            <button className="btn">clear</button>
+            <p>This profile will appear in all events created by you.</p>
+          </div>
+
+          <div>
+            <h2>Category:</h2>
+            <select value={this.state.category}>
+              <option>education</option>
+              <option>health & wellness</option>
+              <option>science & tech</option>
+              <option>community & cultural</option>
+              <option>promotion</option>
+              <option>tourism</option>
+            </select>
+          </div>
+
+          <div>
+            <h2>Tags</h2>
+            <p>
+              Improve discoverability by adding tags relevant to subject matter
+            </p>
+            <input type="text" />
+            <div id="tagsAddedList" value={this.state.tags}></div>
+          </div>
+
+          <button className="btn btn-primary">next</button>
         </div>
       );
     } else if (this.state.active === "location") {
       return (
         <div className="location">
           <h1>Location</h1>
-          <h2>Payment Method</h2>
-          <p>
-            Mastercard •••• •••• •••• 0000{" "}
-            <button className="btn">update</button>
-          </p>
-          <h2>Billing Address</h2>
-          <p>
-            1234 Example Ave | Seattle, WA{" "}
-            <button className="btn">change</button>
-          </p>
-          <h2>Zipcode</h2>
-          <p>999000</p>
-          <h2>Billing History</h2>
-          <p>
-            2018<button className="btn">view</button>
-          </p>
-          <h2>Redeem Gift Subscription </h2>
-          <p>
-            <input type="text" placeholder="Enter Gift Code"></input>{" "}
-            <button className="btn">Redeem</button>
-          </p>
+          <div>
+            <h2>address:</h2>
+            <input
+              type="text"
+              placeholder="address..."
+              value={this.state.address}
+            />
+            <button className="btn">clear</button>
+          </div>
+
+          <div>
+            <h2>Singapore postal:</h2>
+            <input
+              type="text"
+              placeholder="address..."
+              value={this.state.postalCode}
+            />
+            <button className="btn">clear</button>
+          </div>
+
+          <div>
+            <h2>latitude:</h2>
+            <input
+              type="text"
+              placeholder="address..."
+              value={this.state.latLng[0]}
+            />
+            <button className="btn">clear</button>
+          </div>
+
+          <div>
+            <h2>longitude:</h2>
+            <input
+              type="text"
+              placeholder="address..."
+              value={this.state.latLng[1]}
+            />
+            <button className="btn">clear</button>
+            <p>Help people to know where to show up for your event</p>
+          </div>
+          <button className="btn btn-primary">next</button>
         </div>
       );
     } else if (this.state.active === "dateTime") {
       return (
         <div className="dateTime">
-          <h1>Date & time</h1>
-          <h2>Payment Date</h2>
+          <h1>Date and time</h1>
+          <div>
+            <h2>event starts:</h2>
+            <input
+              type="datetime-local"
+              placeholder="address..."
+              value={this.state.startDateTime}
+            />
+            <button className="btn">clear</button>
+          </div>
+          <div>
+            <h2>event ends:</h2>
+            <input
+              type="datetime-local"
+              placeholder="address..."
+              value={this.state.endDateTime}
+            />
+            <button className="btn">clear</button>
+          </div>
           <p>
-            05-15-2018 <button className="btn">pay now</button>
+            Tell event-goers when your event starts and ends so they can make
+            plans to attend.
           </p>
-          <h2>Your Next Charge</h2>
-          <p>
-            $8.48<span> includes tax</span>
-          </p>
-          <h2>Hulu Base Plan</h2>
-          <p>
-            Limited Commercials <button className="btn">change plan</button>
-          </p>
-          <h2>Add-ons</h2>
-          <p>
-            None <button className="btn">manage</button>
-          </p>
-          <h2>Monthly Recurring Total </h2>
-          <p>$7.99/month</p>
+          <button className="btn btn-primary">next</button>
         </div>
       );
     } else if (this.state.active === "eventImage") {
       return (
         <div className="eventImage">
-          <h1>Main event image</h1>
-          <h2>
-            Manage Email Notifications
-            <button className="btn">manage</button>
-          </h2>
-          <p></p>
-          <h2>
-            Manage Privacy Settings<button className="btn">manage</button>
-          </h2>
-          <p></p>
-          <h2>
-            View Terms of Use <button className="btn">view</button>
-          </h2>
-          <p></p>
-          <h2>
-            Personalize Ad Experience <button className="btn">update</button>
-          </h2>
-          <p></p>
-          <h2>
-            Protect Your Account <button className="btn">protect</button>
-          </h2>
-          <p></p>
+          <h1>Event image</h1>
+          <div>
+            <h2>main event image:</h2>
+            <input
+              type="text"
+              placeholder="url..."
+              value={this.state.eventImage}
+            />
+            <button className="btn">clear</button>
+          </div>
+          <p>
+            This is the first image attendees will see at the top of your
+            listing. Use a high quality image
+          </p>
+
+          <div>
+            <h2>custom map marker:</h2>
+            <input
+              type="text"
+              placeholder="url..."
+              value={this.state.customizedMapMarker}
+            />
+            <button className="btn">clear</button>
+          </div>
+
+          <div>
+            <h2>brand color:</h2>
+            <input type="color" value={this.state.brandColor} />
+            <button className="btn">clear</button>
+            <p>
+              For branding purpose, both show up on the map and event listing
+            </p>
+          </div>
+          <button className="btn btn-primary">next</button>
         </div>
       );
     } else if (this.state.active === "description") {
       return (
         <div className="description">
           <h1>Description</h1>
-          <h2>
-            Sync Watchlist to My Stuff<button className="btn">sync</button>
-          </h2>
-          <p></p>
-          <h2>
-            Hold Your Subscription<button className="btn">hold</button>
-          </h2>
-          <p></p>
-          <h2>
-            Cancel Your Subscription <button className="btn">cancel</button>
-          </h2>
-          <p></p>
-          <h2>
-            Your Devices <button className="btn">Manage Devices</button>
-          </h2>
-          <p></p>
-          <h2>
-            Referrals <button className="btn">get $10</button>
-          </h2>
-          <p></p>
+          <p>
+            Add more details to your event like your schedule, sponsors, or
+            featured guests.
+          </p>
+          <div>
+            <h2>summary:</h2>
+            <input
+              type="text"
+              placeholder="write a short summary to get attendees excited"
+              value={this.state.descriptionSummary}
+            />
+            <button className="btn">clear</button>
+          </div>
+
+          <div>
+            <h2>detailed description:</h2>
+            <textarea
+              type="text"
+              placeholder="..."
+              value={this.state.description}
+            />
+            <button className="btn">clear</button>
+          </div>
+          <button className="btn btn-primary">submit</button>
         </div>
       );
     }
@@ -160,7 +248,7 @@ export default class AddEvent extends React.Component {
                   this.updateActive("basicInfo");
                 }}
               >
-                <i className="fa fa-user"></i>
+                <i className="fa fa-user">1. basic info</i>
               </a>
               <a
                 id="location"
@@ -169,7 +257,7 @@ export default class AddEvent extends React.Component {
                   this.updateActive("location");
                 }}
               >
-                <i className="fa fa-credit-card"></i>
+                <i className="fa fa-credit-card">2. location</i>
               </a>
               <a
                 id="dateTime"
@@ -178,7 +266,7 @@ export default class AddEvent extends React.Component {
                   this.updateActive("dateTime");
                 }}
               >
-                <i className="fa fa-tv"></i>
+                <i className="fa fa-tv">3. date & time</i>
               </a>
               <a
                 id="eventImage"
@@ -187,7 +275,7 @@ export default class AddEvent extends React.Component {
                   this.updateActive("eventImage");
                 }}
               >
-                <i className="fa fa-tasks"></i>
+                <i className="fa fa-tasks">4. event image</i>
               </a>
               <a
                 id="description"
@@ -198,7 +286,7 @@ export default class AddEvent extends React.Component {
                   this.updateActive("description");
                 }}
               >
-                <i className="fa fa-cog"></i>
+                <i className="fa fa-cog">5. description</i>
               </a>
             </nav>
           </div>

@@ -1,5 +1,8 @@
 # event-bite
 
+Credit
+https://codepen.io/juliepark/pen/pLMxoP
+
 ```
 let date = new Date();
 console.log("current date GTM", new Date())

@@ -107,7 +107,7 @@ $body: "Roboto", sans-serif;
   color: $gray;
 }
 
-.btn {
+.createNewForm .btn {
   float: right;
   font-family: $body;
   text-transform: uppercase;
@@ -116,7 +116,7 @@ $body: "Roboto", sans-serif;
   color: $aqua;
 }
 
-.btn:hover {
+.createNewForm .btn:hover {
   text-decoration: underline;
   font-weight: 900;
 }
