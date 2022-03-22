@@ -11,21 +11,26 @@ class App extends React.Component {
     data: [
       {
         _id: 1,
+        /*Basic info */
         title: "recyle day with salvation army",
         organizer: "Salvation Army",
         category: "Promotional",
+        hashtags: ["adventure", "nature", "environmental-friendly"],
+        /*location */
+        customizedMapMarker: "",
+        brandColor: "red",
         address: "Singapore botanic garden",
         postalCode: 259569,
         latLng: [1.3138, 103.8159],
+        /*date time*/
         startDateTime: "2022-03-21T10:00",
         endDateTime: "2022-03-21T10:22",
+        /*main event image */
         eventImage:
           "https://saltandlight.sg/wp-content/uploads/2018/12/fullsizeoutput_265.jpeg",
+        /*description */
         descriptionSummary: "get earth cleaned with our own hands",
         description: "this is a description",
-        customizedMapMarker: "",
-        brandColor: "red",
-        hashtags: ["adventure", "nature", "environmental-friendly"],
       },
       {
         _id: 2,
