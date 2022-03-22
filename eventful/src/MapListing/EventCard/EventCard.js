@@ -17,7 +17,13 @@ export default function EventCard(props) {
         <p>{props.eachEvent.startDateTime}</p>
         <p>event in progress now...</p>
         <p className="card-text">{props.eachEvent.descriptionSummary}</p>
-        <p>{props.eachEvent.organizer}</p>
+        <p
+          style={{
+            color: props.eachEvent.brandColor,
+          }}
+        >
+          {props.eachEvent.organizer}
+        </p>
         <div className="d-flex justify-content-between">
           <button
             className="btn btn-info"

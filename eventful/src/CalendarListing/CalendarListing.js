@@ -11,7 +11,7 @@ export default function CalendarListing(props) {
       endAt: e.endDateTime,
       summary: `${e.organizer} - ${e.title}`,
       // make this color dynamic to color brand chosen and show on card
-      color: "#e27d60",
+      color: e.brandColor,
     };
   });
 

@@ -27,7 +27,13 @@ export default function EventDetailsPage(props) {
 
           <div className="modal-body">
             <p>{props.data.category}</p>
-            <p>{props.data.organizer}</p>
+            <p
+              style={{
+                color: props.data.brandColor,
+              }}
+            >
+              {props.data.organizer}
+            </p>
             <p>{props.data.startDateTime}</p>
             <p>{props.data.endDateTime}</p>
             <p>

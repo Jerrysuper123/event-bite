@@ -10,7 +10,7 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import EventCard from "./EventCard/EventCard";
 import EventDetailsPage from "./EventDetailsPage/EventDetailsPage";
 import defaultMarker from "../images/defaultMarker.png";
-import userLocationMarker from "../images/userLocationMarker.png";
+import userLocationMarker from "../images/userLocationMarker.gif";
 import destinationMarker from "../images/destinationMarker.png";
 
 export default function MapListing(props) {
@@ -200,7 +200,7 @@ export default function MapListing(props) {
             // credir: https://docs.stadiamaps.com/themes/
             //https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png
             //https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+            url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
             // id="mapbox/dark-v10"
           />
 
