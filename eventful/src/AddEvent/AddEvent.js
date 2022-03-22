@@ -9,7 +9,7 @@ export default class AddEvent extends React.Component {
     title: "",
     organizer: "",
     category: "",
-    hashtags: [],
+    hashtags: ["adventurous", "fun", "exciting", "nature"],
     /*location */
     customizedMapMarker: "",
     brandColor: "",
@@ -32,6 +32,29 @@ export default class AddEvent extends React.Component {
     });
   };
 
+  updateFormField = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  processCheckbox = (e) => {
+    let currentValues = this.state[e.target.name];
+    let modifiedValues;
+
+    if (!currentValues.includes(e.target.value)) {
+      modifiedValues = [...currentValues, e.target.value];
+    } else {
+      modifiedValues = currentValues.filter((element) => {
+        return element !== e.target.value;
+      });
+    }
+
+    this.setState({
+      [e.target.name]: modifiedValues,
+    });
+  };
+
   renderFormPage = () => {
     if (this.state.active === "basicInfo") {
       return (
@@ -43,6 +66,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="Be clear and concise"
               value={this.state.title}
+              name="title"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
@@ -53,6 +78,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="Tell attendees who is organizing the event"
               value={this.state.organizer}
+              name="organizer"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
             <p>This profile will appear in all events created by you.</p>
@@ -60,7 +87,11 @@ export default class AddEvent extends React.Component {
 
           <div>
             <h2>Category:</h2>
-            <select value={this.state.category}>
+            <select
+              value={this.state.category}
+              name="category"
+              onChange={this.updateFormField}
+            >
               <option>education</option>
               <option>health & wellness</option>
               <option>science & tech</option>
@@ -71,12 +102,29 @@ export default class AddEvent extends React.Component {
           </div>
 
           <div>
-            <h2>Tags</h2>
+            <h2>Tags:</h2>
+            {/* {this.state.hashtags.map(tag=>{
+              return (  <input type="checkbox" name="hashtags" value={tag} />
+              {tag}
+              )
+            })} */}
+            {this.state.hashtags.map((tag) => {
+              return (
+                <React.Fragment key={tag}>
+                  <input
+                    type="checkbox"
+                    name="hashtags"
+                    value={tag}
+                    checked={this.state.hashtags.includes(tag)}
+                    onChange={this.processCheckbox}
+                  />
+                  {tag}
+                </React.Fragment>
+              );
+            })}
             <p>
               Improve discoverability by adding tags relevant to subject matter
             </p>
-            <input type="text" />
-            <div id="tagsAddedList" value={this.state.tags}></div>
           </div>
 
           <button className="btn btn-primary">next</button>
