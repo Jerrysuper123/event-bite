@@ -38,6 +38,21 @@ export default class AddEvent extends React.Component {
     });
   };
 
+  updateLatLng = (e) => {
+    let clone = this.state.latLng.slice();
+    if (e.target.name === "lat") {
+      clone[0] = Number(e.target.value);
+      this.setState({
+        latLng: clone,
+      });
+    } else if (e.target.name === "lng") {
+      clone[1] = Number(e.target.value);
+      this.setState({
+        latLng: clone,
+      });
+    }
+  };
+
   processCheckbox = (e) => {
     let currentValues = this.state[e.target.name];
     let modifiedValues;
@@ -140,6 +155,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="address..."
               value={this.state.address}
+              name="address"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
@@ -150,6 +167,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="address..."
               value={this.state.postalCode}
+              name="postalCode"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
@@ -160,6 +179,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="address..."
               value={this.state.latLng[0]}
+              name="lat"
+              onChange={this.updateLatLng}
             />
             <button className="btn">clear</button>
           </div>
@@ -170,6 +191,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="address..."
               value={this.state.latLng[1]}
+              name="lng"
+              onChange={this.updateLatLng}
             />
             <button className="btn">clear</button>
             <p>Help people to know where to show up for your event</p>
@@ -187,6 +210,8 @@ export default class AddEvent extends React.Component {
               type="datetime-local"
               placeholder="address..."
               value={this.state.startDateTime}
+              name="startDateTime"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
@@ -196,6 +221,8 @@ export default class AddEvent extends React.Component {
               type="datetime-local"
               placeholder="address..."
               value={this.state.endDateTime}
+              name="endDateTime"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
@@ -216,6 +243,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="url..."
               value={this.state.eventImage}
+              name="eventImage"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
@@ -230,13 +259,21 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="url..."
               value={this.state.customizedMapMarker}
+              name="customizedMapMarker"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
 
           <div>
             <h2>brand color:</h2>
-            <input type="color" value={this.state.brandColor} />
+
+            <input
+              type="color"
+              value={this.state.brandColor}
+              name="brandColor"
+              onChange={this.updateFormField}
+            />
             <button className="btn">clear</button>
             <p>
               For branding purpose, both show up on the map and event listing
@@ -259,6 +296,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="write a short summary to get attendees excited"
               value={this.state.descriptionSummary}
+              name="descriptionSummary"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
@@ -269,6 +308,8 @@ export default class AddEvent extends React.Component {
               type="text"
               placeholder="..."
               value={this.state.description}
+              name="description"
+              onChange={this.updateFormField}
             />
             <button className="btn">clear</button>
           </div>
