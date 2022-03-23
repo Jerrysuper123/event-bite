@@ -1,9 +1,68 @@
 # event-bite
 
+//display real time date and time
+https://dev.to/atif_dev/get-real-time-date-and-time-using-javascript-5eep
+
+//summernote editor
+https://codesandbox.io/s/d2qev?file=/src/App.js
+
+https://summernote.org/getting-started/#for-bootstrap-5
+
 Credit
 https://codepen.io/juliepark/pen/pLMxoP
 
+//draggable elements
+https://www.w3schools.com/howto/howto_js_draggable.asp
+//draggable and resizeable div
+https://codepen.io/jkasun/pen/QrLjXP
+
+//collapse to show and unshow content
+https://getbootstrap.com/docs/5.0/components/collapse/
+
+//toast to show event has started
+https://getbootstrap.com/docs/5.0/components/toasts/
+
+//convert iso dates
+const event = new Date('05 October 2011 14:48 UTC');
+console.log(event.toString());
+// expected output: Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)
+// (note: your timezone may vary)
+
+console.log(event.toISOString());
+// expected output: 2011-10-05T14:48:00.000Z
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+
+Singapore map to return lat and lng by postal code
+https://www.onemap.gov.sg/
+https://developers.onemap.sg/commonapi/search?searchVal=650230&returnGeom=Y&getAddrDetails=Y&pageNum=1
+
 ```
+//rating 1/5
+<html>
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+</style>
+</head>
+<body>
+
+<h2>Star Rating</h2>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
+
+</body>
+</html>
+
+```
+
 let date = new Date();
 console.log("current date GTM", new Date())
 //2022-03-21T03:57:51.847Z
@@ -15,20 +74,19 @@ console.log("Current date Singapore GMT+8",date);
 //2022-03-21T13:35:13.776Z
 
 document.querySelector("#dateTime").addEventListener("change",function(){
-  let dateTime = document.querySelector("#dateTime").value;
-  console.log("datetime picker", dateTime )
+let dateTime = document.querySelector("#dateTime").value;
+console.log("datetime picker", dateTime )
 })
 
-//    <input id="dateTime" type="datetime-local"/>
+// <input id="dateTime" type="datetime-local"/>
 //datetime picker 2022-03-15T14:10
 
 //test color
-  // <input id="colorPicker" type="color" value="#ff0000">
+// <input id="colorPicker" type="color" value="#ff0000">
 document.querySelector("#colorPicker").addEventListener("change",function(){
-  let colorPicked = document.querySelector("#colorPicker").value;
-  console.log("color picked", colorPicked )
+let colorPicked = document.querySelector("#colorPicker").value;
+console.log("color picked", colorPicked )
 })
-
 
 ```
 
@@ -135,12 +193,14 @@ Using the above color wheel, we have set the colors in the \_constant.scss file 
 - The rest of the colors are also widely used, but mostly as supporting hues.
 
 ```
-/* color setting */
+
+/_ color setting _/
 $colorPrimary: #ab5e69;
 $colorSecondary: #c2fbcd;
 $colorAccentOne: #F7c1c9;
 $colorAccentTwo: #E0ffe7;
 $colorAccentThree: #8fb095;
+
 ```
 
 PrimaryColor consistency
@@ -155,9 +215,11 @@ Although they are two sans serifs, but the imperfect/perfect pairing of their ch
 Against, in the \_constant.scss file, we have set below font variables to be used globally.
 
 ```
-/* font family and size setting */
+
+/_ font family and size setting _/
 $headerFront: 'Lora', serif;
 $bodyTextFront: 'Roboto', sans-serif;
+
 ```
 
 ## 6. technology stack
@@ -223,3 +285,4 @@ DataSets:
 6. [Disease match drug API from Open FDA](https://open.fda.gov/apis/drug/label/) - to match drug for users' conditions
 
 7. [Adverse events data API from Open FDA](https://open.fda.gov/apis/drug/event/) - to plot the trends of drug side effects reported on charts
+```

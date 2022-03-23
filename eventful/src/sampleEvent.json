@@ -1,0 +1,37 @@
+{
+    "title": "recyle day with salvation army",
+    "organizer": "Salvation Army",
+    "category": "Promotional",
+    "hashtags": [
+        "adventure",
+        "nature",
+        "environmental-friendly"
+    ],
+    "customizedMapMarker": "https://image.winudf.com/v2/image/Y29tLmhtX2ljb25fMTUzMTEzNzU1NV8wNDk/icon.png?fakeurl=1&h=240&type=webp",
+    "brandColor": "#FF0000",
+    "address": "botanic gardem",
+    "postalCode": 259569,
+    "latLng": [
+        1.3138,
+        103.8159
+    ],
+    "startDateTime": "2022-03-21T10:00",
+    "endDateTime": "2022-03-21T10:22",
+    "eventImage": "https://saltandlight.sg/wp-content/uploads/2018/12/fullsizeoutput_265.jpeg",
+    "descriptionSummary": "get earth cleaned with our own hands",
+    "description": "this is a description",
+    "reviews": [
+        {
+            "_id": 111,
+            "name": "jerry Chen",
+            "rating": 5,
+            "feedback": "lousy event"
+        },
+        {
+            "_id": 112,
+            "name": "jerry Chen",
+            "rating": 5,
+            "feedback": "lousy event"
+        }
+    ]
+}

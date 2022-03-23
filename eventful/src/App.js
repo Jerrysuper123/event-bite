@@ -21,6 +21,7 @@ class App extends React.Component {
         brandColor: "#FF0000",
         address: "Singapore botanic garden",
         postalCode: 259569,
+        // use one map to convert postal code to latlng
         latLng: [1.3138, 103.8159],
         /*date time*/
         startDateTime: "2022-03-21T10:00",
@@ -31,6 +32,20 @@ class App extends React.Component {
         /*description */
         descriptionSummary: "get earth cleaned with our own hands",
         description: "this is a description",
+        reviews: [
+          {
+            _id: 111,
+            name: "jerry Chen",
+            rating: 5,
+            feedback: "lousy event",
+          },
+          {
+            _id: 112,
+            name: "jerry Chen",
+            rating: 5,
+            feedback: "lousy event",
+          },
+        ],
       },
       {
         _id: 2,

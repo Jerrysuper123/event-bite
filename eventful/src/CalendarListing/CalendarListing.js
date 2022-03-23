@@ -79,8 +79,12 @@ export default function CalendarListing(props) {
         events={events}
         initialDate={new Date().toISOString()}
         hourHeight={60}
-        initialView={CalendarView.DAY}
-        disabledViews={[CalendarView.AGENDA]}
+        initialView={CalendarView.WEEK}
+        disabledViews={[
+          CalendarView.AGENDA,
+          CalendarView.DAY,
+          CalendarView.THREE_DAYS,
+        ]}
         // onSelectView={onSelectView}
         // selectedView={selectedView}
         // onPageChange={onPageChange}
