@@ -2,6 +2,8 @@ import React from "react";
 import "./style.scss";
 import axios from "axios";
 
+import { BASE_API_URL } from "../Utility";
+
 export default class AddEvent extends React.Component {
   state = {
     active: "basicInfo",
@@ -32,13 +34,9 @@ export default class AddEvent extends React.Component {
 
   componentDidMount = async () => {
     try {
-      let hashtagsRequest = axios.get(
-        "https://eventfulapi.herokuapp.com/events/hashtags"
-      );
+      let hashtagsRequest = axios.get(`${BASE_API_URL}/events/hashtags`);
 
-      let categoriesRequest = axios.get(
-        "https://eventfulapi.herokuapp.com/events/categories"
-      );
+      let categoriesRequest = axios.get(`${BASE_API_URL}/events/categories`);
       // console.log(response);
       let hashtagsResponse = await hashtagsRequest;
       let categoriesResponse = await categoriesRequest;

@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import NavBar from "./NavBar/NavBar";
+import FilterBar from "./FilterBar/FilterBar";
 import MapListing from "./MapListing/MapListing";
 import CalendarListing from "./CalendarListing/CalendarListing";
 import AddEvent from "./AddEvent/AddEvent";
@@ -96,123 +98,11 @@ class App extends React.Component {
     });
   };
 
-  // renderPage = () => {
-  //   if (this.state.active === "map") {
-  //     return <MapListing data={this.state.data} />;
-  //   } else if (this.state.active === "calendar") {
-  //     return <CalendarListing data={this.state.data} />;
-  //   } else if (this.state.active === "addNew") {
-  //     return <AddEvent />;
-  //   }
-  // };
-
   render() {
     return (
       <React.Fragment>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <div className="container-fluid">
-            <a className="navbar-brand logoText">eventful</a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    aria-current="page"
-                    onClick={() => {
-                      this.setActive("map");
-                    }}
-                  >
-                    map view
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    onClick={() => {
-                      this.setActive("calendar");
-                    }}
-                  >
-                    calendar view
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    onClick={() => {
-                      this.setActive("addNew");
-                    }}
-                  >
-                    add new event
-                  </a>
-                </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Dropdown
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Something else here
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              <form className="d-flex">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        {/* {this.renderPage()} */}
-        {/* <MapListing data={this.state.data} />
-        <CalendarListing /> */}
+        <NavBar setActive={this.setActive} />
+        <FilterBar />
         <MapListing
           data={this.state.data}
           display={this.state.active === "map" ? "block" : "none"}

@@ -37,7 +37,7 @@ h4 {
 }
 
 .secondaryColor {
-  color: #85dcb8;
+  color: #85dcb8 !important;
 }
 
 .accentOneColor {
@@ -59,7 +59,7 @@ h4 {
 }
 
 .secondaryBgColor {
-  background-color: #85dcb8;
+  background-color: #85dcb8 !important;
 }
 
 .accentOneBgColor {
@@ -67,7 +67,7 @@ h4 {
 }
 
 .accentTwoBgColor {
-  background-color: #c38d9e;
+  background-color: #c38d9e !important;
 }
 
 .accentThreeBgColor {

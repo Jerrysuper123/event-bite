@@ -1,3 +1,3 @@
-const BASE_API_URL = "https://eventfulapi.herokuapp.com/";
+const BASE_API_URL = "https://eventfulapi.herokuapp.com";
 
-export default { BASE_API_URL };
+export { BASE_API_URL };
