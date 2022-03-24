@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import axios from "axios";
 
 export default class AddEvent extends React.Component {
   state = {
@@ -10,7 +11,7 @@ export default class AddEvent extends React.Component {
     title: "",
     organizer: "",
     category: "",
-    hashtags: ["adventurous", "fun", "exciting", "nature"],
+    hashtags: [],
     /*location */
     address: "",
     postalCode: "",
@@ -25,6 +26,30 @@ export default class AddEvent extends React.Component {
     /*description */
     descriptionSummary: "",
     description: "",
+    formHashtags: [],
+    formCategories: [],
+  };
+
+  componentDidMount = async () => {
+    try {
+      let hashtagsRequest = axios.get(
+        "https://eventfulapi.herokuapp.com/events/hashtags"
+      );
+
+      let categoriesRequest = axios.get(
+        "https://eventfulapi.herokuapp.com/events/categories"
+      );
+      // console.log(response);
+      let hashtagsResponse = await hashtagsRequest;
+      let categoriesResponse = await categoriesRequest;
+
+      this.setState({
+        formHashtags: hashtagsResponse.data.data[0].hashtags,
+        formCategories: categoriesResponse.data.data[0].categories,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   updateActive = (active) => {
@@ -108,36 +133,30 @@ export default class AddEvent extends React.Component {
               name="category"
               onChange={this.updateFormField}
             >
-              <option>education</option>
-              <option>health & wellness</option>
-              <option>science & tech</option>
-              <option>community & cultural</option>
-              <option>promotion</option>
-              <option>tourism</option>
+              {this.state.formCategories.map((cat) => {
+                return <option>{cat}</option>;
+              })}
             </select>
           </div>
 
           <div>
             <h2>Tags:</h2>
-            {/* {this.state.hashtags.map(tag=>{
-              return (  <input type="checkbox" name="hashtags" value={tag} />
-              {tag}
-              )
-            })} */}
-            {this.state.hashtags.map((tag) => {
-              return (
-                <React.Fragment key={tag}>
-                  <input
-                    type="checkbox"
-                    name="hashtags"
-                    value={tag}
-                    checked={this.state.hashtags.includes(tag)}
-                    onChange={this.processCheckbox}
-                  />
-                  {tag}
-                </React.Fragment>
-              );
-            })}
+            {this.state.formHashtags
+              ? this.state.formHashtags.map((tag) => {
+                  return (
+                    <React.Fragment key={tag}>
+                      <input
+                        type="checkbox"
+                        name="hashtags"
+                        value={tag}
+                        checked={this.state.hashtags.includes(tag)}
+                        onChange={this.processCheckbox}
+                      />
+                      {tag}
+                    </React.Fragment>
+                  );
+                })
+              : null}
             <p>
               Improve discoverability by adding tags relevant to subject matter
             </p>
@@ -321,32 +340,10 @@ export default class AddEvent extends React.Component {
   };
 
   updateEventBegins = (eachEvent) => {
-    // let clone = this.state.slice();
-    // clone.active = this.state.active;
-    // this.setState({})
     let activeState = this.state.active;
     this.setState({
       activeState,
       ...eachEvent,
-      // editedId: eachEvent._id,
-      // title: eachEvent.title,
-      // organizer: eachEvent.organizer,
-      // category: eachEvent.category,
-      // hashtags: ["adventurous", "fun", "exciting", "nature"],
-      // /*location */
-      // address: "",
-      // postalCode: "",
-      // latLng: [],
-      // /*date time*/
-      // startDateTime: "",
-      // endDateTime: "",
-      // /*main event image */
-      // eventImage: "",
-      // customizedMapMarker: "",
-      // brandColor: "",
-      // /*description */
-      // descriptionSummary: "",
-      // description: "",
     });
   };
   render() {
