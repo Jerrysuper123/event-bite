@@ -28,10 +28,13 @@ export default class AddEvent extends React.Component {
     /*description */
     descriptionSummary: "",
     description: "",
+
+    //for loading the form
     formHashtags: [],
     formCategories: [],
   };
 
+  //load hashtags and categories for selectbox and dropdown list
   componentDidMount = async () => {
     try {
       let hashtagsRequest = axios.get(`${BASE_API_URL}/events/hashtags`);
@@ -92,6 +95,32 @@ export default class AddEvent extends React.Component {
     this.setState({
       [e.target.name]: modifiedValues,
     });
+  };
+
+  postEvent = async () => {
+    if (this.state.title !== "") {
+      try {
+        let response = await axios.post(`${BASE_API_URL}/events/create`, {
+          title: this.state.title,
+          organizer: this.state.organizer,
+          category: this.state.category,
+          hashtags: this.state.hashtags,
+          address: this.state.address,
+          postalCode: this.state.postalCode,
+          latLng: this.state.latLng,
+          startDateTime: this.state.startDateTime,
+          endDateTime: this.state.endDateTime,
+          eventImage: this.state.eventImage,
+          customizedMapMarker: this.state.customizedMapMarker,
+          brandColor: this.state.brandColor,
+          descriptionSummary: this.state.descriptionSummary,
+          description: this.state.description,
+        });
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   renderFormPage = () => {
@@ -331,7 +360,9 @@ export default class AddEvent extends React.Component {
             />
             <button className="btn">clear</button>
           </div>
-          <button className="btn btn-primary">submit</button>
+          <button className="btn btn-primary" onClick={this.postEvent}>
+            submit
+          </button>
         </div>
       );
     }
