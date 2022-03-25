@@ -12,8 +12,8 @@ export default class AddEvent extends React.Component {
     /*Basic info */
     title: "",
     organizer: "",
-    category: "",
-    hashtags: [],
+    category: "education",
+    hashtags: ["party"],
     /*location */
     address: "",
     postalCode: "",
@@ -391,17 +391,71 @@ export default class AddEvent extends React.Component {
           <button className="btn btn-primary" onClick={this.postEvent}>
             submit
           </button>
+          <button className="btn btn-primary" onClick={this.updateEventAPI}>
+            update
+          </button>
         </div>
       );
     }
   };
 
   updateEventBegins = (eachEvent) => {
-    let activeState = this.state.active;
     this.setState({
-      activeState,
-      ...eachEvent,
+      editedId: eachEvent._id,
+      title: eachEvent.title,
+      organizer: eachEvent.organizer,
+      category: eachEvent.category,
+      hashtags: eachEvent.hashtags,
+      address: eachEvent.address,
+      postalCode: eachEvent.postalCode,
+      latLng: eachEvent.latLng,
+      startDateTime: eachEvent.startDateTime,
+      endDateTime: eachEvent.endDateTime,
+      eventImage: eachEvent.eventImage,
+      customizedMapMarker: eachEvent.customizedMapMarker,
+      brandColor: eachEvent.brandColor,
+      descriptionSummary: eachEvent.descriptionSummary,
+      description: eachEvent.description,
     });
+  };
+
+  updateEventAPI = async () => {
+    if (
+      // leave the dummy data intact
+      this.state.editedId !== "" &&
+      this.state.editedId !== 1 &&
+      this.state.editedId !== 2 &&
+      this.state.editedId !== 3
+    ) {
+      try {
+        let response = await axios.put(
+          `${BASE_API_URL}/events/${this.state.editedId}/update`,
+          {
+            title: this.state.title,
+            organizer: this.state.organizer,
+            category: this.state.category,
+            hashtags: this.state.hashtags,
+            address: this.state.address,
+            postalCode: this.state.postalCode,
+            latLng: this.state.latLng,
+            startDateTime: this.state.startDateTime,
+            endDateTime: this.state.endDateTime,
+            eventImage: this.state.eventImage,
+            customizedMapMarker: this.state.customizedMapMarker,
+            brandColor: this.state.brandColor,
+            descriptionSummary: this.state.descriptionSummary,
+            description: this.state.description,
+          }
+        );
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      console.log(
+        "App creator is trying to keep the dummy data, do not update these events!"
+      );
+    }
   };
   render() {
     return (
