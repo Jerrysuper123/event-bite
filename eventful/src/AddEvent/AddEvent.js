@@ -244,7 +244,7 @@ export default class AddEvent extends React.Component {
             <button className="btn">clear</button>
           </div>
 
-          <div>
+          {/* <div>
             <h2>latitude:</h2>
             <input
               type="text"
@@ -266,8 +266,10 @@ export default class AddEvent extends React.Component {
               onChange={this.updateLatLng}
             />
             <button className="btn">clear</button>
-            <p>Help people to know where to show up for your event</p>
-          </div>
+  
+          </div> */}
+
+          <p>Help people to know where to show up for your event</p>
           <button className="btn btn-primary" onClick={this.getLatLng}>
             next
           </button>
