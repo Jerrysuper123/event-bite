@@ -97,6 +97,30 @@ export default class AddEvent extends React.Component {
     });
   };
 
+  getLatLng = async () => {
+    console.log("start retrieving Lat and lng");
+    try {
+      let response = await axios.get(
+        `https://developers.onemap.sg/commonapi/search?searchVal=${this.state.postalCode}&returnGeom=Y&getAddrDetails=Y&pageNum=1`
+      );
+      console.log(response);
+      if (response.data.found === 0) {
+        return `Postal code lat and lng not found; try change postal code again`;
+      } else if (response.data.results[0]) {
+        let lat = Number(response.data.results[0].LATITUDE);
+        let lng = Number(response.data.results[0].LONGITUDE);
+        this.setState({
+          latLng: [lat, lng],
+        });
+      }
+    } catch (e) {
+      console.log(
+        e,
+        `oneMap API failed to retrieve the postal code ${this.state.postalCode}'s lat and lng`
+      );
+    }
+  };
+
   postEvent = async () => {
     if (this.state.title !== "") {
       try {
@@ -244,7 +268,9 @@ export default class AddEvent extends React.Component {
             <button className="btn">clear</button>
             <p>Help people to know where to show up for your event</p>
           </div>
-          <button className="btn btn-primary">next</button>
+          <button className="btn btn-primary" onClick={this.getLatLng}>
+            next
+          </button>
         </div>
       );
     } else if (this.state.active === "dateTime") {
