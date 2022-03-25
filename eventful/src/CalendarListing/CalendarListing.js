@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import "./style.css";
 //import calendar and its styles
+import EventDetailsPage from "../MapListing/EventDetailsPage/EventDetailsPage";
 import Kalend, { CalendarView } from "kalend";
 import "kalend/dist/styles/index.css";
 
@@ -10,61 +12,20 @@ export default function CalendarListing(props) {
       startAt: e.startDateTime,
       endAt: e.endDateTime,
       summary: `${e.organizer} - ${e.title}`,
-      // make this color dynamic to color brand chosen and show on card
+      // make this calendar event and event card color dynamic to brandColor chosen
       color: e.brandColor,
     };
   });
 
-  let eventsSample = [
-    {
-      id: 1,
-      // ISO dates can be written with added hours, minutes, and seconds (YYYY-MM-DDTHH:MM:SSZ):
-      //Singapore time is GTM+8, if you want to set time at 18:00 hour, then set it as 10:00 hour (after minus 8 hours)
-      //below is GTM time, need to mius 8 hours from Singapore time
-      startAt: "2022-03-21T10:00",
-      endAt: "2022-03-21T10:22",
-      // According to your needs, you can set timezone for each event and also set default timezone with "timezone" prop in IANA format.
-      //If you don't provide timezone prop, your system default timezone will be used.
-      // You can keep other event properties, those will be ignored.
-      // timezoneStartAt: "Asia/Singapore", // optional
-      summary: "trent global",
-      color: "blue",
-      // calendarID: "work",
-    },
-    {
-      id: 2,
-      // ISO dates can be written with added hours, minutes, and seconds (YYYY-MM-DDTHH:MM:SSZ):
-      //Singapore time is GTM+8, if you want to set time at 18:00 hour, then set it as 10:00 hour (after minus 8 hours)
-      startAt: "2022-03-21T08:00",
-      endAt: "2022-03-21T09:00",
-      // According to your needs, you can set timezone for each event and also set default timezone with "timezone" prop in IANA format.
-      //If you don't provide timezone prop, your system default timezone will be used.
-      // You can keep other event properties, those will be ignored.
-      // timezoneStartAt: "Asia/Singapore", // optional
-      summary: "H&M",
-      color: "red",
-      // calendarID: "work",
-    },
-  ];
+  const [oneEventDetails, setOneEventDetails] = useState({});
+  //ref to the button
+  const modalBtnElement = useRef(null);
 
-  const onEventClick = () => {
-    console.log("clicked event");
-  };
-
-  const onNewEventClick = () => {
-    console.log("clicked new event");
-  };
-
-  const onSelectView = () => {
-    console.log("clicked select view");
-  };
-
-  const selectedView = () => {
-    console.log("clicked  selected view");
-  };
-
-  const onPageChange = () => {
-    console.log("clicked change page");
+  const onEventClick = (data) => {
+    //get the event details where the event._id is the same as the calendar event.id
+    let clickedEvent = props.data.filter((e) => e._id === data.id);
+    setOneEventDetails(clickedEvent[0]);
+    modalBtnElement.current.click();
   };
 
   return (
@@ -74,17 +35,19 @@ export default function CalendarListing(props) {
       }}
     >
       <Kalend
-        // onEventClick={onEventClick}
+        //To adjust colors for today date circle, you can pass style prop to Kalend like this:
+        style={{
+          primaryColor: "#e27d60",
+          baseColor: "#3d3c3c",
+          inverseBaseColor: "#f2ecec",
+        }}
+        onEventClick={onEventClick}
         // onNewEventClick={onNewEventClick}
         events={events}
         initialDate={new Date().toISOString()}
         hourHeight={60}
         initialView={CalendarView.WEEK}
-        disabledViews={[
-          CalendarView.AGENDA,
-          CalendarView.DAY,
-          CalendarView.THREE_DAYS,
-        ]}
+        disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
         // onSelectView={onSelectView}
         // selectedView={selectedView}
         // onPageChange={onPageChange}
@@ -93,11 +56,61 @@ export default function CalendarListing(props) {
         calendarIDsHidden={["work"]}
         language={"en"}
       />
+
       <div className="subText">
         credit:{" "}
         <a href="https://github.com/nibdo/kalend" target="_blank">
           Kalend
         </a>
+      </div>
+
+      <button
+        type="button"
+        id="modalBtnElement"
+        classNameName="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#calendarEventModal"
+        ref={modalBtnElement}
+      >
+        Launch calendar event modal
+      </button>
+
+      {/* event details page */}
+      <div
+        className="modal fade"
+        id="calendarEventModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                {oneEventDetails.title ? oneEventDetails.title : "sample title"}
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">...</div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" className="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
