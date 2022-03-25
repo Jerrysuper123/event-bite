@@ -1,108 +1,127 @@
 import React from "react";
+import { BASE_API_URL } from "../Utility";
+import axios from "axios";
 import "./style.css";
 
-export default function FilterBar(props) {
-  return (
-    <nav
-      id="filterBar"
-      className="navbar navbar-expand-lg navbar-light bg-light secondaryBgColor"
-    >
-      <div className="container-fluid">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarFilter"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          filter
-          <i class="fa-solid fa-filter"></i>
-        </button>
+export default class FilterBar extends React.Component {
+  state = {
+    filterCategories: [],
+    filterTags: [],
+  };
 
-        <div className="collapse navbar-collapse" id="navbarFilter">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                category
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
+  componentDidMount = async () => {
+    try {
+      let hashtagsRequest = axios.get(`${BASE_API_URL}/events/hashtags`);
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                tags
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+      let categoriesRequest = axios.get(`${BASE_API_URL}/events/categories`);
+      // console.log(response);
+      let hashtagsResponse = await hashtagsRequest;
+      let categoriesResponse = await categoriesRequest;
 
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+      this.setState({
+        filterTags: hashtagsResponse.data.data[0].hashtags,
+        filterCategories: categoriesResponse.data.data[0].categories,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  render() {
+    return (
+      <nav
+        id="filterBar"
+        className="navbar navbar-expand-lg navbar-light bg-light secondaryBgColor"
+      >
+        <div className="container-fluid">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarFilter"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            filter
+            <i class="fa-solid fa-filter"></i>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarFilter">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  category
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {this.state.filterCategories.map((cat, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            {cat}
+                          </a>
+                        </li>
+                        <li>
+                          <hr className="dropdown-divider" />
+                        </li>
+                      </React.Fragment>
+                    );
+                  })}
+                </ul>
+              </li>
+
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  tags
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {this.state.filterTags.map((tag, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            {tag}
+                          </a>
+                        </li>
+                        <li>
+                          <hr className="dropdown-divider" />
+                        </li>
+                      </React.Fragment>
+                    );
+                  })}
+                </ul>
+              </li>
+            </ul>
+
+            <form className="d-flex">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button className="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    </nav>
-  );
+      </nav>
+    );
+  }
 }

@@ -64,6 +64,7 @@ export default function CalendarListing(props) {
         </a>
       </div>
 
+      {/*Launch the modal but is displayed none  */}
       <button
         type="button"
         id="modalBtnElement"
