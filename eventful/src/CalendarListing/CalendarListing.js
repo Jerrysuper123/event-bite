@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./style.css";
 //import calendar and its styles
-import EventDetailsPage from "../MapListing/EventDetailsPage/EventDetailsPage";
 import Kalend, { CalendarView } from "kalend";
 import "kalend/dist/styles/index.css";
 
@@ -9,8 +8,10 @@ export default function CalendarListing(props) {
   let events = props.data.map((e) => {
     return {
       id: e._id,
-      startAt: e.startDateTime,
-      endAt: e.endDateTime,
+      //slice to convert 2022-03-25T18:00:00.000+00:00
+      // into "2022-03-25T18:00" regardless of timezone
+      startAt: e.startDateTime.slice(0, 16),
+      endAt: e.endDateTime.slice(0, 16),
       summary: `${e.organizer} - ${e.title}`,
       // make this calendar event and event card color dynamic to brandColor chosen
       color: e.brandColor,
