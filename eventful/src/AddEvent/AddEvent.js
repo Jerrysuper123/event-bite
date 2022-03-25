@@ -32,6 +32,9 @@ export default class AddEvent extends React.Component {
     //for loading the form
     formHashtags: [],
     formCategories: [],
+
+    //to delete an event
+    toDeletedEvent: {},
   };
 
   //load hashtags and categories for selectbox and dropdown list
@@ -457,6 +460,34 @@ export default class AddEvent extends React.Component {
       );
     }
   };
+  saveToDeletedEvent = (event) => {
+    this.setState({
+      toDeletedEvent: event,
+    });
+  };
+
+  deleteEvent = async () => {
+    if (
+      // leave the dummy data intact
+      this.state.toDeletedEvent._id !== 1 &&
+      this.state.toDeletedEvent._id !== 2 &&
+      this.state.toDeletedEvent._id !== 3
+    ) {
+      try {
+        let response = await axios.delete(
+          `${BASE_API_URL}/events/${this.state.toDeletedEvent._id}/delete`
+        );
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      console.log(
+        "App creator is trying to keep the dummy data, do not delete these events!"
+      );
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -560,7 +591,17 @@ export default class AddEvent extends React.Component {
                     >
                       update
                     </button>
-                    <button className="btn btn-danger">delete</button>
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteModal"
+                      onClick={() => {
+                        this.saveToDeletedEvent(eachEvent);
+                      }}
+                    >
+                      delete
+                    </button>
                   </h2>
                   <div
                     id="flush-collapseOne"
@@ -578,6 +619,52 @@ export default class AddEvent extends React.Component {
             })}
           </div>
         </section>
+
+        {/* pop up for warning to delete */}
+        <div
+          className="modal fade"
+          id="deleteModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Are you sure you want to delete
+                  {this.state.toDeletedEvent.title}?
+                </h5>
+
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>{this.state.toDeletedEvent.descriptionSummary}</p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.deleteEvent}
+                >
+                  Confirm delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
