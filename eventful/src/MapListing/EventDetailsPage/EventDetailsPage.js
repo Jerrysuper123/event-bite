@@ -51,7 +51,15 @@ export default function EventDetailsPage(props) {
                   })
                 : null}
             </div>
-            <DisplayFeedback />
+
+            {/* display reviews */}
+            {props.data.reviews
+              ? props.data.reviews.map((review) => {
+                  return <DisplayFeedback review={review} />;
+                })
+              : null}
+
+            {/* asking for more reviews */}
             <FeedbackForm eventId={props.data._id} />
           </div>
 

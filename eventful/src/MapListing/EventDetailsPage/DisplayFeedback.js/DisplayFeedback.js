@@ -1,17 +1,19 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
 
-export default function DisplayFeedback() {
+export default function DisplayFeedback(props) {
   return (
-    <Box
-      sx={{
-        "& > legend": { mt: 2 },
-      }}
-    >
-      <Typography component="legend">Read only</Typography>
-      <Rating name="read-only" value={3} readOnly />
-    </Box>
+    <div className="border mt-3 p-3">
+      <p>{props.review.name}</p>
+      <Box
+        sx={{
+          "& > legend": { mt: 2 },
+        }}
+      >
+        <Rating name="read-only" value={props.review.rating} readOnly />
+      </Box>
+      <p>{props.review.feedback}</p>
+    </div>
   );
 }
