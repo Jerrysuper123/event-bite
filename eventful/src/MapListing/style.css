@@ -25,6 +25,6 @@
   /* color: black; */
 }
 
-.leaflet-routing-container {
+.leaflet-routing-container, .leaflet-control-zoom {
   display: none;
 }

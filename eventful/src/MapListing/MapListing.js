@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";
 import "./style.css";
+import Draggable from "react-draggable";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import "leaflet-routing-machine";
@@ -228,19 +229,23 @@ export default function MapListing(props) {
             );
           })}
         </MapContainer>
-        <section className="eventList">
-          <h2>Event list Mar 22, 2022</h2>
-          {props.data.map((eachEvent) => {
-            return (
-              <EventCard
-                eachEvent={eachEvent}
-                setOneEvent={setOneEvent}
-                showRouter={showRouter}
-                margin={"2em"}
-              />
-            );
-          })}
-        </section>
+
+        {/* Today's event list on the map */}
+        <Draggable>
+          <section className="eventList">
+            <h2>Event list Mar 22, 2022</h2>
+            {props.data.map((eachEvent) => {
+              return (
+                <EventCard
+                  eachEvent={eachEvent}
+                  setOneEvent={setOneEvent}
+                  showRouter={showRouter}
+                  margin={"2em"}
+                />
+              );
+            })}
+          </section>
+        </Draggable>
       </div>
     </div>
   );

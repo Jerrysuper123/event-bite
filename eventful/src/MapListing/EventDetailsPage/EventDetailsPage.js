@@ -55,7 +55,7 @@ export default function EventDetailsPage(props) {
             {/* display reviews */}
             {props.data.reviews
               ? props.data.reviews.map((review) => {
-                  return <DisplayFeedback review={review} />;
+                  return <DisplayFeedback key={review._id} review={review} />;
                 })
               : null}
 
