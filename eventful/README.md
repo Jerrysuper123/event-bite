@@ -4,6 +4,8 @@ Credit:
 
 1. start rating
    https://www.devwares.com/docs/contrast/react/components/rating/
+2. Make elemeent draggable in react
+   https://lo-victoria.com/making-draggable-components-in-react
 
 //display real time date and time
 https://dev.to/atif_dev/get-real-time-date-and-time-using-javascript-5eep
