@@ -1,5 +1,10 @@
 # event-bite
 
+Credit:
+
+1. start rating
+   https://www.devwares.com/docs/contrast/react/components/rating/
+
 //display real time date and time
 https://dev.to/atif_dev/get-real-time-date-and-time-using-javascript-5eep
 
