@@ -52,7 +52,7 @@ export default function EventDetailsPage(props) {
                 : null}
             </div>
             <DisplayFeedback />
-            <FeedbackForm />
+            <FeedbackForm eventId={props.data._id} />
           </div>
 
           <div className="modal-footer">
