@@ -4,7 +4,14 @@ export default function NavBar(props) {
   return (
     <nav id="navBar" className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand logoText">eventful</a>
+        <div
+          onClick={() => {
+            props.setActive("landing");
+          }}
+        >
+          <a className="navbar-brand logoText">eventful</a>
+        </div>
+
         <button
           className="navbar-toggler"
           type="button"

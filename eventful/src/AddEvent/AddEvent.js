@@ -619,6 +619,8 @@ export default class AddEvent extends React.Component {
               );
             })}
           </div>
+
+          <Footer />
         </section>
 
         {/* pop up for warning to delete */}

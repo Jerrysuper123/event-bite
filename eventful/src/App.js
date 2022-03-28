@@ -3,6 +3,7 @@ import { BASE_API_URL } from "./Utility";
 import axios from "axios";
 import NavBar from "./NavBar/NavBar";
 import FilterBar from "./FilterBar/FilterBar";
+import LandingPage from "./LandingPage/LandingPage";
 import MapListing from "./MapListing/MapListing";
 import CalendarListing from "./CalendarListing/CalendarListing";
 import AddEvent from "./AddEvent/AddEvent";
@@ -116,6 +117,10 @@ class App extends React.Component {
       <React.Fragment>
         <NavBar setActive={this.setActive} />
         <FilterBar />
+        <LandingPage
+          data={this.state.data}
+          display={this.state.active === "landing" ? "block" : "none"}
+        />
         <MapListing
           data={this.state.data}
           display={this.state.active === "map" ? "block" : "none"}
