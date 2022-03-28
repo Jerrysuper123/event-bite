@@ -1,6 +1,21 @@
 .carousel-item img{
         object-fit: cover;
         object-position: center;
-        height: 70vh;
+        height: 80vh;
         overflow: hidden;
+}
+
+.cta{
+    background-color: rgb(28, 28, 28);
+    opacity: 0.7;
+    color: white;
+}
+
+.organizerText{
+    background-color:  #41b3a3;
+}
+
+.card-title i{
+    font-size: 3rem;
+    color: #e8a87c;
 }

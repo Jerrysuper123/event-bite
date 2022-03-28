@@ -32,51 +32,54 @@ export default function CalendarListing(props) {
 
   return (
     <div
+      className="calendarContainer"
       style={{
         display: props.display,
       }}
     >
-      <Kalend
-        //To adjust colors for today date circle, you can pass style prop to Kalend like this:
-        style={{
-          primaryColor: "#e27d60",
-          baseColor: "#3d3c3c",
-          inverseBaseColor: "#f2ecec",
-        }}
-        onEventClick={onEventClick}
-        // onNewEventClick={onNewEventClick}
-        events={events}
-        initialDate={new Date().toISOString()}
-        hourHeight={60}
-        initialView={CalendarView.WEEK}
-        disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
-        // onSelectView={onSelectView}
-        // selectedView={selectedView}
-        // onPageChange={onPageChange}
-        timeFormat={"24"}
-        weekDayStart={"Monday"}
-        calendarIDsHidden={["work"]}
-        language={"en"}
-      />
+      <section className="calendar container mb-5">
+        <Kalend
+          //To adjust colors for today date circle, you can pass style prop to Kalend like this:
+          style={{
+            primaryColor: "#e27d60",
+            baseColor: "#3d3c3c",
+            inverseBaseColor: "#f2ecec",
+          }}
+          onEventClick={onEventClick}
+          // onNewEventClick={onNewEventClick}
+          events={events}
+          initialDate={new Date().toISOString()}
+          hourHeight={60}
+          initialView={CalendarView.WEEK}
+          disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
+          // onSelectView={onSelectView}
+          // selectedView={selectedView}
+          // onPageChange={onPageChange}
+          timeFormat={"24"}
+          weekDayStart={"Monday"}
+          calendarIDsHidden={["work"]}
+          language={"en"}
+        />
 
-      <div className="subText">
-        credit:{" "}
-        <a href="https://github.com/nibdo/kalend" target="_blank">
-          Kalend
-        </a>
-      </div>
+        <div className="subText">
+          credit:{" "}
+          <a href="https://github.com/nibdo/kalend" target="_blank">
+            Kalend
+          </a>
+        </div>
 
-      {/*Launch the modal but is displayed none  */}
-      <button
-        type="button"
-        id="modalBtnElement"
-        classNameName="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#calendarEventModal"
-        ref={modalBtnElement}
-      >
-        Launch calendar event modal
-      </button>
+        {/*Launch the modal but is displayed none  */}
+        <button
+          type="button"
+          id="modalBtnElement"
+          classNameName="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#calendarEventModal"
+          ref={modalBtnElement}
+        >
+          Launch calendar event modal
+        </button>
+      </section>
 
       {/* event details page */}
       <div

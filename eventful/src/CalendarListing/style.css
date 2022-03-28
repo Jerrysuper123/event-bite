@@ -1,3 +1,11 @@
 #modalBtnElement{
     display: none !important;
 }
+
+.calendarContainer{
+    background-color: #c38d9e;
+}
+
+.calendar{
+    background-color: white;
+}
