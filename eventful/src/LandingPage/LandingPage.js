@@ -1,11 +1,14 @@
 import React from "react";
+import "./style.css";
 import defaultEventOne from "../images/defaultEventOne.jpg";
 import defaultEventTwo from "../images/defaultEventTwo.jpg";
 import defaultEventThree from "../images/defaultEventThree.jpg";
+import Footer from "../Footer/Footer";
 
 export default function LandingPage(props) {
   return (
     <section
+      className="landingPage"
       style={{
         display: props.display,
       }}
@@ -38,19 +41,6 @@ export default function LandingPage(props) {
           ></button>
         </div>
         <div className="carousel-inner">
-          {/* {props.data.map((event, index) => {
-            console.log("Image url", event.eventImage);
-            return (
-              <div className="carousel-item">
-                <img
-                  src={event.eventImage}
-                  className="d-block w-100"
-                  alt={event.title}
-                />
-              </div>
-            );
-          })} */}
-
           {props.data[0] ? (
             <div className="carousel-item active">
               <img
@@ -130,6 +120,7 @@ export default function LandingPage(props) {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
+      <Footer />
     </section>
   );
 }
