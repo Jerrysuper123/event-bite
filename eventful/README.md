@@ -1,6 +1,9 @@
 # event-bite
 
-Credit:
+Credit: 0. footer
+https://gist.github.com/Luke-zhang-04/7cb523899ca4044f805f0d0909e4c5c1
+
+https://freefrontend.com/assets/img/bootstrap-footers/bootstrap-footer-v12.png
 
 1. start rating
    https://www.devwares.com/docs/contrast/react/components/rating/

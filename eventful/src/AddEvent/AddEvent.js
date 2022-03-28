@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
 import axios from "axios";
+import Footer from "../Footer/Footer";
 
 import { BASE_API_URL } from "../Utility";
 

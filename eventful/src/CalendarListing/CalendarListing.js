@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./style.css";
+import Footer from "../Footer/Footer";
 //import calendar and its styles
 import Kalend, { CalendarView } from "kalend";
 import "kalend/dist/styles/index.css";
@@ -114,6 +115,7 @@ export default function CalendarListing(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
