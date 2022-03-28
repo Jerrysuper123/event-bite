@@ -1,17 +1,17 @@
 .page-footer{
-    background-color: rgb(7, 0, 7) !important;
+    background-color: rgb(206, 206, 206) !important;
 
 }
 
 .page-footer h5, .footer-copyright{
-    color: rgb(252, 252, 252) !important;
+    color: rgb(108, 108, 108) !important;
 
 }
 .page-footer a{
-    color: #875f54 !important;
+    color: #989898 !important;
     text-decoration: none;
 }
 
 .page-footer p{
-    color: #875f54 !important;
+    color: #989898 !important;
 }

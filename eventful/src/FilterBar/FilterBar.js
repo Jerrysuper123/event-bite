@@ -35,7 +35,7 @@ export default class FilterBar extends React.Component {
       >
         <div className="container-fluid">
           <button
-            className="navbar-toggler"
+            className="navbar-toggler ms-3"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarFilter"
@@ -51,7 +51,7 @@ export default class FilterBar extends React.Component {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle ms-3"
                   href="#"
                   id="navbarDropdown"
                   role="button"
@@ -115,7 +115,7 @@ export default class FilterBar extends React.Component {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-success me-3" type="submit">
                 Search
               </button>
             </form>

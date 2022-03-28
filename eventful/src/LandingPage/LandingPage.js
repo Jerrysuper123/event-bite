@@ -140,8 +140,9 @@ export default function LandingPage(props) {
 
       <main>
         {/* main content */}
-        <h3>For people attending events: </h3>
-        <article className="container px-4">
+
+        <article className="container p-3 mt-3">
+          <h3>For people attending events: </h3>
           <div className="row gx-5">
             <div className="col">
               <div className="card ">

@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import walkingIcon from "../images/walkingIcon.png";
 
 export default function Footer() {
   return (
@@ -7,6 +8,13 @@ export default function Footer() {
       <div className="container-fluid text-center text-md-left">
         <div className="row">
           <div className="col-md-6 mt-md-0 mt-3">
+            <img
+              src={walkingIcon}
+              alt="logo"
+              style={{
+                width: "2.5rem",
+              }}
+            />
             <h5 className="text-uppercase">eventful.com</h5>
             <p>
               Automatically detects your current location and suggests events in
