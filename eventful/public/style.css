@@ -33,7 +33,7 @@ h4 {
 /*text color setting*/
 
 .primaryColor {
-  color: #e27d60;
+  color: #e27d60 !important;
 }
 
 .secondaryColor {
@@ -41,15 +41,15 @@ h4 {
 }
 
 .accentOneColor {
-  color: #e8a87c;
+  color: #e8a87c !important;
 }
 
 .accentTwoColor {
-  color: #c38d9e;
+  color: #c38d9e !important;
 }
 
 .accentThreeColor {
-  color: #41b3a3;
+  color: #41b3a3 !important;
 }
 
 /*background color setting*/
@@ -63,7 +63,7 @@ h4 {
 }
 
 .accentOneBgColor {
-  background-color: #e8a87c;
+  background-color: #e8a87c !important;
 }
 
 .accentTwoBgColor {
@@ -71,9 +71,6 @@ h4 {
 }
 
 .accentThreeBgColor {
-  background-color: #41b3a3;
+  background-color: #41b3a3 !important;
 }
 
-.Kalend__main {
-  height: 90vh !important;
-}

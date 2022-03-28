@@ -1,0 +1,6 @@
+#filterBar{
+    z-index: 2;
+    background-color: #85dcb8 !important;
+    height: 2.7rem;
+    font-size: 0.8rem;
+}

@@ -31,7 +31,7 @@ export default class FilterBar extends React.Component {
     return (
       <nav
         id="filterBar"
-        className="navbar navbar-expand-lg navbar-light bg-light secondaryBgColor"
+        className="navbar navbar-expand-lg navbar-light bg-light shadow"
       >
         <div className="container-fluid">
           <button

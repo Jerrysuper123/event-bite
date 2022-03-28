@@ -37,7 +37,7 @@ export default function CalendarListing(props) {
         display: props.display,
       }}
     >
-      <section className="calendar container mb-5">
+      <section className="calendar container mb-5 mt-5 shadow">
         <Kalend
           //To adjust colors for today date circle, you can pass style prop to Kalend like this:
           style={{
