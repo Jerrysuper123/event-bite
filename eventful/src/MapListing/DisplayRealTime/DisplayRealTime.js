@@ -1,31 +1,31 @@
 import React, { useState } from "react";
-
+import "./style.css";
 export default function DisplayRealTime() {
   const [currentDay, setCurrentDay] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [fullDate, setFullDate] = useState("");
   const weekday = new Array(7);
-  weekday[0] = "SUN";
-  weekday[1] = "MON";
-  weekday[2] = "TUE";
-  weekday[3] = "WED";
-  weekday[4] = "THU";
-  weekday[5] = "FRI";
-  weekday[6] = "SAT";
+  weekday[0] = "Sun";
+  weekday[1] = "Mon";
+  weekday[2] = "Tue";
+  weekday[3] = "Wed";
+  weekday[4] = "Thu";
+  weekday[5] = "Fri";
+  weekday[6] = "Sat";
 
   const month = new Array();
-  month[0] = "JAN";
-  month[1] = "FEB";
-  month[2] = "MAR";
-  month[3] = "APR";
+  month[0] = "Jan";
+  month[1] = "Feb";
+  month[2] = "Mar";
+  month[3] = "Apr";
   month[4] = "May";
-  month[5] = "JUN";
-  month[6] = "JUL";
-  month[7] = "AUG";
-  month[8] = "SEP";
-  month[9] = "OCT";
-  month[10] = "NOV";
-  month[11] = "DEC";
+  month[5] = "Jun";
+  month[6] = "Jul";
+  month[7] = "Aug";
+  month[8] = "Sep";
+  month[9] = "Oct";
+  month[10] = "Nov";
+  month[11] = "Dec";
 
   const getCurrentDateTime = () => {
     let currentDateTime = new Date();
@@ -35,7 +35,7 @@ export default function DisplayRealTime() {
     //This line of code is just a way to properly organize our minutes
     //because we don’t want to get 0,1,3 etc as minutes instead we want minutes as 00, 01, 03
     minutes = minutes < 10 ? "0" + minutes : minutes;
-    let AMPM = hours >= 12 ? "PM" : "AM";
+    let AMPM = hours >= 12 ? "pm" : "am";
     let currentTime = `${hours}:${minutes}${AMPM}`;
     setCurrentTime(currentTime);
     /*
@@ -57,9 +57,13 @@ export default function DisplayRealTime() {
 
   return (
     <div>
-      <p id="time">{currentTime}</p>
-      <p id="day">{currentDay}</p>
-      <p id="date">{fullDate}</p>
+      <h1 id="time">{currentTime}</h1>
+      <div className="d-flex">
+        <p id="day">{currentDay}</p>
+        <p id="date" className="ms-1">
+          {fullDate}
+        </p>
+      </div>
     </div>
   );
 }

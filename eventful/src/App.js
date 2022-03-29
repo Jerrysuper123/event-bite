@@ -116,7 +116,11 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <NavBar setActive={this.setActive} />
-        <FilterBar />
+        {this.state.active === "landing" ||
+        this.state.active === "addNew" ? null : (
+          <FilterBar />
+        )}
+
         <LandingPage
           setActive={this.setActive}
           data={this.state.data}

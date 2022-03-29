@@ -235,7 +235,13 @@ export default function MapListing(props) {
         <Draggable>
           <section className="eventList">
             <DisplayRealTime />
-            <h2>Event list Mar 22, 2022</h2>
+            <h2
+            // style={{
+            //   display: "none",
+            // }}
+            >
+              Event list Mar 22, 2022
+            </h2>
             {props.data.map((eachEvent) => {
               return (
                 <EventCard

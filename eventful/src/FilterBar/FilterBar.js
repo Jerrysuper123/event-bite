@@ -2,12 +2,14 @@ import React from "react";
 import { BASE_API_URL } from "../Utility";
 import axios from "axios";
 import filter from "../images/filter.png";
+
 import "./style.css";
 
 export default class FilterBar extends React.Component {
   state = {
     filterCategories: [],
     filterTags: [],
+    dateTimeFilter: "",
   };
 
   componentDidMount = async () => {
@@ -36,26 +38,29 @@ export default class FilterBar extends React.Component {
       >
         <div className="container-fluid">
           <button
-            className="navbar-toggler ms-auto"
+            className="filterToggler navbar-toggler ms-auto"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarFilter"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
-            style={{
-              fontSize: "1rem",
-            }}
           >
-            filter
+            <span
+              style={{
+                fontSize: "0.9rem",
+              }}
+            >
+              filter
+            </span>
             <img src={filter} alt="filter" style={{ width: "1rem" }} />
           </button>
 
           <div className="collapse navbar-collapse" id="navbarFilter">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown ms-lg-3 p-3">
                 <a
-                  className="nav-link dropdown-toggle ms-3"
+                  className="nav-link dropdown-toggle "
                   href="#"
                   id="navbarDropdown"
                   role="button"
@@ -73,16 +78,13 @@ export default class FilterBar extends React.Component {
                             {cat}
                           </a>
                         </li>
-                        <li>
-                          <hr className="dropdown-divider" />
-                        </li>
                       </React.Fragment>
                     );
                   })}
                 </ul>
               </li>
 
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown p-3">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"
@@ -102,17 +104,22 @@ export default class FilterBar extends React.Component {
                             {tag}
                           </a>
                         </li>
-                        <li>
-                          <hr className="dropdown-divider" />
-                        </li>
                       </React.Fragment>
                     );
                   })}
                 </ul>
               </li>
             </ul>
+            <div className="d-flex p-3">
+              <label>events after:</label>
+              <input
+                className="form-control me-2"
+                type="date"
+                aria-label="Search"
+              />
+            </div>
 
-            <form className="d-flex">
+            <div className="d-flex p-3">
               <input
                 className="form-control me-2"
                 type="search"
@@ -122,7 +129,7 @@ export default class FilterBar extends React.Component {
               <button className="btn btn-outline-success me-3" type="submit">
                 Search
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </nav>

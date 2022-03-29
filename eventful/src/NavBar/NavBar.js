@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 import walkingIcon from "../images/walkingIcon.png";
-import filter from "../images/filter.png";
 export default function NavBar(props) {
   return (
     <nav
@@ -19,7 +18,7 @@ export default function NavBar(props) {
             src={walkingIcon}
             alt="logo"
             style={{
-              width: "2.5rem",
+              width: "2.7rem",
             }}
           />
           <a className="navbar-brand logoText ms-2">eventful</a>
