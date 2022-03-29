@@ -57,18 +57,11 @@ export default function DisplayRealTime() {
 
   return (
     <div className="realTimeClock">
-      <h2 id="time" className="mt-3">
+      <h2 id="time" className="mt-4">
         {currentTime}
       </h2>
       <div id="date" className="text-center">
         {currentDay} {fullDate}
-      </div>
-      <div>
-        Today's events
-        <span className="hideShowEvents ms-2 me-0">
-          hide <i className="fa-solid fa-angle-down"></i>
-          <i className="fa-solid fa-angle-up"></i>
-        </span>
       </div>
     </div>
   );

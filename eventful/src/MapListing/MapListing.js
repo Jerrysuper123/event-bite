@@ -235,15 +235,25 @@ export default function MapListing(props) {
         <Draggable>
           <section className="eventList">
             <DisplayRealTime />
-            <section className="listOfEvent">
+            <div className="weatherIcon mt-1">
+              <i className="fa-solid fa-cloud-sun"></i>
+            </div>
+            <div className="text-light text-light mt-2">Today's events</div>
+            <div className="hideShowEvents ms-2 me-0 text-light">
+              <i className="fa-solid fa-angle-down"></i>
+              {/* <i className="fa-solid fa-angle-up"></i> */}
+            </div>
+            <section className="listOfEvent mb-3">
               {props.data.map((eachEvent) => {
                 return (
-                  <EventCard
-                    eachEvent={eachEvent}
-                    setOneEvent={setOneEvent}
-                    showRouter={showRouter}
-                    margin={"1em"}
-                  />
+                  <div className="eventListCard">
+                    <EventCard
+                      eachEvent={eachEvent}
+                      setOneEvent={setOneEvent}
+                      showRouter={showRouter}
+                      margin={"0.7rem"}
+                    />
+                  </div>
                 );
               })}
             </section>

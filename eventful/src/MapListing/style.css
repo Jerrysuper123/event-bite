@@ -1,13 +1,33 @@
 .eventList {
-  width: 14rem;
-  height: 30rem;
-  background-color: rgba(16, 16, 16,0.01);
+  width: 18rem;
+  height: 28rem;
+  background-color: rgba(179, 112, 133, 0.7);
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
   top: 1rem;
   left: 0;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(179, 112, 133, 0.7);
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6db3aa ; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(227, 189, 225); 
 }
 
 .listOfEvent{
@@ -32,4 +52,19 @@
 
 .leaflet-routing-container, .leaflet-control-zoom {
   display: none;
+}
+
+.hideShowEvents{
+  font-size: 0.7rem;
+}
+
+.weatherIcon{
+  color: white;
+  font-size: 0.7rem;
+}
+
+.eventListCard:hover{
+  /* -webkit-transform: perspective(400px) rotateX(-40deg);      */
+  /* transform: scale(1.5); */
+  /* z-index: 4; */
 }

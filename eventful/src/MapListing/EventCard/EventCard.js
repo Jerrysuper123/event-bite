@@ -6,9 +6,9 @@ export default function EventCard(props) {
   };
   return (
     <div
-      className="card"
+      className="card shadow"
       style={{
-        margin: props.margin ? props.margin : 0,
+        marginTop: props.margin ? props.margin : 0,
       }}
     >
       <img
@@ -57,9 +57,9 @@ export default function EventCard(props) {
           ) : null}
         </div>
 
-        <div className="d-flex justify-content-between">
+        <div className=" d-flex justify-content-between">
           <button
-            className="btn btn-info"
+            className="eventCardBtn btn btn-info"
             data-bs-toggle="modal"
             // moreInfoModel
             data-bs-target="#moreInfoModel"
@@ -72,7 +72,7 @@ export default function EventCard(props) {
           {/* modal to show the event details */}
 
           <button
-            className="btn btn-danger"
+            className="eventCardBtn btn btn-danger"
             onClick={() => {
               props.showRouter(props.eachEvent);
             }}
