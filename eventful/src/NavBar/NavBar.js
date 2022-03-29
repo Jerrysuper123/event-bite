@@ -36,10 +36,10 @@ export default function NavBar(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
             <li className="nav-item">
               <a
-                className="nav-link ms-5 pt-3"
+                className="nav-link ms-5 pt-3 ps-2"
                 aria-current="page"
                 onClick={() => {
                   props.setActive("map");
@@ -52,7 +52,7 @@ export default function NavBar(props) {
 
             <li className="nav-item">
               <a
-                className="nav-link ms-5 pt-3"
+                className="nav-link ms-5 pt-3 ps-2"
                 onClick={() => {
                   props.setActive("calendar");
                 }}
@@ -63,7 +63,7 @@ export default function NavBar(props) {
             </li>
             <li className="nav-item">
               <a
-                className="nav-link ms-5 pt-3 me-5"
+                className="nav-link ms-5 pt-3 ps-2"
                 onClick={() => {
                   props.setActive("addNew");
                 }}

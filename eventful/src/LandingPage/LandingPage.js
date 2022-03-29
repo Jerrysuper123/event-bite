@@ -4,6 +4,13 @@ import defaultEventOne from "../images/defaultEventOne.jpg";
 import defaultEventTwo from "../images/defaultEventTwo.jpg";
 import defaultEventThree from "../images/defaultEventThree.jpg";
 import Footer from "../Footer/Footer";
+import student from "../images/student.jpg";
+import tourist from "../images/tourist.jpg";
+import shopper from "../images/shopper.jpg";
+import diner from "../images/diner.jpg";
+import create from "../images/create.jpg";
+import paste from "../images/paste.jpg";
+import welcome from "../images/welcome.jpg";
 
 export default function LandingPage(props) {
   return (
@@ -14,7 +21,7 @@ export default function LandingPage(props) {
       }}
     >
       {/* carousell starts here */}
-      <div>
+      <div className="banner">
         <section
           id="carouselExampleIndicators"
           className="carousel slide"
@@ -141,75 +148,141 @@ export default function LandingPage(props) {
       <main>
         {/* main content */}
 
-        <article className="container p-3 mt-3">
-          <h3>For people attending events: </h3>
-          <div className="row gx-5">
+        <article className="attendeeText container p-1 mt-3">
+          <h2 className="text-center my-5 primaryColor">Attend events </h2>
+          <div className="row g-5">
             <div className="col">
-              <div className="card ">
+              {/* card starts here */}
+              <div className="card" style={{ width: "18rem", border: "none" }}>
+                <img src={student} className="card-img-top" alt="student" />
                 <div className="card-body">
-                  <h5 className="card-title">
-                    <i className="fa-solid fa-graduation-cap"></i>
-                  </h5>
-                  <h6 className="card-subtitle mb-2 text-muted">
-                    for students
-                  </h6>
+                  <h5 className="card-title">FOR STUDENTS</h5>
                   <p className="card-text">
-                    If you are a student, browse through ongoing activities in
-                    school in one central portal, without reading event
-                    posters/emails.
+                    Browse through ongoing activities in school in one central
+                    portal, without reading event posters/emails.
                   </p>
                 </div>
               </div>
+              {/* card ends here */}
             </div>
 
             <div className="col">
-              <div className="card">
+              {/* card starts here */}
+              <div className="card" style={{ width: "18rem", border: "none" }}>
+                <img src={shopper} className="card-img-top" alt="shopper" />
                 <div className="card-body">
-                  <h5 className="card-title">
-                    <i className="fa-solid fa-tags"></i>
-                  </h5>
-                  <h6 className="card-subtitle mb-2 text-muted">for shopper</h6>
+                  <h5 className="card-title">FOR SHOPPER</h5>
                   <p className="card-text">
-                    If you are a shopper, scan all promotional activities nearby
-                    to get the best deals.
+                    Scan all promotional activities nearby to get the best
+                    deals.
                   </p>
                 </div>
               </div>
+              {/* card ends here */}
             </div>
 
             <div className="col">
-              <div className="card">
+              {/* card starts here */}
+              <div className="card" style={{ width: "18rem", border: "none" }}>
+                <img src={tourist} className="card-img-top" alt="tourist" />
                 <div className="card-body">
-                  <h5 className="card-title">
-                    <i className="fa-solid fa-person-walking-luggage"></i>
-                  </h5>
-                  <h6 className="card-subtitle mb-2 text-muted">for shopper</h6>
+                  <h5 className="card-title">FOR TOURISTS</h5>
                   <p className="card-text">
-                    If you are a tourist, explore ongoing events onsite, without
-                    having to read through the information pamphlet.
+                    Explore ongoing events onsite, without having to read
+                    through the information pamphlet.
                   </p>
                 </div>
               </div>
+              {/* card ends here */}
+            </div>
+
+            <div className="col">
+              {/* card starts here */}
+              <div className="card" style={{ width: "18rem", border: "none" }}>
+                <img src={diner} className="card-img-top" alt="diner" />
+                <div className="card-body">
+                  <h5 className="card-title">FOR DINERS</h5>
+                  <p className="card-text">
+                    Grab the nearby cuisines with the offers from restaurants at
+                    tantalizing prices
+                  </p>
+                </div>
+              </div>
+              {/* card ends here */}
             </div>
           </div>
         </article>
 
         <article className="organizerText mt-5 p-5">
-          <h3>How to organize events with us? </h3>
-          (hide this portion)
-          <ul>
-            <li> Create an event by clicking the button below </li>
-            <li>
-              Paste QR code below anywhere noticeable in your area – encouraging
-              users to check out the nearby events{" "}
-            </li>
-            <li>
-              Anyone scanned the QR code would be taken to our website, seeing
-              your events on a map within walking distance{" "}
-            </li>
-          </ul>
-          Sample Img of QR code, Image of QR code as a poster
+          <h2 className="text-center text-light mb-5">Organize events </h2>
+          <div className="row g-5">
+            <div className="col">
+              {/* card starts here */}
+              <div className="card" style={{ width: "25rem", border: "none" }}>
+                <img src={create} className="card-img-top" alt="create" />
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span className="ms-2">Step 1. create event</span>
+                  </h5>
+                  <div className="card-text">
+                    <p>Create an event by clicking the button below</p>
+                    <a
+                      className="nav-link text-center border"
+                      onClick={() => {
+                        props.setActive("addNew");
+                      }}
+                    >
+                      <i className="navIcon fa-solid fa-circle-plus"></i>
+                      <span className="ms-2 navText">add new event</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* card ends here */}
+            </div>
+
+            <div className="col">
+              {/* card starts here */}
+              <div className="card" style={{ width: "25rem", border: "none" }}>
+                <img src={paste} className="card-img-top" alt="paste" />
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span className="ms-2">Step 2. paste QR code</span>
+                  </h5>
+                  <p className="card-text">
+                    Paste QR code below anywhere noticeable in your area –
+                    encouraging users to check out the nearby events
+                  </p>
+                </div>
+              </div>
+              {/* card ends here */}
+            </div>
+
+            <div className="col">
+              {/* card starts here */}
+              <div className="card" style={{ width: "25rem", border: "none" }}>
+                <img src={welcome} className="card-img-top" alt="welcome" />
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span className="ms-2">
+                      Step 3. relax and welcome guests
+                    </span>
+                  </h5>
+                  <p className="card-text">
+                    Anyone scanned the QR code would be taken to our website,
+                    seeing your events on a map within walking distance{" "}
+                  </p>
+                </div>
+              </div>
+              {/* card ends here */}
+            </div>
+          </div>
         </article>
+
+        <sectio className="container mt-5 p-5">image of QR code</sectio>
       </main>
       <Footer />
     </section>

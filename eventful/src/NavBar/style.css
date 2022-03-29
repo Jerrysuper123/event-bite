@@ -3,6 +3,12 @@
  z-index: 3;
 }
 
+#navBar .nav-link:hover{
+    transform: scale(1.01);
+    background-color: #ebe1e5;
+    border-radius: 10px;
+}
+
 .navIcon{
     color: #e27d60;
     font-size: 1.3rem;

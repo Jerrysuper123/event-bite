@@ -118,6 +118,7 @@ class App extends React.Component {
         <NavBar setActive={this.setActive} />
         <FilterBar />
         <LandingPage
+          setActive={this.setActive}
           data={this.state.data}
           display={this.state.active === "landing" ? "block" : "none"}
         />

@@ -1,3 +1,25 @@
+.banner{
+    position: relative;
+}
+
+.cta{
+    position: absolute;
+    top: 40vh;
+    right: 10vw;
+    width: 30rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .banner{
+        position: static;
+    }
+    
+    .cta{
+        position: static;
+        width: 100%;
+    }
+  }
+
 .carousel-item img{
         object-fit: cover;
         object-position: center;
@@ -5,9 +27,14 @@
         overflow: hidden;
 }
 
+.card-title i{
+    font-size: 1.2rem !important;
+    color: #e27d60;
+}
+
 .cta{
-    background-color: rgb(28, 28, 28);
-    opacity: 0.7;
+    background-color: rgb(23, 23, 23);
+    opacity: 0.9;
     color: white;
 }
 
@@ -15,7 +42,34 @@
     background-color:  #41b3a3;
 }
 
+
 .card-title i{
     font-size: 3rem;
-    color: #e8a87c;
+    color:#e27d60;
+}
+
+.organizerText img{
+    object-fit: cover;
+    object-position: center;
+    height: 25rem;
+    overflow: hidden;
+}
+
+.organizerText .card-text{
+    height: 5rem;
+    color: grey;
+    font-size: 0.8rem;
+}
+
+.attendeeText img{
+    object-fit: cover;
+    object-position: center;
+    height: 25rem;
+    overflow: hidden;
+}
+
+.attendeeText .card-text{
+    height: 5rem;
+    color: grey;
+    font-size: 0.8rem;
 }
