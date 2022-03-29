@@ -240,8 +240,8 @@ export default function MapListing(props) {
             </div>
             <div className="text-light text-light mt-2">Today's events</div>
             <div className="hideShowEvents ms-2 me-0 text-light">
-              <i className="fa-solid fa-angle-down"></i>
-              {/* <i className="fa-solid fa-angle-up"></i> */}
+              show<i className="fa-solid fa-angle-down"></i>
+              hide<i className="fa-solid fa-angle-up"></i>
             </div>
             <section className="listOfEvent mb-3">
               {props.data.map((eachEvent) => {
