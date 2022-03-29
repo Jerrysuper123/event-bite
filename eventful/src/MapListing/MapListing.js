@@ -176,6 +176,22 @@ export default function MapListing(props) {
     });
     return customIcon;
   }
+  const [eventListState, setEventListState] = useState("show");
+  const renderHideShowBtn = () => {
+    if (eventListState === "hide") {
+      return (
+        <span onClick={() => setEventListState("show")}>
+          show<i className="fa-solid fa-angle-down"></i>
+        </span>
+      );
+    } else if (eventListState === "show") {
+      return (
+        <span onClick={() => setEventListState("hide")}>
+          hide<i className="fa-solid fa-angle-up"></i>
+        </span>
+      );
+    }
+  };
 
   return (
     <div
@@ -233,17 +249,32 @@ export default function MapListing(props) {
 
         {/* Today's event list on the map */}
         <Draggable>
-          <section className="eventList">
+          <section
+            className="eventList"
+            style={{
+              height: eventListState === "hide" ? "10rem" : "28rem",
+            }}
+          >
             <DisplayRealTime />
-            <div className="weatherIcon mt-1">
+            <div
+              className="weatherIcon text-center"
+              style={{
+                marginTop: eventListState === "hide" ? "3rem" : "1rem",
+              }}
+            >
               <i className="fa-solid fa-cloud-sun"></i>
             </div>
             <div className="text-light text-light mt-2">Today's events</div>
+
             <div className="hideShowEvents ms-2 me-0 text-light">
-              show<i className="fa-solid fa-angle-down"></i>
-              hide<i className="fa-solid fa-angle-up"></i>
+              {renderHideShowBtn()}
             </div>
-            <section className="listOfEvent mb-3">
+            <section
+              className="listOfEvent mb-3"
+              style={{
+                display: eventListState === "hide" ? "none" : "block",
+              }}
+            >
               {props.data.map((eachEvent) => {
                 return (
                   <div className="eventListCard">
