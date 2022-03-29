@@ -1,5 +1,5 @@
 .card {
-  width: 15rem;
+  width: 14rem;
   /* margin: 1rem; */
   border: none !important;
 }
@@ -17,4 +17,5 @@
 
 .dateTime{
   font-weight: bold;
+  font-size: 0.9rem;
 }

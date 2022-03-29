@@ -56,13 +56,19 @@ export default function DisplayRealTime() {
   setInterval(getCurrentDateTime, 500);
 
   return (
-    <div>
-      <h1 id="time">{currentTime}</h1>
-      <div className="d-flex">
-        <p id="day">{currentDay}</p>
-        <p id="date" className="ms-1">
-          {fullDate}
-        </p>
+    <div className="realTimeClock">
+      <h2 id="time" className="mt-3">
+        {currentTime}
+      </h2>
+      <div id="date" className="text-center">
+        {currentDay} {fullDate}
+      </div>
+      <div>
+        Today's events
+        <span className="hideShowEvents ms-2 me-0">
+          hide <i className="fa-solid fa-angle-down"></i>
+          <i className="fa-solid fa-angle-up"></i>
+        </span>
       </div>
     </div>
   );

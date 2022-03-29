@@ -18,7 +18,7 @@ export default function EventCard(props) {
       />
       <div className="card-body">
         <div className="d-flex">
-          <h5 className="card-title">{props.eachEvent.title}</h5>
+          <h6 className="card-title">{props.eachEvent.title}</h6>
           <i
             className="ms-auto fa-brands fa-gratipay"
             style={{
@@ -37,7 +37,13 @@ export default function EventCard(props) {
         </h7>
 
         <div className="organizerBrand d-flex my-2">
-          <h6>{props.eachEvent.organizer}</h6>
+          <h9
+            style={{
+              fontWeight: "500",
+            }}
+          >
+            {props.eachEvent.organizer}
+          </h9>
           {props.eachEvent.customizedMapMarker ? (
             <img
               className="ms-1"
