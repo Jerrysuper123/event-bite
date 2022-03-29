@@ -1,6 +1,7 @@
 import React from "react";
 import { BASE_API_URL } from "../Utility";
 import axios from "axios";
+import filter from "../images/filter.png";
 import "./style.css";
 
 export default class FilterBar extends React.Component {
@@ -35,16 +36,19 @@ export default class FilterBar extends React.Component {
       >
         <div className="container-fluid">
           <button
-            className="navbar-toggler ms-3"
+            className="navbar-toggler ms-auto"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarFilter"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            style={{
+              fontSize: "1rem",
+            }}
           >
             filter
-            <i class="fa-solid fa-filter"></i>
+            <img src={filter} alt="filter" style={{ width: "1rem" }} />
           </button>
 
           <div className="collapse navbar-collapse" id="navbarFilter">

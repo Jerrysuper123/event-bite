@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import walkingIcon from "../images/walkingIcon.png";
+import filter from "../images/filter.png";
 export default function NavBar(props) {
   return (
     <nav
