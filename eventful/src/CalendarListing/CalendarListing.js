@@ -84,13 +84,6 @@ export default function CalendarListing(props) {
               language={"en"}
             />
 
-            <div className="subText">
-              credit:{" "}
-              <a href="https://github.com/nibdo/kalend" target="_blank">
-                Kalend
-              </a>
-            </div>
-
             {/*Launch the modal but is displayed none  */}
             <button
               type="button"

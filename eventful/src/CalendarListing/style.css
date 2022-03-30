@@ -22,7 +22,12 @@
 
 @media (min-width: 992px) {
     .calenderAside{
-        width: 100%;
+        width: 20vw;
         height: 65vh;
     }
+    .Kalend__main {
+        height: 63vh !important;
+        width: 79vw !important;
+      }
+    
 }
