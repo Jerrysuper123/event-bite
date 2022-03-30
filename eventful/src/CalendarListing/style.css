@@ -2,9 +2,7 @@
     display: none !important;
 }
 
-.calendarContainer{
-    background-image: url("../images/defaultEventOne.jpg");
-}
+
 .calendarContainer a{
     color: grey;
     text-decoration: none;
@@ -14,6 +12,17 @@
 }
 
 .Kalend__main {
-    height: 65vh !important;
+    height: 63vh !important;
   }
-  
+
+.calenderAside{
+    width: 100%;
+    height: 7rem;
+}
+
+@media (min-width: 992px) {
+    .calenderAside{
+        width: 100%;
+        height: 65vh;
+    }
+}

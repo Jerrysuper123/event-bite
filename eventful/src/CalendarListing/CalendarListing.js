@@ -32,53 +32,78 @@ export default function CalendarListing(props) {
 
   return (
     <div
-      className="calendarContainer"
+      className="calendarContainer
+      "
       style={{
         display: props.display,
       }}
     >
-      <section className="calendar container mb-5 mt-5 shadow">
-        <Kalend
-          //To adjust colors for today date circle, you can pass style prop to Kalend like this:
-          style={{
-            primaryColor: "#e27d60",
-            baseColor: "#3d3c3c",
-            inverseBaseColor: "#f2ecec",
-          }}
-          onEventClick={onEventClick}
-          // onNewEventClick={onNewEventClick}
-          events={events}
-          initialDate={new Date().toISOString()}
-          hourHeight={60}
-          initialView={CalendarView.WEEK}
-          disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
-          // onSelectView={onSelectView}
-          // selectedView={selectedView}
-          // onPageChange={onPageChange}
-          timeFormat={"24"}
-          weekDayStart={"Monday"}
-          calendarIDsHidden={["work"]}
-          language={"en"}
-        />
+      <section className="container-fluid">
+        <div className="d-lg-flex">
+          <aside
+            className="
+        calenderAside
+        accentTwoBgColor
+        d-flex
+        flex-column
+        text-light
+        align-items-center
+        justify-content-center
+        p-5
+        shadow
+      "
+          >
+            <h1>7:30 pm Thur, Mar 22 2022</h1>
+            <i className="fa-solid fa-cloud-sun"></i>
+          </aside>
 
-        <div className="subText">
-          credit:{" "}
-          <a href="https://github.com/nibdo/kalend" target="_blank">
-            Kalend
-          </a>
+          <section
+            className="
+          calendar shadow"
+          >
+            <Kalend
+              //To adjust colors for today date circle, you can pass style prop to Kalend like this:
+              style={{
+                primaryColor: "#c38d9e",
+                baseColor: "#c38d9e",
+                inverseBaseColor: "#f2ecec",
+              }}
+              onEventClick={onEventClick}
+              // onNewEventClick={onNewEventClick}
+              events={events}
+              initialDate={new Date().toISOString()}
+              hourHeight={60}
+              initialView={CalendarView.WEEK}
+              disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
+              // onSelectView={onSelectView}
+              // selectedView={selectedView}
+              // onPageChange={onPageChange}
+              timeFormat={"24"}
+              weekDayStart={"Monday"}
+              calendarIDsHidden={["work"]}
+              language={"en"}
+            />
+
+            <div className="subText">
+              credit:{" "}
+              <a href="https://github.com/nibdo/kalend" target="_blank">
+                Kalend
+              </a>
+            </div>
+
+            {/*Launch the modal but is displayed none  */}
+            <button
+              type="button"
+              id="modalBtnElement"
+              classNameName="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#calendarEventModal"
+              ref={modalBtnElement}
+            >
+              Launch calendar event modal
+            </button>
+          </section>
         </div>
-
-        {/*Launch the modal but is displayed none  */}
-        <button
-          type="button"
-          id="modalBtnElement"
-          classNameName="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#calendarEventModal"
-          ref={modalBtnElement}
-        >
-          Launch calendar event modal
-        </button>
       </section>
 
       {/* event details page */}

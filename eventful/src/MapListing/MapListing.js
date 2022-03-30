@@ -248,15 +248,7 @@ export default function MapListing(props) {
         </MapContainer>
 
         {/* Today's event list on the map */}
-        <div
-          type="button"
-          className="btn btn-secondary"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title="Tooltip on top"
-        >
-          button
-        </div>
+
         <Draggable>
           <section
             className="eventList"
