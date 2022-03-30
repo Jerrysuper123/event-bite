@@ -248,6 +248,15 @@ export default function MapListing(props) {
         </MapContainer>
 
         {/* Today's event list on the map */}
+        <div
+          type="button"
+          className="btn btn-secondary"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Tooltip on top"
+        >
+          button
+        </div>
         <Draggable>
           <section
             className="eventList"
@@ -259,7 +268,7 @@ export default function MapListing(props) {
             <div
               className="weatherIcon text-center"
               style={{
-                marginTop: eventListState === "hide" ? "3rem" : "1rem",
+                marginTop: eventListState === "hide" ? "2rem" : "1rem",
               }}
             >
               <i className="fa-solid fa-cloud-sun"></i>
