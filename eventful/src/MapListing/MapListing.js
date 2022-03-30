@@ -199,6 +199,11 @@ export default function MapListing(props) {
         display: props.display,
       }}
     >
+      {/* <div class="tooltip">
+        Hover over me
+        <span class="tooltiptext">Tooltip text</span>
+      </div> */}
+
       <EventDetailsPage data={oneEventDetails ? oneEventDetails : {}} />
       <div className="mapEventListContainer">
         <MapContainer
@@ -261,6 +266,7 @@ export default function MapListing(props) {
               className="weatherIcon text-center"
               style={{
                 marginTop: eventListState === "hide" ? "2rem" : "1rem",
+                fontSize: "0.8rem",
               }}
             >
               <i className="fa-solid fa-cloud-sun"></i>

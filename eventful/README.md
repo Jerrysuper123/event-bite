@@ -1,9 +1,43 @@
 # event-bite
 
+priority:
+
+1. submit form front end
+
+- past events list
+- accordian (expand to update or delete)
+- picture on the left and content on the right;
+
+- when update or delete, remove from state (update instantly)
+- update/delete API
+- whenever users go to map home page (retrieve again)
+
+2. data query
+3. validation - yup for front end
+
+//query all array
+https://www.mongodb.com/docs/manual/tutorial/query-arrays/
+
+use text-muted for form
+
+//create timeline for landing page
+//change 3rd picture of timeline to people scan qr code
+https://www.w3schools.com/howto/howto_css_timeline.asp
+
+//create tooltip
+https://www.w3schools.com/howto/howto_css_tooltip.asp
+//lottie
+https://lottiefiles.com/featured
+// flip card for the event card
+https://www.w3schools.com/howto/howto_css_flip_card.asp
+
 Credit: 0. footer
 https://gist.github.com/Luke-zhang-04/7cb523899ca4044f805f0d0909e4c5c1
 
 https://freefrontend.com/assets/img/bootstrap-footers/bootstrap-footer-v12.png
+
+//maybe toast to let users know event in progress
+https://getbootstrap.com/docs/5.0/components/toasts/
 
 1. start rating
    https://www.devwares.com/docs/contrast/react/components/rating/

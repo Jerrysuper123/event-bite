@@ -10,6 +10,8 @@ export default class FilterBar extends React.Component {
     filterCategories: [],
     filterTags: [],
     dateTimeFilter: "",
+    searchString: "",
+    searchEventStartDate: "",
   };
 
   componentDidMount = async () => {
@@ -28,6 +30,19 @@ export default class FilterBar extends React.Component {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  updateFormField = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  updateFormFieldAndSearchByDate = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+    this.props.searchByDate(this.state.searchEventStartDate);
   };
 
   render() {
@@ -111,11 +126,17 @@ export default class FilterBar extends React.Component {
               </li>
             </ul>
             <div className="d-flex p-3">
-              <label>events after:</label>
+              <label>From date:</label>
               <input
                 className="form-control me-2"
                 type="date"
                 aria-label="Search"
+                name="searchEventStartDate"
+                value={this.state.searchEventStartDate}
+                onChange={this.updateFormFieldAndSearchByDate}
+                // onChange={() => {
+                //   this.props.searchByDate(this.state.searchEventStartDate);
+                // }}
               />
             </div>
 
@@ -125,8 +146,17 @@ export default class FilterBar extends React.Component {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                name="searchString"
+                value={this.state.searchString}
+                onChange={this.updateFormField}
               />
-              <button className="btn btn-outline-success me-3" type="submit">
+              <button
+                className="btn btn-outline-success me-3"
+                type="submit"
+                onClick={() => {
+                  this.props.searchEvent(this.state.searchString);
+                }}
+              >
                 Search
               </button>
             </div>
