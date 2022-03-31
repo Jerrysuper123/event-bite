@@ -1,7 +1,10 @@
 import "./style.css";
 export default function EventCard(props) {
   const convertDateString = (dateString) => {
-    let properDateString = new Date(dateString).toString().slice(0, 21);
+    //slide off the gmt indicator, so that we can get proper date aligned with date selected by users
+    let properDateString = new Date(dateString.slice(0, 16))
+      .toString()
+      .slice(0, 21);
     return properDateString;
   };
   return (

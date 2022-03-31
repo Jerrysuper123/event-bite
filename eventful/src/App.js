@@ -175,13 +175,6 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <button
-          onClick={() => {
-            this.searchCategories(["education", "health & wellness"]);
-          }}
-        >
-          submit
-        </button>
         <NavBar setActive={this.setActive} />
         {this.state.active === "landing" ||
         this.state.active === "addNew" ? null : (
