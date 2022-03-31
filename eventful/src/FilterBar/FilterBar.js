@@ -41,11 +41,11 @@ export default class FilterBar extends React.Component {
     });
   };
 
-  updateFormFieldAndSearchByDate = (e) => {
+  updateFormFieldAndSearchByDate = async (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-    this.props.searchByDate(this.state.searchEventStartDate);
+    await this.props.searchByDate(this.state.searchEventStartDate);
   };
 
   processCheckbox = (e) => {
@@ -63,6 +63,18 @@ export default class FilterBar extends React.Component {
     this.setState({
       [e.target.name]: modifiedValues,
     });
+  };
+
+  processCheckboxAndGetCats = async (e) => {
+    /*we have to put await here to update the checkbox before the api call */
+    await this.processCheckbox(e);
+    await this.props.searchCategories(this.state.searchCategories);
+  };
+
+  processCheckboxAndGetTags = async (e) => {
+    /*we have to put await here to update the checkbox before the api call */
+    await this.processCheckbox(e);
+    await this.props.searchTags(this.state.searchHashtags);
   };
 
   render() {
@@ -121,7 +133,7 @@ export default class FilterBar extends React.Component {
                                 checked={this.state.searchCategories.includes(
                                   cat
                                 )}
-                                onChange={this.processCheckbox}
+                                onChange={this.processCheckboxAndGetCats}
                               />
                               <label>{cat}</label>
                             </a>
@@ -159,7 +171,7 @@ export default class FilterBar extends React.Component {
                                 checked={this.state.searchHashtags.includes(
                                   tag
                                 )}
-                                onChange={this.processCheckbox}
+                                onChange={this.processCheckboxAndGetTags}
                               />
                               <label>{tag}</label>
                             </a>

@@ -117,7 +117,7 @@ class App extends React.Component {
       let response = await axios.get(
         `${BASE_API_URL}/events?search=${searchString}`
       );
-      console.log("API events", response.data.data);
+      // console.log("API events", response.data.data);
       this.setState({
         data: [...response.data.data],
       });
@@ -140,15 +140,56 @@ class App extends React.Component {
     }
   };
 
+  searchTags = async (tagsArray) => {
+    try {
+      let response = await axios.get(`${BASE_API_URL}/events`, {
+        params: {
+          searchTags: tagsArray,
+        },
+      });
+      console.log("tag filtered", response.data.data);
+      this.setState({
+        data: [...response.data.data],
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  searchCategories = async (catArray) => {
+    try {
+      let response = await axios.get(`${BASE_API_URL}/events`, {
+        params: {
+          searchCategories: catArray,
+        },
+      });
+
+      this.setState({
+        data: [...response.data.data],
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
+        <button
+          onClick={() => {
+            this.searchCategories(["education", "health & wellness"]);
+          }}
+        >
+          submit
+        </button>
         <NavBar setActive={this.setActive} />
         {this.state.active === "landing" ||
         this.state.active === "addNew" ? null : (
           <FilterBar
             searchEvent={this.searchEvent}
             searchByDate={this.searchByDate}
+            searchTags={this.searchTags}
+            searchCategories={this.searchCategories}
           />
         )}
 
