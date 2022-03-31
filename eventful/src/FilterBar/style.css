@@ -34,3 +34,13 @@
 }
   }
 
+.filteredResultSummary{
+    font-size: 0.9rem;
+    color: #11675a !important;
+    text-decoration: none;
+}
+
+.sortBtn{
+    color: #11675a !important;
+}
+
