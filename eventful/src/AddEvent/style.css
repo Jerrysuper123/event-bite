@@ -38,12 +38,14 @@
 }
 
 .mainForm{
-    min-height: 30rem;
+    min-height: 41rem;
 }
 .mainForm p{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    font-style: italic;
     color: grey;
-    margin-bottom: 1px solid #c38d9e;
+    border-bottom: 1px solid #c4b2b7;
+    padding-bottom: 1rem;
 }
 
 .formNav{
@@ -72,5 +74,20 @@
 .active{
     background-color: #c38d9e;
     color: white;
+}
 
+.basicInfo>div{
+    margin-bottom: 2rem;
+}
+.location>div{
+    margin-bottom: 2rem;
+}
+.dateTimeAdd>div{
+    margin-bottom: 2rem;
+}
+.eventImage>div{
+    margin-bottom: 2rem;
+}
+.description>div{
+    margin-bottom: 2rem;
 }

@@ -154,35 +154,36 @@ export default class AddEvent extends React.Component {
     if (this.state.active === "basicInfo") {
       return (
         <div className="basicInfo">
-          <h5>Basic Info</h5>
+          <h5 className="accentTwoColor">Basic Info</h5>
           <div>
-            <h6>Event title:</h6>
+            <label>Event title:</label>
             <input
               type="text"
+              className="form-control"
               placeholder="Be clear and concise"
               value={this.state.title}
               name="title"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
 
           <div>
-            <h6>Organizer:</h6>
+            <label>Organizer:</label>
             <input
               type="text"
+              className="form-control"
               placeholder="Tell attendees who is organizing the event"
               value={this.state.organizer}
               name="organizer"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
             <p>This profile will appear in all events created by you.</p>
           </div>
 
           <div>
-            <h6>Category:</h6>
+            <label>Category:</label>
             <select
+              className="form-control"
               value={this.state.category}
               name="category"
               onChange={this.updateFormField}
@@ -194,7 +195,7 @@ export default class AddEvent extends React.Component {
           </div>
 
           <div>
-            <h6>Tags:</h6>
+            <label>Tags:</label>
             {this.state.formHashtags
               ? this.state.formHashtags.map((tag) => {
                   return (
@@ -222,29 +223,29 @@ export default class AddEvent extends React.Component {
     } else if (this.state.active === "location") {
       return (
         <div className="location">
-          <h1>Location</h1>
+          <h5 className="accentTwoColor">Location</h5>
           <div>
-            <h2>address:</h2>
+            <label>Address:</label>
             <input
               type="text"
+              className="form-control"
               placeholder="address..."
               value={this.state.address}
               name="address"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
 
           <div>
-            <h2>Singapore postal:</h2>
+            <label>Singapore postal:</label>
             <input
               type="text"
+              className="form-control"
               placeholder="address..."
               value={this.state.postalCode}
               name="postalCode"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
 
           {/* <div>
@@ -280,29 +281,29 @@ export default class AddEvent extends React.Component {
       );
     } else if (this.state.active === "dateTime") {
       return (
-        <div className="dateTime">
-          <h1>Date and time</h1>
+        <div className="dateTimeAdd">
+          <h5 className="accentTwoColor">Date and time</h5>
           <div>
-            <h2>event starts:</h2>
+            <label>Event starts:</label>
             <input
+              className="form-control"
               type="datetime-local"
               placeholder="address..."
               value={this.state.startDateTime}
               name="startDateTime"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
           <div>
-            <h2>event ends:</h2>
+            <label>Event ends:</label>
             <input
+              className="form-control"
               type="datetime-local"
               placeholder="address..."
               value={this.state.endDateTime}
               name="endDateTime"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
           <p>
             Tell event-goers when your event starts and ends so they can make
@@ -314,17 +315,17 @@ export default class AddEvent extends React.Component {
     } else if (this.state.active === "eventImage") {
       return (
         <div className="eventImage">
-          <h1>Event image</h1>
+          <h5 className="accentTwoColor">Event image</h5>
           <div>
-            <h2>main event image:</h2>
+            <label>main event image:</label>
             <input
+              className="form-control"
               type="text"
               placeholder="url..."
               value={this.state.eventImage}
               name="eventImage"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
           <p>
             This is the first image attendees will see at the top of your
@@ -332,19 +333,21 @@ export default class AddEvent extends React.Component {
           </p>
 
           <div>
-            <h2>custom map marker:</h2>
+            <label>custom map marker:</label>
             <input
+              className="form-control"
               type="text"
               placeholder="url..."
               value={this.state.customizedMapMarker}
               name="customizedMapMarker"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
 
           <div>
-            <h2>brand color:</h2>
+            <div>
+              <label>brand color:</label>
+            </div>
 
             <input
               type="color"
@@ -352,7 +355,6 @@ export default class AddEvent extends React.Component {
               name="brandColor"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
             <p>
               For branding purpose, both show up on the map and event listing
             </p>
@@ -363,33 +365,33 @@ export default class AddEvent extends React.Component {
     } else if (this.state.active === "description") {
       return (
         <div className="description">
-          <h1>Description</h1>
+          <h5 className="accentTwoColor">Description</h5>
           <p>
             Add more details to your event like your schedule, sponsors, or
             featured guests.
           </p>
           <div>
-            <h2>summary:</h2>
+            <label>summary:</label>
             <input
               type="text"
+              className="form-control"
               placeholder="write a short summary to get attendees excited"
               value={this.state.descriptionSummary}
               name="descriptionSummary"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
 
           <div>
-            <h2>detailed description:</h2>
+            <label>detailed description:</label>
             <textarea
+              className="form-control"
               type="text"
               placeholder="..."
               value={this.state.description}
               name="description"
               onChange={this.updateFormField}
             />
-            <button className="btn">clear</button>
           </div>
           <button className="btn btn-primary" onClick={this.postEvent}>
             submit
@@ -412,8 +414,8 @@ export default class AddEvent extends React.Component {
       address: eachEvent.address,
       postalCode: eachEvent.postalCode,
       latLng: eachEvent.latLng,
-      startDateTime: eachEvent.startDateTime,
-      endDateTime: eachEvent.endDateTime,
+      startDateTime: eachEvent.startDateTime.slice(0, 16),
+      endDateTime: eachEvent.endDateTime.slice(0, 16),
       eventImage: eachEvent.eventImage,
       customizedMapMarker: eachEvent.customizedMapMarker,
       brandColor: eachEvent.brandColor,
@@ -500,7 +502,8 @@ export default class AddEvent extends React.Component {
           <section className="container-fluid mt-4">
             <div className="row gx-4">
               {/* form navgiation  */}
-              <nav className="formNav col-lg-1 d-flex flex-lg-column justify-content-center align-items-center">
+
+              <nav className="d-none d-md-inline-flex formNav col-lg-1 d-flex flex-lg-column justify-content-center align-items-center">
                 <a
                   id="basicInfo"
                   className={
@@ -510,6 +513,7 @@ export default class AddEvent extends React.Component {
                     this.updateActive("basicInfo");
                   }}
                 >
+                  <i class="fa-solid fa-circle-ellipsis-vertical"></i>
                   <i className="fa-solid fa-circle-check me-1"></i>
                   basic info
                 </a>
@@ -562,14 +566,16 @@ export default class AddEvent extends React.Component {
               {/* render each form page */}
 
               <div className="mainForm col-lg-6 p-5">
-                <h4>Add new event/Update event: salvation...</h4>
+                <h4 className="mb-4 accentThreeColor">
+                  Add new event/Update event: salvation...
+                </h4>
                 {this.renderFormPage()}
               </div>
 
               {/* bootstrap accordian */}
               <article
                 className="col-lg-5 accordianContainer
-                p-5
+                px-2 p-lg-5
                 accentThreeBgColor
             "
               >
