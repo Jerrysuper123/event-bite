@@ -561,6 +561,18 @@ export default class AddEvent extends React.Component {
                 >
                   description
                 </a>
+
+                <a
+                  id="publish"
+                  className={this.state.active === "publish" ? "active" : null}
+                  onClick={() => {
+                    this.updateActive("publish");
+                  }}
+                >
+                  <i class="fa-solid fa-circle-half-stroke"></i>
+                  <i className="fa-solid fa-circle-check me-1"></i>
+                  publish
+                </a>
               </nav>
 
               {/* render each form page */}
