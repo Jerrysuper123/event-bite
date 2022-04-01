@@ -1,0 +1,37 @@
+.accordianBg{
+    background-color: white;
+}
+
+.accordianContainer{
+    color: rgb(31, 31, 31) !important;
+}
+
+.accordion-button{
+    color: rgb(89, 89, 89) !important;
+    font-size: 0.9rem;
+}
+
+.eventDescription{
+    color: grey !important;
+}
+
+.organizerAccordian{
+    width: 100%;
+}
+
+.publishedEventImage{
+    object-fit: cover;
+    object-position: center;
+    height: 7rem;
+    overflow: hidden;
+  }
+
+.accordion-body p{
+    font-size: 0.8rem !important;
+    color: grey !important;
+}
+
+.accordion-body h6{
+    font-size: 0.9rem !important;
+    color: rgb(89, 89, 89) !important;
+}

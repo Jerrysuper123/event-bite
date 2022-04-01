@@ -1,9 +1,8 @@
 import React from "react";
-import "./style.scss";
 import axios from "axios";
+import "./style.css";
 import Footer from "../Footer/Footer";
-
-import { BASE_API_URL } from "../Utility";
+import { BASE_API_URL, convertDateString } from "../Utility";
 
 export default class AddEvent extends React.Component {
   state = {
@@ -492,182 +491,244 @@ export default class AddEvent extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <section
+        <main
           style={{
             display: this.props.display,
             // height: "80vh",
           }}
         >
-          <div className="createNewForm">
-            <div className="container">
-              <div className="leftbox">
-                <nav className="createNewForm">
-                  <a
-                    id="basicInfo"
-                    className={
-                      this.state.active === "basicInfo" ? "active" : null
-                    }
-                    onClick={() => {
-                      this.updateActive("basicInfo");
-                    }}
-                  >
-                    <i className="fa fa-user">1. basic info</i>
-                  </a>
-                  <a
-                    id="location"
-                    className={
-                      this.state.active === "location" ? "active" : null
-                    }
-                    onClick={() => {
-                      this.updateActive("location");
-                    }}
-                  >
-                    <i className="fa fa-credit-card">2. location</i>
-                  </a>
-                  <a
-                    id="dateTime"
-                    className={
-                      this.state.active === "dateTime" ? "active" : null
-                    }
-                    onClick={() => {
-                      this.updateActive("dateTime");
-                    }}
-                  >
-                    <i className="fa fa-tv">3. date & time</i>
-                  </a>
-                  <a
-                    id="eventImage"
-                    className={
-                      this.state.active === "eventImage" ? "active" : null
-                    }
-                    onClick={() => {
-                      this.updateActive("eventImage");
-                    }}
-                  >
-                    <i className="fa fa-tasks">4. event image</i>
-                  </a>
-                  <a
-                    id="description"
-                    className={
-                      this.state.active === "description" ? "active" : null
-                    }
-                    onClick={() => {
-                      this.updateActive("description");
-                    }}
-                  >
-                    <i className="fa fa-cog">5. description</i>
-                  </a>
-                </nav>
-              </div>
-              <div className="rightbox">{this.renderFormPage()}</div>
-            </div>
-          </div>
-
-          {/* bootstrap accordian */}
-          <div
-            className="accordion accordion-flush container"
-            id="accordionFlushExample"
-          >
-            {this.props.data.map((eachEvent) => {
-              return (
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="flush-headingOne">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#flush-collapseOne"
-                      aria-expanded="false"
-                      aria-controls="flush-collapseOne"
-                    >
-                      {eachEvent.title}
-                    </button>
-                    <span>{eachEvent.startDateTime}</span>
-                    <span>{eachEvent.organizer}</span>
-                    <button
-                      className="btn btn-primary"
+          <section>
+            <div className="createNewForm">
+              <div className="container">
+                <div className="leftbox">
+                  <nav className="createNewForm">
+                    <a
+                      id="basicInfo"
+                      className={
+                        this.state.active === "basicInfo" ? "active" : null
+                      }
                       onClick={() => {
-                        this.updateEventBegins(eachEvent);
+                        this.updateActive("basicInfo");
                       }}
                     >
-                      update
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      data-bs-toggle="modal"
-                      data-bs-target="#deleteModal"
+                      <i className="fa fa-user">1. basic info</i>
+                    </a>
+                    <a
+                      id="location"
+                      className={
+                        this.state.active === "location" ? "active" : null
+                      }
                       onClick={() => {
-                        this.saveToDeletedEvent(eachEvent);
+                        this.updateActive("location");
                       }}
                     >
-                      delete
-                    </button>
-                  </h2>
-                  <div
-                    id="flush-collapseOne"
-                    className="accordion-collapse collapse"
-                    aria-labelledby="flush-headingOne"
-                    data-bs-parent="#accordionFlushExample"
-                  >
-                    <div className="accordion-body">
-                      <p>{eachEvent.descriptionSummary}</p>
-                      <p>{eachEvent.description}</p>
-                    </div>
-                  </div>
+                      <i className="fa fa-credit-card">2. location</i>
+                    </a>
+                    <a
+                      id="dateTime"
+                      className={
+                        this.state.active === "dateTime" ? "active" : null
+                      }
+                      onClick={() => {
+                        this.updateActive("dateTime");
+                      }}
+                    >
+                      <i className="fa fa-tv">3. date & time</i>
+                    </a>
+                    <a
+                      id="eventImage"
+                      className={
+                        this.state.active === "eventImage" ? "active" : null
+                      }
+                      onClick={() => {
+                        this.updateActive("eventImage");
+                      }}
+                    >
+                      <i className="fa fa-tasks">4. event image</i>
+                    </a>
+                    <a
+                      id="description"
+                      className={
+                        this.state.active === "description" ? "active" : null
+                      }
+                      onClick={() => {
+                        this.updateActive("description");
+                      }}
+                    >
+                      <i className="fa fa-cog">5. description</i>
+                    </a>
+                  </nav>
                 </div>
-              );
-            })}
-          </div>
-
-          <Footer />
-        </section>
-
-        {/* pop up for warning to delete */}
-        <div
-          className="modal fade"
-          id="deleteModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Are you sure you want to delete
-                  {this.state.toDeletedEvent.title}?
-                </h5>
-
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+                <div className="rightbox">{this.renderFormPage()}</div>
               </div>
-              <div className="modal-body">
-                <p>{this.state.toDeletedEvent.descriptionSummary}</p>
+            </div>
+
+            {/* bootstrap accordian */}
+            <article
+              className="accordianContainer
+                p-5
+                accentThreeBgColor
+            "
+            >
+              <div className="accordianBg p-3 pt-4">
+                <h5 className="ms-4">Published events</h5>
+                <div
+                  className="
+            accordion 
+            accordion-flush 
+            container-fluid"
+                  id="accordionFlushExample"
+                >
+                  {this.props.data.map((eachEvent, index) => {
+                    return (
+                      <div className="accordion-item" key={eachEvent._id}>
+                        <h2 className="accordion-header" id="flush-headingOne">
+                          <div
+                            className="
+                            accordion-button 
+                            collapsed
+                            "
+                            data-bs-toggle="collapse"
+                            data-bs-target={"#flush-collapse" + index}
+                            aria-expanded="false"
+                            aria-controls="flush-collapseOne"
+                          >
+                            <span
+                              style={{
+                                width: "10rem",
+                              }}
+                            >
+                              {convertDateString(eachEvent.startDateTime).slice(
+                                4,
+                                16
+                              )}
+                            </span>
+                            <span
+                              className="ms-3 me-3"
+                              style={{
+                                width: "24rem",
+                              }}
+                            >
+                              {eachEvent.title.slice(0, 25)}...
+                            </span>
+
+                            <div
+                              className="
+                            organizerAccordian
+                            d-flex
+                            "
+                            >
+                              <span className="ms-auto me-3">
+                                {eachEvent.organizer}
+                              </span>
+                            </div>
+                          </div>
+                        </h2>
+                        <div
+                          id={"flush-collapse" + index}
+                          className="accordion-collapse collapse"
+                          aria-labelledby="flush-headingOne"
+                          data-bs-parent="#accordionFlushExample"
+                        >
+                          <div className="accordion-body">
+                            <img
+                              className="publishedEventImage"
+                              src={eachEvent.eventImage}
+                            />
+                            <h6>Date and time</h6>
+                            <p>
+                              {convertDateString(eachEvent.startDateTime)} -{" "}
+                              {convertDateString(eachEvent.endDateTime)}{" "}
+                              Singapore Standard Time
+                            </p>
+                            <h6>Location</h6>
+                            <p>
+                              {eachEvent.address} Singapore{" "}
+                              {eachEvent.postalCode}
+                            </p>
+                            <h6>{eachEvent.descriptionSummary}</h6>
+                            <h6>About this event</h6>
+                            <p className="eventDescription">
+                              {eachEvent.description.slice(0, 50)}...
+                            </p>
+
+                            <button
+                              className="btn btn-primary"
+                              onClick={() => {
+                                this.updateEventBegins(eachEvent);
+                              }}
+                            >
+                              update
+                            </button>
+
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              data-bs-toggle="modal"
+                              data-bs-target="#deleteModal"
+                              onClick={() => {
+                                this.saveToDeletedEvent(eachEvent);
+                              }}
+                            >
+                              delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={this.deleteEvent}
-                >
-                  Confirm delete
-                </button>
+            </article>
+          </section>
+
+          {/* pop up for warning to delete */}
+          <div
+            className="modal fade"
+            id="deleteModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    Are you sure you want to delete
+                    {this.state.toDeletedEvent.title}?
+                  </h5>
+
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <p>{this.state.toDeletedEvent.descriptionSummary}</p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={this.deleteEvent}
+                  >
+                    Confirm delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <Footer />
+        </main>
       </React.Fragment>
     );
   }
