@@ -154,9 +154,9 @@ export default class AddEvent extends React.Component {
     if (this.state.active === "basicInfo") {
       return (
         <div className="basicInfo">
-          <h1>Basic Info</h1>
+          <h5>Basic Info</h5>
           <div>
-            <h2>Event title:</h2>
+            <h6>Event title:</h6>
             <input
               type="text"
               placeholder="Be clear and concise"
@@ -168,7 +168,7 @@ export default class AddEvent extends React.Component {
           </div>
 
           <div>
-            <h2>Organizer:</h2>
+            <h6>Organizer:</h6>
             <input
               type="text"
               placeholder="Tell attendees who is organizing the event"
@@ -181,7 +181,7 @@ export default class AddEvent extends React.Component {
           </div>
 
           <div>
-            <h2>Category:</h2>
+            <h6>Category:</h6>
             <select
               value={this.state.category}
               name="category"
@@ -194,7 +194,7 @@ export default class AddEvent extends React.Component {
           </div>
 
           <div>
-            <h2>Tags:</h2>
+            <h6>Tags:</h6>
             {this.state.formHashtags
               ? this.state.formHashtags.map((tag) => {
                   return (
@@ -497,189 +497,195 @@ export default class AddEvent extends React.Component {
             // height: "80vh",
           }}
         >
-          <section>
-            <div className="createNewForm">
-              <div className="container">
-                <div className="leftbox">
-                  <nav className="createNewForm">
-                    <a
-                      id="basicInfo"
-                      className={
-                        this.state.active === "basicInfo" ? "active" : null
-                      }
-                      onClick={() => {
-                        this.updateActive("basicInfo");
-                      }}
-                    >
-                      <i className="fa fa-user">1. basic info</i>
-                    </a>
-                    <a
-                      id="location"
-                      className={
-                        this.state.active === "location" ? "active" : null
-                      }
-                      onClick={() => {
-                        this.updateActive("location");
-                      }}
-                    >
-                      <i className="fa fa-credit-card">2. location</i>
-                    </a>
-                    <a
-                      id="dateTime"
-                      className={
-                        this.state.active === "dateTime" ? "active" : null
-                      }
-                      onClick={() => {
-                        this.updateActive("dateTime");
-                      }}
-                    >
-                      <i className="fa fa-tv">3. date & time</i>
-                    </a>
-                    <a
-                      id="eventImage"
-                      className={
-                        this.state.active === "eventImage" ? "active" : null
-                      }
-                      onClick={() => {
-                        this.updateActive("eventImage");
-                      }}
-                    >
-                      <i className="fa fa-tasks">4. event image</i>
-                    </a>
-                    <a
-                      id="description"
-                      className={
-                        this.state.active === "description" ? "active" : null
-                      }
-                      onClick={() => {
-                        this.updateActive("description");
-                      }}
-                    >
-                      <i className="fa fa-cog">5. description</i>
-                    </a>
-                  </nav>
-                </div>
-                <div className="rightbox">{this.renderFormPage()}</div>
-              </div>
-            </div>
+          <section className="container-fluid mt-4">
+            <div className="row gx-4">
+              {/* form navgiation  */}
+              <nav className="formNav col-lg-1 d-flex flex-lg-column justify-content-center align-items-center">
+                <a
+                  id="basicInfo"
+                  className={
+                    this.state.active === "basicInfo" ? "active" : null
+                  }
+                  onClick={() => {
+                    this.updateActive("basicInfo");
+                  }}
+                >
+                  <i className="fa-solid fa-circle-check me-1"></i>
+                  basic info
+                </a>
 
-            {/* bootstrap accordian */}
-            <article
-              className="accordianContainer
+                <a
+                  id="location"
+                  className={this.state.active === "location" ? "active" : null}
+                  onClick={() => {
+                    this.updateActive("location");
+                  }}
+                >
+                  location
+                </a>
+
+                <a
+                  id="dateTime"
+                  className={this.state.active === "dateTime" ? "active" : null}
+                  onClick={() => {
+                    this.updateActive("dateTime");
+                  }}
+                >
+                  date time
+                </a>
+
+                <a
+                  id="eventImage"
+                  className={
+                    this.state.active === "eventImage" ? "active" : null
+                  }
+                  onClick={() => {
+                    this.updateActive("eventImage");
+                  }}
+                >
+                  image
+                </a>
+
+                <a
+                  id="description"
+                  className={
+                    this.state.active === "description" ? "active" : null
+                  }
+                  onClick={() => {
+                    this.updateActive("description");
+                  }}
+                >
+                  description
+                </a>
+              </nav>
+
+              {/* render each form page */}
+
+              <div className="mainForm col-lg-6 p-5">
+                <h4>Add new event/Update event: salvation...</h4>
+                {this.renderFormPage()}
+              </div>
+
+              {/* bootstrap accordian */}
+              <article
+                className="col-lg-5 accordianContainer
                 p-5
                 accentThreeBgColor
             "
-            >
-              <div className="accordianBg p-3 pt-4">
-                <h5 className="ms-4">Published events</h5>
-                <div
-                  className="
+              >
+                <div className="accordianBg p-3 pt-4">
+                  <h5 className="ms-5">Published events</h5>
+                  <div
+                    className="
             accordion 
             accordion-flush 
             container-fluid"
-                  id="accordionFlushExample"
-                >
-                  {this.props.data.map((eachEvent, index) => {
-                    return (
-                      <div className="accordion-item" key={eachEvent._id}>
-                        <h2 className="accordion-header" id="flush-headingOne">
-                          <div
-                            className="
+                    id="accordionFlushExample"
+                  >
+                    {this.props.data.map((eachEvent, index) => {
+                      return (
+                        <div className="accordion-item" key={eachEvent._id}>
+                          <h2
+                            className="accordion-header"
+                            id="flush-headingOne"
+                          >
+                            <div
+                              className="
                             accordion-button 
                             collapsed
                             "
-                            data-bs-toggle="collapse"
-                            data-bs-target={"#flush-collapse" + index}
-                            aria-expanded="false"
-                            aria-controls="flush-collapseOne"
-                          >
-                            <span
-                              style={{
-                                width: "10rem",
-                              }}
+                              data-bs-toggle="collapse"
+                              data-bs-target={"#flush-collapse" + index}
+                              aria-expanded="false"
+                              aria-controls="flush-collapseOne"
                             >
-                              {convertDateString(eachEvent.startDateTime).slice(
-                                4,
-                                16
-                              )}
-                            </span>
-                            <span
-                              className="ms-3 me-3"
-                              style={{
-                                width: "24rem",
-                              }}
-                            >
-                              {eachEvent.title.slice(0, 25)}...
-                            </span>
+                              <span
+                                style={{
+                                  width: "10rem",
+                                }}
+                              >
+                                {convertDateString(
+                                  eachEvent.startDateTime
+                                ).slice(4, 16)}
+                              </span>
+                              <span
+                                className="ms-3 me-3"
+                                style={{
+                                  width: "24rem",
+                                }}
+                              >
+                                {eachEvent.title.slice(0, 25)}...
+                              </span>
 
-                            <div
-                              className="
+                              <div
+                                className="
                             organizerAccordian
                             d-flex
                             "
-                            >
-                              <span className="ms-auto me-3">
-                                {eachEvent.organizer}
-                              </span>
+                              >
+                                <span className="ms-auto me-3">
+                                  {eachEvent.organizer}
+                                </span>
+                              </div>
+                            </div>
+                          </h2>
+                          <div
+                            id={"flush-collapse" + index}
+                            className="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne"
+                            data-bs-parent="#accordionFlushExample"
+                          >
+                            <div className="accordion-body">
+                              <img
+                                className="publishedEventImage"
+                                src={eachEvent.eventImage}
+                              />
+                              <h6>Date and time</h6>
+                              <p>
+                                {convertDateString(eachEvent.startDateTime)} -{" "}
+                                {convertDateString(eachEvent.endDateTime)}{" "}
+                                Singapore Standard Time
+                              </p>
+                              <h6>Location</h6>
+                              <p>
+                                {eachEvent.address} Singapore{" "}
+                                {eachEvent.postalCode}
+                              </p>
+                              <h6>{eachEvent.descriptionSummary}</h6>
+                              <h6>About this event</h6>
+                              <p className="eventDescription">
+                                {eachEvent.description.slice(0, 50)}...
+                              </p>
+
+                              <button
+                                className="btn btn-primary"
+                                onClick={() => {
+                                  this.updateEventBegins(eachEvent);
+                                }}
+                              >
+                                update
+                              </button>
+
+                              <button
+                                type="button"
+                                className="btn btn-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteModal"
+                                onClick={() => {
+                                  this.saveToDeletedEvent(eachEvent);
+                                }}
+                              >
+                                delete
+                              </button>
                             </div>
                           </div>
-                        </h2>
-                        <div
-                          id={"flush-collapse" + index}
-                          className="accordion-collapse collapse"
-                          aria-labelledby="flush-headingOne"
-                          data-bs-parent="#accordionFlushExample"
-                        >
-                          <div className="accordion-body">
-                            <img
-                              className="publishedEventImage"
-                              src={eachEvent.eventImage}
-                            />
-                            <h6>Date and time</h6>
-                            <p>
-                              {convertDateString(eachEvent.startDateTime)} -{" "}
-                              {convertDateString(eachEvent.endDateTime)}{" "}
-                              Singapore Standard Time
-                            </p>
-                            <h6>Location</h6>
-                            <p>
-                              {eachEvent.address} Singapore{" "}
-                              {eachEvent.postalCode}
-                            </p>
-                            <h6>{eachEvent.descriptionSummary}</h6>
-                            <h6>About this event</h6>
-                            <p className="eventDescription">
-                              {eachEvent.description.slice(0, 50)}...
-                            </p>
-
-                            <button
-                              className="btn btn-primary"
-                              onClick={() => {
-                                this.updateEventBegins(eachEvent);
-                              }}
-                            >
-                              update
-                            </button>
-
-                            <button
-                              type="button"
-                              className="btn btn-danger"
-                              data-bs-toggle="modal"
-                              data-bs-target="#deleteModal"
-                              onClick={() => {
-                                this.saveToDeletedEvent(eachEvent);
-                              }}
-                            >
-                              delete
-                            </button>
-                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
           </section>
 
           {/* pop up for warning to delete */}

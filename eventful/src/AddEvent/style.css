@@ -1,5 +1,6 @@
 .accordianBg{
     background-color: white;
+    min-width: 22rem;
 }
 
 .accordianContainer{
@@ -34,4 +35,42 @@
 .accordion-body h6{
     font-size: 0.9rem !important;
     color: rgb(89, 89, 89) !important;
+}
+
+.mainForm{
+    min-height: 30rem;
+}
+.mainForm p{
+    font-size: 0.9rem;
+    color: grey;
+    margin-bottom: 1px solid #c38d9e;
+}
+
+.formNav{
+    border: 1px solid rgb(235, 235, 235);
+}
+
+@media (min-width: 992px) {
+    .formNav{
+        border: none;
+    }
+}
+
+.formNav a{
+    border: 1px solid rgb(235, 235, 235);
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 1rem;
+    width: 8rem;
+    height: 3.5rem;
+    font-weight: 500;
+}
+.formNav a:hover{
+    color: white;
+}
+
+.active{
+    background-color: #c38d9e;
+    color: white;
+
 }
