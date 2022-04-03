@@ -154,7 +154,7 @@ export default class AddEvent extends React.Component {
     if (this.state.active === "basicInfo") {
       return (
         <div className="basicInfo">
-          <h5 className="accentTwoColor">Basic Info</h5>
+          <h5>Basic Info</h5>
           <div>
             <label>Event title:</label>
             <input
@@ -215,192 +215,158 @@ export default class AddEvent extends React.Component {
             <p>
               Improve discoverability by adding tags relevant to subject matter
             </p>
-          </div>
+            <div className="location">
+              <h5>Location</h5>
+              <div>
+                <label>Address:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="address..."
+                  value={this.state.address}
+                  name="address"
+                  onChange={this.updateFormField}
+                />
+              </div>
 
-          <button className="btn btn-primary">next</button>
+              <div>
+                <label>Singapore postal:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="address..."
+                  value={this.state.postalCode}
+                  name="postalCode"
+                  onChange={this.updateFormField}
+                />
+              </div>
+
+              <p>Help people to know where to show up for your event</p>
+            </div>
+            <div className="dateTimeAdd">
+              <h5>Date and time</h5>
+              <div>
+                <label>Event starts:</label>
+                <input
+                  className="form-control"
+                  type="datetime-local"
+                  placeholder="address..."
+                  value={this.state.startDateTime}
+                  name="startDateTime"
+                  onChange={this.updateFormField}
+                />
+              </div>
+              <div>
+                <label>Event ends:</label>
+                <input
+                  className="form-control"
+                  type="datetime-local"
+                  placeholder="address..."
+                  value={this.state.endDateTime}
+                  name="endDateTime"
+                  onChange={this.updateFormField}
+                />
+              </div>
+              <p>
+                Tell event-goers when your event starts and ends so they can
+                make plans to attend.
+              </p>
+            </div>
+            <button className="btn btn-primary" onClick={this.getLatLng}>
+              get lat and lng button
+            </button>
+          </div>
         </div>
       );
-    } else if (this.state.active === "location") {
+    } else if (this.state.active === "details") {
       return (
-        <div className="location">
-          <h5 className="accentTwoColor">Location</h5>
-          <div>
-            <label>Address:</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="address..."
-              value={this.state.address}
-              name="address"
-              onChange={this.updateFormField}
-            />
-          </div>
-
-          <div>
-            <label>Singapore postal:</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="address..."
-              value={this.state.postalCode}
-              name="postalCode"
-              onChange={this.updateFormField}
-            />
-          </div>
-
-          {/* <div>
-            <h2>latitude:</h2>
-            <input
-              type="text"
-              placeholder="address..."
-              value={this.state.latLng[0]}
-              name="lat"
-              onChange={this.updateLatLng}
-            />
-            <button className="btn">clear</button>
-          </div>
-
-          <div>
-            <h2>longitude:</h2>
-            <input
-              type="text"
-              placeholder="address..."
-              value={this.state.latLng[1]}
-              name="lng"
-              onChange={this.updateLatLng}
-            />
-            <button className="btn">clear</button>
-  
-          </div> */}
-
-          <p>Help people to know where to show up for your event</p>
-          <button className="btn btn-primary" onClick={this.getLatLng}>
-            next
-          </button>
-        </div>
-      );
-    } else if (this.state.active === "dateTime") {
-      return (
-        <div className="dateTimeAdd">
-          <h5 className="accentTwoColor">Date and time</h5>
-          <div>
-            <label>Event starts:</label>
-            <input
-              className="form-control"
-              type="datetime-local"
-              placeholder="address..."
-              value={this.state.startDateTime}
-              name="startDateTime"
-              onChange={this.updateFormField}
-            />
-          </div>
-          <div>
-            <label>Event ends:</label>
-            <input
-              className="form-control"
-              type="datetime-local"
-              placeholder="address..."
-              value={this.state.endDateTime}
-              name="endDateTime"
-              onChange={this.updateFormField}
-            />
-          </div>
-          <p>
-            Tell event-goers when your event starts and ends so they can make
-            plans to attend.
-          </p>
-          <button className="btn btn-primary">next</button>
-        </div>
-      );
-    } else if (this.state.active === "eventImage") {
-      return (
-        <div className="eventImage">
-          <h5 className="accentTwoColor">Event image</h5>
-          <div>
-            <label>main event image:</label>
-            <input
-              className="form-control"
-              type="text"
-              placeholder="url..."
-              value={this.state.eventImage}
-              name="eventImage"
-              onChange={this.updateFormField}
-            />
-          </div>
-          <p>
-            This is the first image attendees will see at the top of your
-            listing. Use a high quality image
-          </p>
-
-          <div>
-            <label>custom map marker:</label>
-            <input
-              className="form-control"
-              type="text"
-              placeholder="url..."
-              value={this.state.customizedMapMarker}
-              name="customizedMapMarker"
-              onChange={this.updateFormField}
-            />
-          </div>
-
-          <div>
+        <React.Fragment>
+          <div className="eventImage">
+            <h5>Event image</h5>
             <div>
-              <label>brand color:</label>
+              <label>main event image:</label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="url..."
+                value={this.state.eventImage}
+                name="eventImage"
+                onChange={this.updateFormField}
+              />
+            </div>
+            <p>
+              This is the first image attendees will see at the top of your
+              listing. Use a high quality image
+            </p>
+
+            <div>
+              <label>custom map marker:</label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="url..."
+                value={this.state.customizedMapMarker}
+                name="customizedMapMarker"
+                onChange={this.updateFormField}
+              />
             </div>
 
-            <input
-              type="color"
-              value={this.state.brandColor}
-              name="brandColor"
-              onChange={this.updateFormField}
-            />
-            <p>
-              For branding purpose, both show up on the map and event listing
-            </p>
-          </div>
-          <button className="btn btn-primary">next</button>
-        </div>
-      );
-    } else if (this.state.active === "description") {
-      return (
-        <div className="description">
-          <h5 className="accentTwoColor">Description</h5>
-          <p>
-            Add more details to your event like your schedule, sponsors, or
-            featured guests.
-          </p>
-          <div>
-            <label>summary:</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="write a short summary to get attendees excited"
-              value={this.state.descriptionSummary}
-              name="descriptionSummary"
-              onChange={this.updateFormField}
-            />
-          </div>
+            <div>
+              <div>
+                <label>brand color:</label>
+              </div>
 
-          <div>
-            <label>detailed description:</label>
-            <textarea
-              className="form-control"
-              type="text"
-              placeholder="..."
-              value={this.state.description}
-              name="description"
-              onChange={this.updateFormField}
-            />
+              <input
+                type="color"
+                value={this.state.brandColor}
+                name="brandColor"
+                onChange={this.updateFormField}
+              />
+              <p>
+                For branding purpose, both show up on the map and event listing
+              </p>
+            </div>
           </div>
-          <button className="btn btn-primary" onClick={this.postEvent}>
-            submit
-          </button>
-          <button className="btn btn-primary" onClick={this.updateEventAPI}>
-            update
-          </button>
-        </div>
+          <div className="description">
+            <h5>Description</h5>
+            <p>
+              Add more details to your event like your schedule, sponsors, or
+              featured guests.
+            </p>
+            <div>
+              <label>summary:</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="write a short summary to get attendees excited"
+                value={this.state.descriptionSummary}
+                name="descriptionSummary"
+                onChange={this.updateFormField}
+              />
+            </div>
+
+            <div>
+              <label>detailed description:</label>
+              <textarea
+                className="form-control"
+                type="text"
+                placeholder="..."
+                value={this.state.description}
+                name="description"
+                onChange={this.updateFormField}
+              />
+            </div>
+            <button className="btn btn-primary" onClick={this.postEvent}>
+              submit
+            </button>
+            <button className="btn btn-primary" onClick={this.updateEventAPI}>
+              update
+            </button>
+          </div>
+        </React.Fragment>
       );
+    } else if (this.state.active === "publish") {
+      return <React.Fragment>publish event preview</React.Fragment>;
     }
   };
 
@@ -503,7 +469,8 @@ export default class AddEvent extends React.Component {
             <div className="row gx-4">
               {/* form navgiation  */}
 
-              <nav className="d-none d-md-inline-flex formNav col-lg-1 d-flex flex-lg-column justify-content-center align-items-center">
+              {/* d-none */}
+              <nav className="d-md-inline-flex formNav col-lg-1 d-flex flex-lg-column justify-content-center justify-content-lg-start align-items-center ">
                 <a
                   id="basicInfo"
                   className={
@@ -519,47 +486,13 @@ export default class AddEvent extends React.Component {
                 </a>
 
                 <a
-                  id="location"
-                  className={this.state.active === "location" ? "active" : null}
+                  id="details"
+                  className={this.state.active === "details" ? "active" : null}
                   onClick={() => {
-                    this.updateActive("location");
+                    this.updateActive("details");
                   }}
                 >
-                  location
-                </a>
-
-                <a
-                  id="dateTime"
-                  className={this.state.active === "dateTime" ? "active" : null}
-                  onClick={() => {
-                    this.updateActive("dateTime");
-                  }}
-                >
-                  date time
-                </a>
-
-                <a
-                  id="eventImage"
-                  className={
-                    this.state.active === "eventImage" ? "active" : null
-                  }
-                  onClick={() => {
-                    this.updateActive("eventImage");
-                  }}
-                >
-                  image
-                </a>
-
-                <a
-                  id="description"
-                  className={
-                    this.state.active === "description" ? "active" : null
-                  }
-                  onClick={() => {
-                    this.updateActive("description");
-                  }}
-                >
-                  description
+                  details
                 </a>
 
                 <a
@@ -570,15 +503,15 @@ export default class AddEvent extends React.Component {
                   }}
                 >
                   <i class="fa-solid fa-circle-half-stroke"></i>
-                  <i className="fa-solid fa-circle-check me-1"></i>
+                  <i className="fa-solid fa-circle-check me-2"></i>
                   publish
                 </a>
               </nav>
 
               {/* render each form page */}
 
-              <div className="mainForm col-lg-6 p-5">
-                <h4 className="mb-4 accentThreeColor">
+              <div className="mainForm col-lg-6 p-5 border">
+                <h4 className="mb-4">
                   Add new event/Update event: salvation...
                 </h4>
                 {this.renderFormPage()}
