@@ -470,7 +470,7 @@ export default class AddEvent extends React.Component {
               {/* form navgiation  */}
 
               {/* d-none */}
-              <nav className="d-md-inline-flex formNav col-lg-1 d-flex flex-lg-column justify-content-center justify-content-lg-start align-items-center ">
+              <nav className="d-md-inline-flex shadow formNav col-lg-1 d-flex flex-lg-column justify-content-center justify-content-lg-start align-items-center ">
                 <a
                   id="basicInfo"
                   className={
@@ -510,7 +510,7 @@ export default class AddEvent extends React.Component {
 
               {/* render each form page */}
 
-              <div className="mainForm col-lg-6 p-5 border">
+              <div className="mainForm shadow col-lg-6 p-5">
                 <h4 className="mb-4">
                   Add new event/Update event: salvation...
                 </h4>
@@ -521,10 +521,11 @@ export default class AddEvent extends React.Component {
               <article
                 className="col-lg-5 accordianContainer
                 px-2 p-lg-5
+                shadow
                 accentThreeBgColor
             "
               >
-                <div className="accordianBg p-3 pt-4">
+                <div className="accordianBg shadow p-3 pt-4">
                   <h5 className="ms-5">Published events</h5>
                   <div
                     className="
