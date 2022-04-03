@@ -2,9 +2,14 @@ import React from "react";
 import "./style.css";
 import walkingIcon from "../images/walkingIcon.png";
 
-export default function Footer() {
+export default function Footer(props) {
   return (
-    <footer className="page-footer font-small blue pt-4">
+    <footer
+      className="page-footer font-small blue pt-4"
+      style={{
+        display: props.display,
+      }}
+    >
       <div className="container-fluid text-center text-md-left">
         <div className="row">
           <div className="col-md-6 mt-md-0 mt-3">

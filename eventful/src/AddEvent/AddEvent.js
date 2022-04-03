@@ -685,7 +685,6 @@ export default class AddEvent extends React.Component {
               </div>
             </div>
           </div>
-          <Footer />
         </main>
       </React.Fragment>
     );

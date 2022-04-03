@@ -284,7 +284,6 @@ export default function LandingPage(props) {
 
         <sectio className="container mt-5 p-5">image of QR code</sectio>
       </main>
-      <Footer />
     </section>
   );
 }

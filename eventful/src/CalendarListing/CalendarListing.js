@@ -136,7 +136,6 @@ export default function CalendarListing(props) {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

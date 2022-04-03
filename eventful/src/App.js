@@ -7,6 +7,7 @@ import LandingPage from "./LandingPage/LandingPage";
 import MapListing from "./MapListing/MapListing";
 import CalendarListing from "./CalendarListing/CalendarListing";
 import AddEvent from "./AddEvent/AddEvent";
+import Footer from "./Footer/Footer";
 import "./App.css";
 
 class App extends React.Component {
@@ -203,6 +204,7 @@ class App extends React.Component {
           display={this.state.active === "addNew" ? "block" : "none"}
           data={this.state.data}
         />
+        <Footer display={this.state.active === "map" ? "none" : "block"} />
       </React.Fragment>
     );
   }
