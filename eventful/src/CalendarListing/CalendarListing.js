@@ -39,8 +39,8 @@ export default function CalendarListing(props) {
       }}
     >
       <section className="container-fluid">
-        <div className="d-lg-flex">
-          <aside
+        {/* <div className="d-lg-flex"> */}
+        {/* <aside
             className="
         calenderAside
         accentTwoBgColor
@@ -55,48 +55,48 @@ export default function CalendarListing(props) {
           >
             <h1>7:30 pm Thur, Mar 22 2022</h1>
             <i className="fa-solid fa-cloud-sun"></i>
-          </aside>
+          </aside> */}
 
-          <section
-            className="
-          calendar shadow"
+        <section
+          className="
+          calendar shadow-lg"
+        >
+          <Kalend
+            //To adjust colors for today date circle, you can pass style prop to Kalend like this:
+            style={{
+              primaryColor: "#c38d9e",
+              baseColor: "#c38d9e",
+              inverseBaseColor: "#f2ecec",
+            }}
+            onEventClick={onEventClick}
+            // onNewEventClick={onNewEventClick}
+            events={events}
+            initialDate={new Date().toISOString()}
+            hourHeight={60}
+            initialView={CalendarView.WEEK}
+            disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
+            // onSelectView={onSelectView}
+            // selectedView={selectedView}
+            // onPageChange={onPageChange}
+            timeFormat={"24"}
+            weekDayStart={"Monday"}
+            calendarIDsHidden={["work"]}
+            language={"en"}
+          />
+
+          {/*Launch the modal but is displayed none  */}
+          <button
+            type="button"
+            id="modalBtnElement"
+            classNameName="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#calendarEventModal"
+            ref={modalBtnElement}
           >
-            <Kalend
-              //To adjust colors for today date circle, you can pass style prop to Kalend like this:
-              style={{
-                primaryColor: "#c38d9e",
-                baseColor: "#c38d9e",
-                inverseBaseColor: "#f2ecec",
-              }}
-              onEventClick={onEventClick}
-              // onNewEventClick={onNewEventClick}
-              events={events}
-              initialDate={new Date().toISOString()}
-              hourHeight={60}
-              initialView={CalendarView.WEEK}
-              disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
-              // onSelectView={onSelectView}
-              // selectedView={selectedView}
-              // onPageChange={onPageChange}
-              timeFormat={"24"}
-              weekDayStart={"Monday"}
-              calendarIDsHidden={["work"]}
-              language={"en"}
-            />
-
-            {/*Launch the modal but is displayed none  */}
-            <button
-              type="button"
-              id="modalBtnElement"
-              classNameName="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#calendarEventModal"
-              ref={modalBtnElement}
-            >
-              Launch calendar event modal
-            </button>
-          </section>
-        </div>
+            Launch calendar event modal
+          </button>
+        </section>
+        {/* </div> */}
       </section>
 
       {/* event details page */}

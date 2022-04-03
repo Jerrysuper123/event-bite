@@ -20,8 +20,12 @@
     height: 7rem;
 }
 
+.calendarBg{
+
+}
+
 @media (min-width: 992px) {
-    .calenderAside{
+    /* .calenderAside{
         width: 20vw;
         height: 65vh;
     }
@@ -29,5 +33,5 @@
         height: 63vh !important;
         width: 79vw !important;
       }
-    
+     */
 }
