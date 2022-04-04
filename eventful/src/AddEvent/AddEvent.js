@@ -1,8 +1,15 @@
 import React from "react";
 import axios from "axios";
 import "./style.css";
-import Footer from "../Footer/Footer";
 import { BASE_API_URL, convertDateString } from "../Utility";
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default class AddEvent extends React.Component {
   state = {
@@ -150,12 +157,18 @@ export default class AddEvent extends React.Component {
     }
   };
 
+  handleChange = (event, values) => {
+    this.setState({
+      hashtags: values,
+    });
+  };
+
   renderFormPage = () => {
     if (this.state.active === "basicInfo") {
       return (
         <div className="basicInfo">
-          <h5>Basic Info</h5>
           <div>
+            <h3>BASIC INFO</h3>
             <label>Event title:</label>
             <input
               type="text"
@@ -195,28 +208,82 @@ export default class AddEvent extends React.Component {
           </div>
 
           <div>
-            <label>Tags:</label>
-            {this.state.formHashtags
-              ? this.state.formHashtags.map((tag) => {
-                  return (
-                    <React.Fragment key={tag}>
-                      <input
-                        type="checkbox"
-                        name="hashtags"
-                        value={tag}
-                        checked={this.state.hashtags.includes(tag)}
-                        onChange={this.processCheckbox}
-                      />
-                      {tag}
-                    </React.Fragment>
-                  );
-                })
-              : null}
+            <label className="mb-3">Tags:</label>
+            <Autocomplete
+              multiple
+              id="checkboxes-tags-demo"
+              options={this.state.formHashtags}
+              disableCloseOnSelect
+              getOptionLabel={(option) => option}
+              value={this.state.hashtags}
+              renderOption={(props, option, { selected }) => (
+                <li key={option} {...props}>
+                  <Checkbox
+                    icon={icon}
+                    checkedIcon={checkedIcon}
+                    style={{ marginRight: 8 }}
+                    checked={this.state.hashtags.includes(option)}
+                  />
+                  {option}
+                </li>
+              )}
+              onChange={this.handleChange}
+              style={{ width: 500 }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="select tags"
+                  placeholder="more..."
+                />
+              )}
+            />
+            {/* <Stack spacing={3} sx={{ width: 500 }}>
+              <Autocomplete
+                multiple
+                id="tags-outlined"
+                options={[1, 2, 3]}
+                getOptionLabel={(option) => option}
+                defaultValue={[1]}
+                filterSelectedOptions
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="tags"
+                    placeholder="add more..."
+                  />
+                )}
+                onChange={this.setState({
+                  hashtags: params,
+                })}
+              />
+            </Stack> */}
+
+            <div>
+              {this.state.formHashtags
+                ? this.state.formHashtags.map((tag) => {
+                    return (
+                      <React.Fragment key={tag}>
+                        <span className="ms-2">
+                          <input
+                            type="checkbox"
+                            name="hashtags"
+                            value={tag}
+                            checked={this.state.hashtags.includes(tag)}
+                            onChange={this.processCheckbox}
+                          />
+                          <label className="ms-1 text-secondary">{tag}</label>
+                        </span>
+                      </React.Fragment>
+                    );
+                  })
+                : null}
+            </div>
+
             <p>
               Improve discoverability by adding tags relevant to subject matter
             </p>
-            <div className="location">
-              <h5>Location</h5>
+            <div className="location border-top pt-5">
+              <h3>LOCATION</h3>
               <div>
                 <label>Address:</label>
                 <input
@@ -243,8 +310,8 @@ export default class AddEvent extends React.Component {
 
               <p>Help people to know where to show up for your event</p>
             </div>
-            <div className="dateTimeAdd">
-              <h5>Date and time</h5>
+            <div className="dateTimeAdd border-top pt-5">
+              <h3>DATE & TIME</h3>
               <div>
                 <label>Event starts:</label>
                 <input
@@ -281,88 +348,94 @@ export default class AddEvent extends React.Component {
     } else if (this.state.active === "details") {
       return (
         <React.Fragment>
-          <div className="eventImage">
-            <h5>Event image</h5>
-            <div>
-              <label>main event image:</label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="url..."
-                value={this.state.eventImage}
-                name="eventImage"
-                onChange={this.updateFormField}
-              />
-            </div>
-            <p>
-              This is the first image attendees will see at the top of your
-              listing. Use a high quality image
-            </p>
-
-            <div>
-              <label>custom map marker:</label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="url..."
-                value={this.state.customizedMapMarker}
-                name="customizedMapMarker"
-                onChange={this.updateFormField}
-              />
-            </div>
-
-            <div>
+          <section className="details">
+            <div className="eventImage border-bottom">
+              <h3>EVENT IMAGE</h3>
               <div>
-                <label>brand color:</label>
+                <label>Main event image:</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="url..."
+                  value={this.state.eventImage}
+                  name="eventImage"
+                  onChange={this.updateFormField}
+                />
+                <p>
+                  This is the first image attendees will see at the top of your
+                  listing. Use a high quality image
+                </p>
               </div>
 
-              <input
-                type="color"
-                value={this.state.brandColor}
-                name="brandColor"
-                onChange={this.updateFormField}
-              />
-              <p>
-                For branding purpose, both show up on the map and event listing
-              </p>
-            </div>
-          </div>
-          <div className="description">
-            <h5>Description</h5>
-            <p>
-              Add more details to your event like your schedule, sponsors, or
-              featured guests.
-            </p>
-            <div>
-              <label>summary:</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="write a short summary to get attendees excited"
-                value={this.state.descriptionSummary}
-                name="descriptionSummary"
-                onChange={this.updateFormField}
-              />
-            </div>
+              <div>
+                <label>Custom map marker:</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="url..."
+                  value={this.state.customizedMapMarker}
+                  name="customizedMapMarker"
+                  onChange={this.updateFormField}
+                />
+                <p>
+                  Your brand icons will be displayed on the map for branding
+                  purpose
+                </p>
+              </div>
 
-            <div>
-              <label>detailed description:</label>
-              <textarea
-                className="form-control"
-                type="text"
-                placeholder="..."
-                value={this.state.description}
-                name="description"
-                onChange={this.updateFormField}
-              />
+              <div>
+                <label>Pick a brand color:</label>
+                <div>
+                  <input
+                    type="color"
+                    value={this.state.brandColor}
+                    name="brandColor"
+                    onChange={this.updateFormField}
+                  />
+                  <p>
+                    Pick your brand color for branding purpose, where your
+                    events will be customized accordingly.
+                  </p>
+                </div>
+              </div>
             </div>
-            <button className="btn btn-primary" onClick={this.postEvent}>
-              submit
-            </button>
-            <button className="btn btn-primary" onClick={this.updateEventAPI}>
-              update
-            </button>
-          </div>
+            <div className="description">
+              <h3>DESCRIPTION</h3>
+              <p>
+                Add more details to your event like your schedule, sponsors, or
+                featured guests.
+              </p>
+              <div>
+                <label>summary:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="write a short summary to get attendees excited"
+                  value={this.state.descriptionSummary}
+                  name="descriptionSummary"
+                  onChange={this.updateFormField}
+                />
+              </div>
+
+              <div className="border-bottom pb-3">
+                <label>detailed description:</label>
+                <textarea
+                  className="form-control"
+                  type="text"
+                  placeholder="..."
+                  value={this.state.description}
+                  name="description"
+                  onChange={this.updateFormField}
+                />
+              </div>
+              <button className="btn btn-primary" onClick={this.postEvent}>
+                submit
+              </button>
+              <button className="btn btn-primary" onClick={this.updateEventAPI}>
+                update
+              </button>
+            </div>
+          </section>
         </React.Fragment>
       );
     } else if (this.state.active === "publish") {
@@ -480,9 +553,7 @@ export default class AddEvent extends React.Component {
                     this.updateActive("basicInfo");
                   }}
                 >
-                  <i class="fa-solid fa-circle-ellipsis-vertical"></i>
-                  <i className="fa-solid fa-circle-check me-1"></i>
-                  basic info
+                  1.basic info
                 </a>
 
                 <a
@@ -492,7 +563,7 @@ export default class AddEvent extends React.Component {
                     this.updateActive("details");
                   }}
                 >
-                  details
+                  2.details
                 </a>
 
                 <a
@@ -502,18 +573,16 @@ export default class AddEvent extends React.Component {
                     this.updateActive("publish");
                   }}
                 >
-                  <i class="fa-solid fa-circle-half-stroke"></i>
-                  <i className="fa-solid fa-circle-check me-2"></i>
-                  publish
+                  3.publish
                 </a>
               </nav>
 
               {/* render each form page */}
 
               <div className="mainForm shadow col-lg-6 p-5">
-                <h4 className="mb-4">
-                  Add new event/Update event: salvation...
-                </h4>
+                <h1 className="mb-4">
+                  {this.state.editedId === "" ? "Add New Event" : "Edit Event"}
+                </h1>
                 {this.renderFormPage()}
               </div>
 

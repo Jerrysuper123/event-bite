@@ -1,95 +1,101 @@
-.accordianBg{
+.accordianBg {
     background-color: white;
     min-width: 22rem;
 }
 
-.accordianContainer{
+.accordianContainer {
     color: rgb(31, 31, 31) !important;
 }
 
-.accordion-button{
+.accordion-button {
     color: rgb(89, 89, 89) !important;
     font-size: 0.9rem;
 }
 
-.eventDescription{
+.eventDescription {
     color: grey !important;
 }
 
-.organizerAccordian{
+.organizerAccordian {
     width: 100%;
 }
 
-.publishedEventImage{
+.publishedEventImage {
     object-fit: cover;
     object-position: center;
     height: 7rem;
     overflow: hidden;
-  }
+}
 
-.accordion-body p{
+.accordion-body p {
     font-size: 0.8rem !important;
     color: grey !important;
 }
 
-.accordion-body h6{
+.accordion-body h6 {
     font-size: 0.9rem !important;
     color: rgb(89, 89, 89) !important;
 }
 
-.mainForm{
+.mainForm {
     min-height: 41rem;
     background-color: white;
 }
-.mainForm p{
+
+.mainForm input {
+    background-color: rgb(242, 242, 242) !important;
+    border-radius: 0px !important;
+}
+
+.mainForm select {
+    background-color: rgb(242, 242, 242) !important;
+    border-radius: 0px !important;
+}
+
+.mainForm p {
     font-size: 0.8rem;
     font-style: italic;
     color: grey;
-    padding-bottom: 1rem;
 }
 
-.formNav{
+.formNav {
     border: 1px solid rgb(255, 255, 255);
     background-color: rgb(238, 238, 238);
 }
 
 @media (min-width: 992px) {
-    .formNav{
+    .formNav {
         border: none;
     }
 }
 
-.formNav a{
-    /* border: 1px solid rgb(255, 255, 255); */
-    font-size: 0.9rem;
+.formNav a {
+    border: 1px solid white;
+    font-size: 1rem;
     text-decoration: none;
     padding: 1rem;
-    width: 8rem;
+    width: 9rem;
     height: 3.5rem;
     /* width: 100%; */
     font-weight: 500;
 }
-.formNav a:hover{
+.formNav a:hover {
     color: white;
 }
 
-.active{
+.formNav i {
+    font-size: 1.1rem;
+}
+
+.active {
     background-color: #c38d9e;
     color: white;
 }
 
-.basicInfo>div{
-    margin-bottom: 2rem;
+.basicInfo div {
+    margin-bottom: 1.2rem;
 }
-.location>div{
-    margin-bottom: 2rem;
-}
-.dateTimeAdd>div{
-    margin-bottom: 2rem;
-}
-.eventImage>div{
-    margin-bottom: 2rem;
-}
-.description>div{
-    margin-bottom: 2rem;
+
+.details div {
+    margin-bottom: 1.2rem;
 }
