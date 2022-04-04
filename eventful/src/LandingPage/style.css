@@ -2,11 +2,21 @@
     position: relative;
 }
 
+.orStatement{
+    margin-top: -1.3rem;
+    font-size: 2rem;
+    font-style: italic;
+    width: 3rem;
+    background-color: rgb(255, 255, 255);
+}
+
 .cta{
     position: absolute;
-    top: 40vh;
-    right: 10vw;
-    width: 30rem;
+    top: 23vh;
+    left: 25vw;
+    width: 50%;
+    height: 20rem;
+    border-radius: 20rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -17,6 +27,7 @@
     .cta{
         position: static;
         width: 100%;
+        border-radius: 0;
     }
   }
 

@@ -3,7 +3,6 @@ import "./style.css";
 import defaultEventOne from "../images/defaultEventOne.jpg";
 import defaultEventTwo from "../images/defaultEventTwo.jpg";
 import defaultEventThree from "../images/defaultEventThree.jpg";
-import Footer from "../Footer/Footer";
 import student from "../images/student.jpg";
 import tourist from "../images/tourist.jpg";
 import shopper from "../images/shopper.jpg";
@@ -11,6 +10,7 @@ import diner from "../images/diner.jpg";
 import create from "../images/create.jpg";
 import paste from "../images/paste.jpg";
 import welcome from "../images/welcome.jpg";
+import walkingIcon from "../images/walkingIcon.png";
 
 export default function LandingPage(props) {
   return (
@@ -131,25 +131,77 @@ export default function LandingPage(props) {
         </section>
 
         {/* call to action */}
-        <section className="cta p-5">
-          <h3>Check out events near you by clicking the button below</h3>
-          <p>
-            Automatically detects your current location and suggests events in
-            vicinity
-          </p>
-          <p>
-            Updates events in real-time, suggesting ongoing tantalizing events
-            on a map near you
-          </p>
-          <button className="btn btn-danger">near me</button>
+        <section className="cta p-5 text-center">
+          <h1>
+            Have a
+            <a
+              className="navbar-brand logoText ms-3"
+              style={{
+                fontSize: "3rem",
+              }}
+            >
+              eventful
+            </a>
+            day!
+          </h1>
+          <h5
+            className="my-3"
+            style={{
+              fontStyle: "italic",
+            }}
+          >
+            Check out today's events near you on a map
+          </h5>
+          <button className="btn btn-danger mt-3">Start here</button>
         </section>
       </div>
+
+      <section className="p-5 text-center my-4">
+        <section>
+          <div className="border-bottom"></div>
+          <div className="d-flex justify-content-center">
+            <h3 className="orStatement">or</h3>
+          </div>
+        </section>
+
+        <h1>
+          Plan a
+          <a
+            className="navbar-brand logoText ms-3"
+            style={{
+              fontSize: "3rem",
+            }}
+          >
+            eventful
+          </a>
+          day?
+        </h1>
+        <h5
+          className="my-3"
+          style={{
+            fontStyle: "italic",
+          }}
+        >
+          Check out this week's events on a calendar
+        </h5>
+        <button className="btn btn-danger mt-3">Start here</button>
+      </section>
 
       <main>
         {/* main content */}
 
-        <article className="attendeeText container p-1 mt-3">
-          <h2 className="text-center my-5 primaryColor">Attend events </h2>
+        <article className="attendeeText accentTwoBgColor container-fluid p-5">
+          <section className="text-center my-5 text-light">
+            <h1>Attend events </h1>
+            <p>
+              Automatically detects your current location and suggests events in
+              vicinity
+            </p>
+            <p>
+              Updates events in real-time, suggesting ongoing tantalizing events
+              on a map near you
+            </p>
+          </section>
           <div className="row g-5">
             <div className="col">
               {/* card starts here */}
@@ -213,8 +265,8 @@ export default function LandingPage(props) {
           </div>
         </article>
 
-        <article className="organizerText mt-5 p-5">
-          <h2 className="text-center text-light mb-5">Organize events </h2>
+        <article className="organizerText p-5">
+          <h1 className="text-center text-light mb-5">Organize events </h1>
           <div className="row g-5">
             <div className="col">
               {/* card starts here */}
