@@ -1,5 +1,7 @@
 import "./style.css";
 import { convertDateString } from "../../Utility";
+import { useEffect } from "react";
+import { useState } from "react";
 export default function EventCard(props) {
   // const convertDateString = (dateString) => {
   //   //slide off the gmt indicator, so that we can get proper date aligned with date selected by users
@@ -8,6 +10,15 @@ export default function EventCard(props) {
   //     .slice(0, 21);
   //   return properDateString;
   // };
+
+  const setEvent = () => {
+    props.setOneEvent(props.eachEvent);
+  };
+
+  useEffect(() => {
+    setEvent();
+  }, [props.eachEvent]);
+
   return (
     <div
       className="card shadow"
@@ -68,7 +79,7 @@ export default function EventCard(props) {
             // moreInfoModel
             data-bs-target="#moreInfoModel"
             onClick={() => {
-              props.setOneEvent(props.eachEvent);
+              setEvent();
             }}
           >
             more info

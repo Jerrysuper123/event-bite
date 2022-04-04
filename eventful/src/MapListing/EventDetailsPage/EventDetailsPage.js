@@ -2,8 +2,12 @@ import HashTagComponent from "./HashTagComponent/HashTagComponent";
 import "./style.css";
 import DisplayFeedback from "./DisplayFeedback.js/DisplayFeedback";
 import FeedbackForm from "./FeedbackForm.js/FeedbackForm";
+import React from "react";
+import { useEffect } from "react";
 
 export default function EventDetailsPage(props) {
+  const [submitState, setSubmitState] = React.useState(false);
+
   return (
     <div
       className="modal fade"
@@ -53,6 +57,7 @@ export default function EventDetailsPage(props) {
             </div>
 
             {/* display reviews */}
+
             {props.data.reviews
               ? props.data.reviews.map((review) => {
                   return <DisplayFeedback key={review._id} review={review} />;
@@ -60,7 +65,17 @@ export default function EventDetailsPage(props) {
               : null}
 
             {/* asking for more reviews */}
-            <FeedbackForm eventId={props.data._id} />
+            <FeedbackForm
+              eventId={props.data._id}
+              getAllEventsFromAPI={props.getAllEventsFromAPI}
+              setSubmitState={setSubmitState}
+            />
+            {submitState ? (
+              <p>
+                Thank you for your feedback and your feedback has been
+                submitted.
+              </p>
+            ) : null}
           </div>
 
           <div className="modal-footer">

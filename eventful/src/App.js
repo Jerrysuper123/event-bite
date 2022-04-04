@@ -34,6 +34,7 @@ class App extends React.Component {
   };
 
   getAllEventsFromAPI = async () => {
+    console.log("get events api starts");
     try {
       let response = await axios.get(`${BASE_API_URL}/events`);
       console.log("API events", response.data.data);
@@ -46,15 +47,6 @@ class App extends React.Component {
   };
 
   componentDidMount = async () => {
-    // try {
-    //   let response = await axios.get(`${BASE_API_URL}/events`);
-    //   console.log("API events", response.data.data);
-    //   this.setState({
-    //     data: [...this.state.data, ...response.data.data],
-    //   });
-    // } catch (e) {
-    //   console.log(e);
-    // }
     await this.getAllEventsFromAPI();
   };
 
@@ -146,6 +138,7 @@ class App extends React.Component {
         <MapListing
           data={this.state.data}
           display={this.state.active === "map" ? "block" : "none"}
+          getAllEventsFromAPI={this.getAllEventsFromAPI}
         />
         <CalendarListing
           data={this.state.data}

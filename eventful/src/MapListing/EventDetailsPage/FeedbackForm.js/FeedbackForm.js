@@ -10,43 +10,33 @@ import Typography from "@mui/material/Typography";
 
 export default function FeedbackForm(props) {
   const [ratingValue, setRating] = React.useState(2);
-
   const [nameValue, setName] = React.useState("");
-
   const hanleNameInput = (event) => {
     setName(event.target.value);
   };
-
   const [feedbackValue, setFeedback] = React.useState("");
 
   const handleFeedbackInput = (event) => {
+    props.setSubmitState(false);
     setFeedback(event.target.value);
   };
 
   const postFeedback = async () => {
     let eventId = props.eventId;
-    if (
-      // leave the dummy data intact
-      eventId !== "" &&
-      eventId !== 1 &&
-      eventId !== 2 &&
-      eventId !== 3
-    ) {
-      try {
-        let response = await axios.put(
-          `${BASE_API_URL}/events/${eventId}/reviews/create`,
-          {
-            name: nameValue,
-            rating: ratingValue,
-            feedback: feedbackValue,
-          }
-        );
-        console.log(response);
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
-      console.log("Do not update the state of dummy events!");
+    try {
+      let response = await axios.put(
+        `${BASE_API_URL}/events/${eventId}/reviews/create`,
+        {
+          name: nameValue,
+          rating: ratingValue,
+          feedback: feedbackValue,
+        }
+      );
+      // console.log(response);
+      props.setSubmitState(true);
+      await props.getAllEventsFromAPI();
+    } catch (e) {
+      console.log(e);
     }
   };
 

@@ -153,6 +153,7 @@ export default function MapListing(props) {
   }, [router]);
 
   const [oneEventDetails, setOneEventDetails] = useState(null);
+
   const setOneEvent = (oneEvent) => {
     setOneEventDetails(oneEvent);
   };
@@ -203,8 +204,10 @@ export default function MapListing(props) {
         Hover over me
         <span class="tooltiptext">Tooltip text</span>
       </div> */}
-
-      <EventDetailsPage data={oneEventDetails ? oneEventDetails : {}} />
+      <EventDetailsPage
+        data={oneEventDetails ? oneEventDetails : {}}
+        getAllEventsFromAPI={props.getAllEventsFromAPI}
+      />
       <div className="mapEventListContainer">
         <MapContainer
           center={[1.3521, 103.8198]}
