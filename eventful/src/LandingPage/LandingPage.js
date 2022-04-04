@@ -287,8 +287,24 @@ export default function LandingPage(props) {
         </article>
 
         <article className="organizerText p-5">
-          <h1 className="text-center text-light mb-5">Organize events </h1>
-          <div className="row g-5">
+          <section
+            className="text-center my-5 text-light
+          d-flex justify-content-center
+          border-bottom
+          "
+          >
+            <h1>ORGANIZE EVENTS</h1>
+            <h4
+              className="ms-4 pt-3"
+              style={{
+                fontStyle: "italic",
+              }}
+            >
+              Publish your events in real-time and attract all guests in
+              vicinity
+            </h4>
+          </section>
+          <div className="row g-5 ms-3">
             <div className="col">
               {/* card starts here */}
               <div className="card" style={{ width: "25rem", border: "none" }}>
@@ -351,6 +367,41 @@ export default function LandingPage(props) {
                 </div>
               </div>
               {/* card ends here */}
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="container left">
+              <div class="content">
+                <h2>2017</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
+                  admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea
+                  quis iuvaret expetendis his, te elit voluptua dignissim per,
+                  habeo iusto primis ea eam.
+                </p>
+              </div>
+            </div>
+            <div class="container right">
+              <div class="content">
+                <h2>2016</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
+                  admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea
+                  quis iuvaret expetendis his, te elit voluptua dignissim per,
+                  habeo iusto primis ea eam.
+                </p>
+              </div>
+            </div>
+            <div class="container left">
+              <div class="content">
+                <h2>2015</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
+                  admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea
+                  quis iuvaret expetendis his, te elit voluptua dignissim per,
+                  habeo iusto primis ea eam.
+                </p>
+              </div>
             </div>
           </div>
         </article>
