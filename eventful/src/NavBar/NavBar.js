@@ -18,7 +18,7 @@ export default function NavBar(props) {
             src={walkingIcon}
             alt="logo"
             style={{
-              width: "2.6rem",
+              width: "2.5rem",
             }}
           />
           <a className="navbar-brand logoText ms-2">eventful</a>

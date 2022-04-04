@@ -204,7 +204,10 @@ class App extends React.Component {
           display={this.state.active === "addNew" ? "block" : "none"}
           data={this.state.data}
         />
-        <Footer display={this.state.active === "map" ? "none" : "block"} />
+        <Footer
+          setLandingActive={this.setActive}
+          display={this.state.active === "map" ? "none" : "block"}
+        />
       </React.Fragment>
     );
   }
