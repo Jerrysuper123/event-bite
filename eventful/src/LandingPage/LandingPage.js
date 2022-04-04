@@ -150,7 +150,7 @@ export default function LandingPage(props) {
               fontStyle: "italic",
             }}
           >
-            Check out today's events near you on a map
+            Check out TODAY's events near you on a map
           </h5>
           <button className="btn btn-danger mt-3">Start here</button>
         </section>
@@ -182,7 +182,7 @@ export default function LandingPage(props) {
             fontStyle: "italic",
           }}
         >
-          Check out this week's events on a calendar
+          Check out this WEEK's events on a calendar
         </h5>
         <button className="btn btn-danger mt-3">Start here</button>
       </section>
@@ -191,78 +191,99 @@ export default function LandingPage(props) {
         {/* main content */}
 
         <article className="attendeeText accentTwoBgColor container-fluid p-5">
-          <section className="text-center my-5 text-light">
-            <h1>Attend events </h1>
-            <p>
+          <section
+            className="text-center my-5 text-light
+          d-flex justify-content-center
+          border-bottom
+          "
+          >
+            <h1>ATTEND EVENTS</h1>
+            <h4
+              className="ms-4 pt-3"
+              style={{
+                fontStyle: "italic",
+              }}
+            >
               Automatically detects your current location and suggests events in
               vicinity
-            </p>
-            <p>
-              Updates events in real-time, suggesting ongoing tantalizing events
-              on a map near you
-            </p>
+            </h4>
           </section>
-          <div className="row g-5">
-            <div className="col">
-              {/* card starts here */}
-              <div className="card" style={{ width: "18rem", border: "none" }}>
-                <img src={student} className="card-img-top" alt="student" />
-                <div className="card-body">
-                  <h5 className="card-title">FOR STUDENTS</h5>
-                  <p className="card-text">
-                    Browse through ongoing activities in school in one central
-                    portal, without reading event posters/emails.
-                  </p>
-                </div>
-              </div>
-              {/* card ends here */}
-            </div>
 
-            <div className="col">
-              {/* card starts here */}
-              <div className="card" style={{ width: "18rem", border: "none" }}>
-                <img src={shopper} className="card-img-top" alt="shopper" />
-                <div className="card-body">
-                  <h5 className="card-title">FOR SHOPPER</h5>
-                  <p className="card-text">
-                    Scan all promotional activities nearby to get the best
-                    deals.
-                  </p>
+          <section className="ms-5">
+            <div className="row g-5">
+              <div className="col">
+                {/* card starts here */}
+                <div
+                  className="card"
+                  style={{ width: "18rem", border: "none" }}
+                >
+                  <img src={student} className="card-img-top" alt="student" />
+                  <div className="card-body">
+                    <h5 className="card-title">FOR STUDENTS</h5>
+                    <p className="cardText">
+                      Browse through ongoing activities in school in one central
+                      portal, without reading event posters/emails
+                    </p>
+                  </div>
                 </div>
+                {/* card ends here */}
               </div>
-              {/* card ends here */}
-            </div>
 
-            <div className="col">
-              {/* card starts here */}
-              <div className="card" style={{ width: "18rem", border: "none" }}>
-                <img src={tourist} className="card-img-top" alt="tourist" />
-                <div className="card-body">
-                  <h5 className="card-title">FOR TOURISTS</h5>
-                  <p className="card-text">
-                    Explore ongoing events onsite, without having to read
-                    through the information pamphlet.
-                  </p>
+              <div className="col">
+                {/* card starts here */}
+                <div
+                  className="card"
+                  style={{ width: "18rem", border: "none" }}
+                >
+                  <img src={shopper} className="card-img-top" alt="shopper" />
+                  <div className="card-body">
+                    <h5 className="card-title">FOR SHOPPER</h5>
+                    <p className="card-text">
+                      Scan all promotional activities nearby to get the best
+                      deals
+                    </p>
+                  </div>
                 </div>
+                {/* card ends here */}
               </div>
-              {/* card ends here */}
-            </div>
 
-            <div className="col">
-              {/* card starts here */}
-              <div className="card" style={{ width: "18rem", border: "none" }}>
-                <img src={diner} className="card-img-top" alt="diner" />
-                <div className="card-body">
-                  <h5 className="card-title">FOR DINERS</h5>
-                  <p className="card-text">
-                    Grab the nearby cuisines with the offers from restaurants at
-                    tantalizing prices
-                  </p>
+              <div className="col">
+                {/* card starts here */}
+                <div
+                  className="card"
+                  style={{ width: "18rem", border: "none" }}
+                >
+                  <img src={tourist} className="card-img-top" alt="tourist" />
+                  <div className="card-body">
+                    <h5 className="card-title">FOR TOURISTS</h5>
+                    <p className="card-text">
+                      Explore ongoing events onsite, without having to read
+                      through the information pamphlet
+                    </p>
+                  </div>
                 </div>
+                {/* card ends here */}
               </div>
-              {/* card ends here */}
+
+              <div className="col">
+                {/* card starts here */}
+                <div
+                  className="card"
+                  style={{ width: "18rem", border: "none" }}
+                >
+                  <img src={diner} className="card-img-top" alt="diner" />
+                  <div className="card-body">
+                    <h5 className="card-title">FOR DINERS</h5>
+                    <p className="card-text">
+                      Grab the nearby cuisines with the offers from restaurants
+                      at tantalizing prices
+                    </p>
+                  </div>
+                </div>
+                {/* card ends here */}
+              </div>
             </div>
-          </div>
+          </section>
         </article>
 
         <article className="organizerText p-5">

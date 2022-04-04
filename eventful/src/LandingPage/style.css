@@ -66,21 +66,20 @@
     overflow: hidden;
 }
 
-.organizerText .card-text{
-    height: 5rem;
-    color: grey;
-    font-size: 0.8rem;
+.card-text{
+    /* height: 5rem !important; */
+    color: rgb(69, 69, 69) !important;
+    font-size: 1rem !important;
+    font-style: italic;
+}
+
+.card-body{
+    height: 10rem;
 }
 
 .attendeeText img{
     object-fit: cover;
     object-position: center;
-    height: 25rem;
+    height: 14rem;
     overflow: hidden;
-}
-
-.attendeeText .card-text{
-    height: 5rem;
-    color: grey;
-    font-size: 0.8rem;
 }
