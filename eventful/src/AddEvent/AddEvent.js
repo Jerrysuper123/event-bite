@@ -31,7 +31,7 @@ export default class AddEvent extends React.Component {
     /*main event image */
     eventImage: "",
     customizedMapMarker: "",
-    brandColor: "",
+    brandColor: "#FF0000",
     /*description */
     descriptionSummary: "",
     description: "",
@@ -42,6 +42,7 @@ export default class AddEvent extends React.Component {
 
     //to delete an event
     toDeletedEvent: {},
+    validationError: "",
   };
 
   //load hashtags and categories for selectbox and dropdown list
@@ -108,12 +109,12 @@ export default class AddEvent extends React.Component {
   };
 
   getLatLng = async () => {
-    console.log("start retrieving Lat and lng");
+    // console.log("start retrieving Lat and lng");
+
     try {
       let response = await axios.get(
         `https://developers.onemap.sg/commonapi/search?searchVal=${this.state.postalCode}&returnGeom=Y&getAddrDetails=Y&pageNum=1`
       );
-      console.log(response);
       if (response.data.found === 0) {
         return `Postal code lat and lng not found; try change postal code again`;
       } else if (response.data.results[0]) {
@@ -128,6 +129,23 @@ export default class AddEvent extends React.Component {
         e,
         `oneMap API failed to retrieve the postal code ${this.state.postalCode}'s lat and lng`
       );
+    }
+  };
+
+  getLatLngFromPostalCode = async (e) => {
+    await this.updateFormField(e);
+    if (this.state.postalCode.length !== 6) {
+      this.setState({
+        latLng: [],
+      });
+    }
+    if (this.state.postalCode.length === 6) {
+      await this.getLatLng();
+      if (this.state.latLng.length === 0) {
+        this.setState({
+          validationError: "The postal code does not exist. Please try again",
+        });
+      }
     }
   };
 
@@ -301,12 +319,15 @@ export default class AddEvent extends React.Component {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="address..."
+                  placeholder="6-digit code"
                   value={this.state.postalCode}
                   name="postalCode"
-                  onChange={this.updateFormField}
+                  onChange={this.getLatLngFromPostalCode}
                 />
               </div>
+              <p>
+                {this.state.validationError ? this.state.validationError : null}
+              </p>
 
               <p>Help people to know where to show up for your event</p>
             </div>
@@ -356,7 +377,7 @@ export default class AddEvent extends React.Component {
                 <input
                   className="form-control"
                   type="text"
-                  placeholder="url..."
+                  placeholder="paste the image url here"
                   value={this.state.eventImage}
                   name="eventImage"
                   onChange={this.updateFormField}
@@ -406,7 +427,7 @@ export default class AddEvent extends React.Component {
                 featured guests.
               </p>
               <div>
-                <label>summary:</label>
+                <label>Summary:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -418,11 +439,11 @@ export default class AddEvent extends React.Component {
               </div>
 
               <div className="border-bottom pb-3">
-                <label>detailed description:</label>
+                <label>Detailed description:</label>
                 <textarea
                   className="form-control"
                   type="text"
-                  placeholder="..."
+                  placeholder="detailed description of the event"
                   value={this.state.description}
                   name="description"
                   onChange={this.updateFormField}

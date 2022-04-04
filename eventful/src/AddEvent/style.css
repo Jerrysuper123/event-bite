@@ -42,14 +42,15 @@
     background-color: white;
 }
 
-.mainForm input {
+.mainForm input,
+textarea,
+select {
     background-color: rgb(242, 242, 242) !important;
     border-radius: 0px !important;
 }
 
-.mainForm select {
-    background-color: rgb(242, 242, 242) !important;
-    border-radius: 0px !important;
+.mainForm textarea {
+    height: 15rem;
 }
 
 .mainForm p {
