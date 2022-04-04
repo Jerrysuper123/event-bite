@@ -1,16 +1,5 @@
 import React from "react";
 import "./style.css";
-import defaultEventOne from "../images/defaultEventOne.jpg";
-import defaultEventTwo from "../images/defaultEventTwo.jpg";
-import defaultEventThree from "../images/defaultEventThree.jpg";
-import student from "../images/student.jpg";
-import tourist from "../images/tourist.jpg";
-import shopper from "../images/shopper.jpg";
-import diner from "../images/diner.jpg";
-import create from "../images/create.jpg";
-import paste from "../images/paste.jpg";
-import welcome from "../images/welcome.jpg";
-import walkingIcon from "../images/walkingIcon.png";
 
 export default function LandingPage(props) {
   return (
@@ -61,7 +50,7 @@ export default function LandingPage(props) {
             ) : (
               <div className="carousel-item active">
                 <img
-                  src={defaultEventOne}
+                  src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/defaultEventOne.jpg"
                   className="d-block w-100"
                   alt="event1"
                 />
@@ -79,7 +68,7 @@ export default function LandingPage(props) {
             ) : (
               <div className="carousel-item">
                 <img
-                  src={defaultEventTwo}
+                  src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/defaultEventThree.jpg"
                   className="d-block w-100"
                   alt="event2"
                 />
@@ -97,7 +86,7 @@ export default function LandingPage(props) {
             ) : (
               <div className="carousel-item">
                 <img
-                  src={defaultEventThree}
+                  src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/defaultEventTwo.jpg"
                   className="d-block w-100"
                   alt="event3"
                 />
@@ -236,7 +225,11 @@ export default function LandingPage(props) {
                   className="card"
                   style={{ width: "18rem", border: "none" }}
                 >
-                  <img src={student} className="card-img-top" alt="student" />
+                  <img
+                    src="https://github.com/Jerrysuper123/eventfulSources/blob/main/images/student.jpg?raw=true"
+                    className="card-img-top"
+                    alt="student"
+                  />
                   <div className="card-body">
                     <h5 className="card-title">FOR STUDENTS</h5>
                     <p className="cardText">
@@ -254,7 +247,11 @@ export default function LandingPage(props) {
                   className="card"
                   style={{ width: "18rem", border: "none" }}
                 >
-                  <img src={shopper} className="card-img-top" alt="shopper" />
+                  <img
+                    src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/shopper.jpg"
+                    className="card-img-top"
+                    alt="shopper"
+                  />
                   <div className="card-body">
                     <h5 className="card-title">FOR SHOPPER</h5>
                     <p className="card-text">
@@ -272,7 +269,11 @@ export default function LandingPage(props) {
                   className="card"
                   style={{ width: "18rem", border: "none" }}
                 >
-                  <img src={tourist} className="card-img-top" alt="tourist" />
+                  <img
+                    src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/tourist.jpg"
+                    className="card-img-top"
+                    alt="tourist"
+                  />
                   <div className="card-body">
                     <h5 className="card-title">FOR TOURISTS</h5>
                     <p className="card-text">
@@ -290,7 +291,11 @@ export default function LandingPage(props) {
                   className="card"
                   style={{ width: "18rem", border: "none" }}
                 >
-                  <img src={diner} className="card-img-top" alt="diner" />
+                  <img
+                    src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/diner.jpg"
+                    className="card-img-top"
+                    alt="diner"
+                  />
                   <div className="card-body">
                     <h5 className="card-title">FOR DINERS</h5>
                     <p className="card-text">
@@ -345,7 +350,10 @@ export default function LandingPage(props) {
                       <span className="ms-2">add new event</span>
                     </a>
                   </div>
-                  <img src={create} alt="create" />
+                  <img
+                    src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/create.jpg"
+                    alt="create"
+                  />
                 </section>
               </div>
             </div>
@@ -359,11 +367,15 @@ export default function LandingPage(props) {
                   </h5>
                   <div className="card-text">
                     <p>
-                      Paste QR code below anywhere noticeable in your area –
-                      encouraging users to check out the nearby events
+                      Download the QR code image below and paste anywhere
+                      noticeable in your area – encouraging people to check out
+                      the nearby events
                     </p>
                   </div>
-                  <img src={paste} alt="create" />
+                  <img
+                    src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/paste.jpg"
+                    alt="create"
+                  />
                 </section>
               </div>
             </div>
@@ -382,7 +394,10 @@ export default function LandingPage(props) {
                       seeing your events on a map within walking distance
                     </p>
                   </div>
-                  <img src={welcome} alt="create" />
+                  <img
+                    src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/welcome.jpg"
+                    alt="create"
+                  />
                 </section>
               </div>
             </div>
