@@ -219,7 +219,7 @@ export default function LandingPage(props) {
           </section>
           <section className="ms-5">
             <div className="row g-5">
-              <div className="col">
+              <div className="col d-flex justify-content-center">
                 {/* card starts here */}
                 <div
                   className="card"
@@ -241,7 +241,7 @@ export default function LandingPage(props) {
                 {/* card ends here */}
               </div>
 
-              <div className="col">
+              <div className="col d-flex justify-content-center">
                 {/* card starts here */}
                 <div
                   className="card"
@@ -263,7 +263,7 @@ export default function LandingPage(props) {
                 {/* card ends here */}
               </div>
 
-              <div className="col">
+              <div className="col d-flex justify-content-center">
                 {/* card starts here */}
                 <div
                   className="card"
@@ -285,7 +285,7 @@ export default function LandingPage(props) {
                 {/* card ends here */}
               </div>
 
-              <div className="col">
+              <div className="col d-flex justify-content-center">
                 {/* card starts here */}
                 <div
                   className="card"
