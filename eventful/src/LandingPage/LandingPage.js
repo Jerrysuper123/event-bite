@@ -130,10 +130,10 @@ export default function LandingPage(props) {
           </button>
         </section>
 
-        {/* call to action */}
-        <section className="cta p-5 text-center">
+        {/* call to action on a map*/}
+        <section className="cta p-5 text-center shadow">
           <h1>
-            Have a
+            Have an
             <a
               className="navbar-brand logoText ms-3"
               style={{
@@ -152,10 +152,21 @@ export default function LandingPage(props) {
           >
             Check out TODAY's events near you on a map
           </h5>
-          <button className="btn btn-danger mt-3">Start here</button>
+          <button
+            className="btn btn-danger mt-lg-4"
+            style={{
+              fontSize: "2rem",
+            }}
+            onClick={() => {
+              props.setActive("map");
+            }}
+          >
+            Start here
+          </button>
         </section>
       </div>
 
+      {/* call to action on calendar */}
       <section className="p-5 text-center my-4">
         <section>
           <div className="border-bottom"></div>
@@ -165,7 +176,7 @@ export default function LandingPage(props) {
         </section>
 
         <h1>
-          Plan a
+          Plan an
           <a
             className="navbar-brand logoText ms-3"
             style={{
@@ -184,13 +195,22 @@ export default function LandingPage(props) {
         >
           Check out this WEEK's events on a calendar
         </h5>
-        <button className="btn btn-danger mt-3">Start here</button>
+        <button
+          className="btn btn-info mt-3 text-light"
+          style={{
+            fontSize: "2rem",
+          }}
+          onClick={() => {
+            props.setActive("calendar");
+          }}
+        >
+          Start here
+        </button>
       </section>
 
       <main>
-        {/* main content */}
-
         <article className="attendeeText accentTwoBgColor container-fluid p-5">
+          {/* attend events section */}
           <section
             className="text-center my-5 text-light
           d-flex justify-content-center
@@ -208,7 +228,6 @@ export default function LandingPage(props) {
               vicinity
             </h4>
           </section>
-
           <section className="ms-5">
             <div className="row g-5">
               <div className="col">
@@ -286,6 +305,7 @@ export default function LandingPage(props) {
           </section>
         </article>
 
+        {/* organize events section */}
         <article className="organizerText p-5">
           <section
             className="text-center my-5 text-light
@@ -304,12 +324,12 @@ export default function LandingPage(props) {
               vicinity
             </h4>
           </section>
-          <div className="row g-5 ms-3">
-            <div className="col">
-              {/* card starts here */}
-              <div className="card" style={{ width: "25rem", border: "none" }}>
-                <img src={create} className="card-img-top" alt="create" />
-                <div className="card-body">
+
+          {/* timeline starts here */}
+          <div class="timeline">
+            <div class="containerTimeline left">
+              <div class="content">
+                <section>
                   <h5 className="card-title">
                     <i class="fa-solid fa-circle-check"></i>
                     <span className="ms-2">Step 1. create event</span>
@@ -317,93 +337,57 @@ export default function LandingPage(props) {
                   <div className="card-text">
                     <p>Create an event by clicking the button below</p>
                     <a
-                      className="nav-link text-center border"
+                      className="mb-2 nav-link text-center customBtn customBtnPrimary"
                       onClick={() => {
                         props.setActive("addNew");
                       }}
                     >
-                      <i className="navIcon fa-solid fa-circle-plus"></i>
-                      <span className="ms-2 navText">add new event</span>
+                      <span className="ms-2">add new event</span>
                     </a>
                   </div>
-                </div>
+                  <img src={create} alt="create" />
+                </section>
               </div>
-              {/* card ends here */}
             </div>
 
-            <div className="col">
-              {/* card starts here */}
-              <div className="card" style={{ width: "25rem", border: "none" }}>
-                <img src={paste} className="card-img-top" alt="paste" />
-                <div className="card-body">
+            <div class="containerTimeline right">
+              <div class="content">
+                <section>
                   <h5 className="card-title">
                     <i class="fa-solid fa-circle-check"></i>
                     <span className="ms-2">Step 2. paste QR code</span>
                   </h5>
-                  <p className="card-text">
-                    Paste QR code below anywhere noticeable in your area –
-                    encouraging users to check out the nearby events
-                  </p>
-                </div>
+                  <div className="card-text">
+                    <p>
+                      Paste QR code below anywhere noticeable in your area –
+                      encouraging users to check out the nearby events
+                    </p>
+                  </div>
+                  <img src={paste} alt="create" />
+                </section>
               </div>
-              {/* card ends here */}
             </div>
-
-            <div className="col">
-              {/* card starts here */}
-              <div className="card" style={{ width: "25rem", border: "none" }}>
-                <img src={welcome} className="card-img-top" alt="welcome" />
-                <div className="card-body">
+            <div class="containerTimeline left">
+              <div class="content">
+                <section>
                   <h5 className="card-title">
                     <i class="fa-solid fa-circle-check"></i>
                     <span className="ms-2">
                       Step 3. relax and welcome guests
                     </span>
                   </h5>
-                  <p className="card-text">
-                    Anyone scanned the QR code would be taken to our website,
-                    seeing your events on a map within walking distance{" "}
-                  </p>
-                </div>
-              </div>
-              {/* card ends here */}
-            </div>
-          </div>
-          <div class="timeline">
-            <div class="container left">
-              <div class="content">
-                <h2>2017</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
-                  admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea
-                  quis iuvaret expetendis his, te elit voluptua dignissim per,
-                  habeo iusto primis ea eam.
-                </p>
-              </div>
-            </div>
-            <div class="container right">
-              <div class="content">
-                <h2>2016</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
-                  admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea
-                  quis iuvaret expetendis his, te elit voluptua dignissim per,
-                  habeo iusto primis ea eam.
-                </p>
-              </div>
-            </div>
-            <div class="container left">
-              <div class="content">
-                <h2>2015</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec
-                  admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea
-                  quis iuvaret expetendis his, te elit voluptua dignissim per,
-                  habeo iusto primis ea eam.
-                </p>
+                  <div className="card-text">
+                    <p>
+                      Anyone scanned the QR code would be taken to our website,
+                      seeing your events on a map within walking distance
+                    </p>
+                  </div>
+                  <img src={welcome} alt="create" />
+                </section>
               </div>
             </div>
           </div>
+          {/* timeline ends here */}
         </article>
 
         <sectio className="container mt-5 p-5">image of QR code</sectio>

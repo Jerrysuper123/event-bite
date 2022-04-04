@@ -58,13 +58,6 @@
     color: #e27d60;
 }
 
-.organizerText img {
-    object-fit: cover;
-    object-position: center;
-    height: 25rem;
-    overflow: hidden;
-}
-
 .card-text {
     /* height: 5rem !important; */
     color: rgb(69, 69, 69) !important;
@@ -83,20 +76,18 @@
     overflow: hidden;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #474e5d;
-    font-family: Helvetica, sans-serif;
-}
-
-/* The actual timeline (the vertical ruler) */
 .timeline {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.content img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 15rem;
+    overflow: hidden;
 }
 
 /* The actual timeline (the vertical ruler) */
@@ -112,7 +103,7 @@ body {
 }
 
 /* Container around content */
-.container {
+.containerTimeline {
     padding: 10px 40px;
     position: relative;
     background-color: inherit;
@@ -120,7 +111,7 @@ body {
 }
 
 /* The circles on the timeline */
-.container::after {
+.containerTimeline::after {
     content: "";
     position: absolute;
     width: 25px;
@@ -192,14 +183,14 @@ body {
     }
 
     /* Full-width containers */
-    .container {
+    .containerTimeline {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
     }
 
     /* Make sure that all arrows are pointing leftwards */
-    .container::before {
+    .containerTimeline::before {
         left: 60px;
         border: medium solid white;
         border-width: 10px 10px 10px 0;
