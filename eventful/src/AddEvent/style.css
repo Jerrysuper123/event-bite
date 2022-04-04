@@ -42,6 +42,10 @@
     background-color: white;
 }
 
+.mainForm button {
+    font-size: 1.3rem;
+}
+
 .mainForm input,
 textarea,
 select {

@@ -360,10 +360,17 @@ export default class AddEvent extends React.Component {
                 make plans to attend.
               </p>
             </div>
-            <button className="btn btn-primary" onClick={this.getLatLng}>
-              get lat and lng button
-            </button>
           </div>
+          <section className="d-flex justify-content-end">
+            <button
+              className="customBtn customBtnAccentTwo"
+              onClick={() => {
+                this.updateActive("details");
+              }}
+            >
+              next <i class="fa-solid fa-angle-right"></i>
+            </button>
+          </section>
         </div>
       );
     } else if (this.state.active === "details") {
@@ -449,12 +456,23 @@ export default class AddEvent extends React.Component {
                   onChange={this.updateFormField}
                 />
               </div>
-              <button className="btn btn-primary" onClick={this.postEvent}>
-                submit
-              </button>
-              <button className="btn btn-primary" onClick={this.updateEventAPI}>
-                update
-              </button>
+              <section className="d-flex justify-content-end">
+                {this.state.editedId === "" ? (
+                  <button
+                    className="customBtn customBtnAccentTwo"
+                    onClick={this.postEvent}
+                  >
+                    submit
+                  </button>
+                ) : (
+                  <button
+                    className="customBtn customBtnAccentTwo"
+                    onClick={this.updateEventAPI}
+                  >
+                    update
+                  </button>
+                )}
+              </section>
             </div>
           </section>
         </React.Fragment>
@@ -699,26 +717,28 @@ export default class AddEvent extends React.Component {
                                 {eachEvent.description.slice(0, 50)}...
                               </p>
 
-                              <button
-                                className="btn btn-primary"
-                                onClick={() => {
-                                  this.updateEventBegins(eachEvent);
-                                }}
-                              >
-                                update
-                              </button>
+                              <section className="d-flex justify-content-between">
+                                <button
+                                  className="customBtn customBtnAccentThree"
+                                  onClick={() => {
+                                    this.updateEventBegins(eachEvent);
+                                  }}
+                                >
+                                  update
+                                </button>
 
-                              <button
-                                type="button"
-                                className="btn btn-danger"
-                                data-bs-toggle="modal"
-                                data-bs-target="#deleteModal"
-                                onClick={() => {
-                                  this.saveToDeletedEvent(eachEvent);
-                                }}
-                              >
-                                delete
-                              </button>
+                                <button
+                                  type="button"
+                                  className="customBtn customBtnRed"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#deleteModal"
+                                  onClick={() => {
+                                    this.saveToDeletedEvent(eachEvent);
+                                  }}
+                                >
+                                  delete
+                                </button>
+                              </section>
                             </div>
                           </div>
                         </div>
