@@ -7,6 +7,11 @@ export default function EventCard(props) {
     props.setOneEvent(props.eachEvent);
   };
 
+  const setEventAndRoute = () => {
+    props.setOneEvent(props.eachEvent);
+    props.showRouter(props.eachEvent);
+  };
+
   useEffect(() => {
     setEvent();
   }, [props.eachEvent]);
@@ -72,7 +77,8 @@ export default function EventCard(props) {
           <button
             className="eventCardBtn customBtn customBtnPrimary"
             onClick={() => {
-              props.showRouter(props.eachEvent);
+              // props.showRouter(props.eachEvent);
+              setEventAndRoute();
             }}
           >
             direction

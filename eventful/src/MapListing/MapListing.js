@@ -4,7 +4,7 @@ import "./style.css";
 import Draggable from "react-draggable";
 import DisplayRealTime from "./DisplayRealTime/DisplayRealTime";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-
+import { convertDateString } from "../Utility";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
@@ -56,13 +56,50 @@ export default function MapListing(props) {
   const [endEvent, setEndEvent] = useState({});
 
   const showDestinationPopUp = () => {
-    return (
-      <EventCard
-        eachEvent={endEvent}
-        setOneEvent={setOneEvent}
-        showRouter={showRouter}
-      />
-    );
+    return `<div
+    class="card shadow"
+  >
+    <img
+      src=${oneEventDetails.eventImage}
+      class="card-img-top"
+      alt="image"
+    />
+    <div class="card-body">
+      <div class="d-flex">
+        <h5 class="card-title">${oneEventDetails.title.slice(0, 20)}</h5>
+        <i
+          class="ms-auto fa-brands fa-gratipay"
+          style="
+            color: rgb(179, 179, 179);
+            font-size: 1.5rem
+          "
+        ></i>
+      </div>
+
+      <div
+        style="
+        font-size: 1.2rem;
+        "
+        class="primaryColor dateTime"
+      >
+        ${convertDateString(oneEventDetails.startDateTime)}
+      </div>
+
+      <div class="organizerBrand d-flex my-2">
+        <h9
+          style="
+          font-weight: 500;
+          font-size: 0.9rem
+          "
+        >
+          ${oneEventDetails.organizer}
+        </h9>
+      </div>
+      <p>${oneEventDetails.address} Singapore ${oneEventDetails.postalCode}</p>
+    </div>
+  </div>
+
+`;
   };
   // console.log("end", end);
   // Ref for our routing machine instace:
@@ -116,11 +153,7 @@ export default function MapListing(props) {
             marker.bindPopup("You are here!");
           } else if (i === n - 1) {
             //This is the last marker indicating destination
-            marker.bindPopup(`<EventCard
-            eachEvent=${endEvent}
-            setOneEvent=${setOneEvent}
-            showRouter=${showRouter}
-          />`);
+            marker.bindPopup(showDestinationPopUp());
           }
           return marker;
         },
@@ -138,13 +171,7 @@ export default function MapListing(props) {
       routingMachine.addTo(map);
       let pop1 = L.popup()
         .setLatLng(endEvent.latLng)
-        .setContent(
-          `<EventCard
-        eachEvent=${endEvent}
-        setOneEvent=${setOneEvent}
-        showRouter=${showRouter}
-      />`
-        )
+        .setContent(showDestinationPopUp())
         .openOn(map);
 
       map.flyTo(endEvent.latLng, 10);
@@ -209,6 +236,7 @@ export default function MapListing(props) {
         data={oneEventDetails ? oneEventDetails : {}}
         getAllEventsFromAPI={props.getAllEventsFromAPI}
       />
+
       <div className="mapEventListContainer">
         <MapContainer
           center={[1.3521, 103.8198]}
