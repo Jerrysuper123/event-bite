@@ -3,14 +3,6 @@ import { convertDateString } from "../../Utility";
 import { useEffect } from "react";
 import { useState } from "react";
 export default function EventCard(props) {
-  // const convertDateString = (dateString) => {
-  //   //slide off the gmt indicator, so that we can get proper date aligned with date selected by users
-  //   let properDateString = new Date(dateString.slice(0, 16))
-  //     .toString()
-  //     .slice(0, 21);
-  //   return properDateString;
-  // };
-
   const setEvent = () => {
     props.setOneEvent(props.eachEvent);
   };

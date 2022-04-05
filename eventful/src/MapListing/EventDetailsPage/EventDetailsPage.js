@@ -3,10 +3,12 @@ import "./style.css";
 import DisplayFeedback from "./DisplayFeedback.js/DisplayFeedback";
 import FeedbackForm from "./FeedbackForm.js/FeedbackForm";
 import React from "react";
-import { useEffect } from "react";
 
 export default function EventDetailsPage(props) {
   const [submitState, setSubmitState] = React.useState(false);
+  const resetReviewForm = () => {
+    setSubmitState(false);
+  };
 
   return (
     <div
@@ -15,6 +17,7 @@ export default function EventDetailsPage(props) {
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      onClick={resetReviewForm}
     >
       <div className="modal-dialog modal-sm modal-md modal-lg modal-xl">
         <div className="modal-content">
@@ -23,7 +26,9 @@ export default function EventDetailsPage(props) {
             className="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            onClick={resetReviewForm}
           ></button>
+
           <img src={props.data.eventImage} alt={props.data.title} />
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
@@ -65,17 +70,19 @@ export default function EventDetailsPage(props) {
               : null}
 
             {/* asking for more reviews */}
-            <FeedbackForm
-              eventId={props.data._id}
-              getAllEventsFromAPI={props.getAllEventsFromAPI}
-              setSubmitState={setSubmitState}
-            />
+
             {submitState ? (
               <p>
                 Thank you for your feedback and your feedback has been
                 submitted.
               </p>
-            ) : null}
+            ) : (
+              <FeedbackForm
+                eventId={props.data._id}
+                getAllEventsFromAPI={props.getAllEventsFromAPI}
+                setSubmitState={setSubmitState}
+              />
+            )}
           </div>
 
           <div className="modal-footer">
@@ -83,11 +90,9 @@ export default function EventDetailsPage(props) {
               type="button"
               className="btn btn-secondary"
               data-bs-dismiss="modal"
+              onClick={resetReviewForm}
             >
               Close
-            </button>
-            <button type="button" className="btn btn-primary">
-              Save changes
             </button>
           </div>
         </div>
