@@ -31,7 +31,7 @@ export default class AddEvent extends React.Component {
     /*main event image */
     eventImage: "",
     customizedMapMarker: "",
-    brandColor: "#FF0000",
+    brandColor: "#e27d60",
     /*description */
     descriptionSummary: "",
     description: "",
@@ -50,7 +50,12 @@ export default class AddEvent extends React.Component {
       "Please select a category, otherwise it will default to education",
     validateAddError: "",
     validatePostalError: "",
-    validateDateError: "",
+    validateDateError: "Event start and end date is required",
+    validateEventImageError: "",
+    validateSummaryError: "",
+    validateDescriptionError: "",
+    mapUrlPath:
+      "https://maps.google.com/maps?q=1.34771540923723,103.754994802909&hl=es;z=14&amp;output=embed",
   };
 
   //load hashtags and categories for selectbox and dropdown list
@@ -130,15 +135,90 @@ export default class AddEvent extends React.Component {
         });
       }
     }
+
+    if (fieldName === "startDateTime") {
+      if (this.state.startDateTime !== "") {
+        this.setState({
+          validateDateError: "Event end date is required.",
+        });
+        if (this.state.endDateTime !== "") {
+          this.setState({
+            validateDateError: "",
+          });
+          this.compareStartEndDate();
+        }
+      }
+    }
+
+    if (fieldName === "endDateTime") {
+      if (this.state.endDateTime !== "") {
+        this.setState({
+          validateDateError: "Event start date is required.",
+        });
+        if (this.state.startDateTime !== "") {
+          this.setState({
+            validateDateError: "",
+          });
+          this.compareStartEndDate();
+        }
+      }
+    }
+
+    if (fieldName === "eventImage") {
+      this.setState({
+        validateEventImageError:
+          "Image url is required and must be less than 10 words.",
+      });
+      if (inputValue.length > 2) {
+        this.setState({
+          validateEventImageError: "",
+        });
+      }
+    }
+
+    if (fieldName === "descriptionSummary") {
+      this.setState({
+        validateSummaryError: "Description summary is required.",
+      });
+      if (inputValue.length > 2) {
+        this.setState({
+          validateSummaryError: "",
+        });
+      }
+    }
+
+    if (fieldName === "description") {
+      this.setState({
+        validateDescriptionError: "Description is required.",
+      });
+      if (inputValue.length > 2) {
+        this.setState({
+          validateDescriptionError: "",
+        });
+      }
+    }
   }
 
-  updateFormField = (e) => {
+  compareStartEndDate = () => {
+    console.log("compare date");
+    if (this.state.startDateTime < this.state.endDateTime) {
+      this.setState({
+        validateDateError: "",
+      });
+    } else {
+      this.setState({
+        validateDateError: "Your event start time is behind its end time.",
+      });
+    }
+  };
+
+  updateFormField = async (e) => {
     let fieldName = e.target.name;
     let inputValue = e.target.value;
-    this.validationFunction(fieldName, inputValue);
-    this.setState({
+    await this.setState({
       [fieldName]: inputValue,
     });
+    this.validationFunction(fieldName, inputValue);
   };
 
   updateLatLng = (e) => {
@@ -215,6 +295,12 @@ export default class AddEvent extends React.Component {
     }
   };
 
+  getIframeString = () => {
+    let mapString = `https://maps.google.com/maps?q=${this.state.latLng[0]},${this.state.latLng[1]}&hl=es;z=14&amp;output=embed`;
+    console.log(mapString);
+    return mapString;
+  };
+
   postEvent = async () => {
     if (this.state.title !== "") {
       try {
@@ -243,6 +329,11 @@ export default class AddEvent extends React.Component {
   };
 
   updateEventBegins = (eachEvent) => {
+    this.setState({
+      validateDescriptionError: "",
+      validateCatError: "",
+      validateDateError: "",
+    });
     this.setState({
       editedId: eachEvent._id,
       title: eachEvent.title,
@@ -459,6 +550,11 @@ export default class AddEvent extends React.Component {
               <p>
                 {this.state.validationError ? this.state.validationError : null}
               </p>
+              {/* {this.state.latLng.length !== 0 ? (
+                <div>
+                  <iframe src={this.state.mapUrlPath}></iframe>
+                </div>
+              ) : null} */}
 
               <p>Help people to know where to show up for your event</p>
             </div>
@@ -525,9 +621,12 @@ export default class AddEvent extends React.Component {
                   name="eventImage"
                   onChange={this.updateFormField}
                 />
+                <p className="validationColor">
+                  {this.state.validateEventImageError}
+                </p>
                 <p>
                   This is the first image attendees will see at the top of your
-                  listing. Use a high quality image
+                  listing. Use a high quality image.
                 </p>
               </div>
 
@@ -536,7 +635,7 @@ export default class AddEvent extends React.Component {
                 <input
                   className="form-control"
                   type="text"
-                  placeholder="url..."
+                  placeholder="paste the icon url here"
                   value={this.state.customizedMapMarker}
                   name="customizedMapMarker"
                   onChange={this.updateFormField}
@@ -557,8 +656,8 @@ export default class AddEvent extends React.Component {
                     onChange={this.updateFormField}
                   />
                   <p>
-                    Pick your brand color for branding purpose, where your
-                    events will be customized accordingly.
+                    Pick your brand color for branding purpose, otherwise it
+                    will default to orange
                   </p>
                 </div>
               </div>
@@ -581,6 +680,9 @@ export default class AddEvent extends React.Component {
                   name="descriptionSummary"
                   onChange={this.updateFormField}
                 />
+                <p className="validationColor">
+                  {this.state.validateSummaryError}
+                </p>
               </div>
 
               <div className="border-bottom pb-3">
@@ -596,6 +698,9 @@ export default class AddEvent extends React.Component {
                   name="description"
                   onChange={this.updateFormField}
                 />
+                <p className="validationColor">
+                  {this.state.validateDescriptionError}
+                </p>
               </div>
               <section className="d-flex justify-content-end">
                 {this.state.editedId === "" ? (
