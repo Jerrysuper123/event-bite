@@ -280,7 +280,8 @@ export default class FilterBar extends React.Component {
           {/* sort and clear filter button */}
           <span className="d-flex align-items-center flex-column flex-lg-row">
             <span className="nav-item dropdown">
-              <span
+              {/* not gonna built sort currently */}
+              {/* <span
                 className="nav-link dropdown-toggle sortBtn"
                 id="navbarDropdown"
                 role="button"
@@ -288,7 +289,7 @@ export default class FilterBar extends React.Component {
                 aria-expanded="false"
               >
                 sort
-              </span>
+              </span> */}
               {/* this only shows up on map */}
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>title</li>

@@ -258,44 +258,45 @@ export default function MapListing(props) {
 
         {/* Today's event list on the map */}
 
-        <Draggable>
-          <section
-            className="eventList"
+        {/* <Draggable> */}
+        <section
+          className="eventList"
+          style={{
+            height: eventListState === "hide" ? "7rem" : "100%",
+          }}
+        >
+          <h2 className="text-light text-light mt-4">Today's events</h2>
+
+          <div
             style={{
-              height: eventListState === "hide" ? "10rem" : "28rem",
+              fontSize: "1.3em",
+            }}
+            className="hideShowEvents ms-2 mb-2"
+          >
+            {renderHideShowBtn()}
+          </div>
+
+          <section
+            className="listOfEvent mb-3"
+            style={{
+              display: eventListState === "hide" ? "none" : "block",
             }}
           >
-            <h2 className="text-light text-light mt-3">Today's events</h2>
-
-            <div
-              style={{
-                fontSize: "1em",
-              }}
-              className="hideShowEvents ms-2 me-0 text-light"
-            >
-              {renderHideShowBtn()}
-            </div>
-            <section
-              className="listOfEvent mb-3"
-              style={{
-                display: eventListState === "hide" ? "none" : "block",
-              }}
-            >
-              {props.data.map((eachEvent) => {
-                return (
-                  <div className="eventListCard">
-                    <EventCard
-                      eachEvent={eachEvent}
-                      setOneEvent={setOneEvent}
-                      showRouter={showRouter}
-                      margin={"0.7rem"}
-                    />
-                  </div>
-                );
-              })}
-            </section>
+            {props.data.map((eachEvent) => {
+              return (
+                <div className="eventListCard ms-1">
+                  <EventCard
+                    eachEvent={eachEvent}
+                    setOneEvent={setOneEvent}
+                    showRouter={showRouter}
+                    margin={"2rem"}
+                  />
+                </div>
+              );
+            })}
           </section>
-        </Draggable>
+        </section>
+        {/* </Draggable> */}
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ export default function EventCard(props) {
       />
       <div className="card-body">
         <div className="d-flex">
-          <h6 className="card-title">{props.eachEvent.title.slice(0, 20)}</h6>
+          <h5 className="card-title">{props.eachEvent.title.slice(0, 20)}</h5>
           <i
             className="ms-auto fa-brands fa-gratipay"
             style={{
@@ -37,7 +37,7 @@ export default function EventCard(props) {
 
         <div
           style={{
-            fontSize: "0.9rem",
+            fontSize: "1.2rem",
           }}
           className="primaryColor dateTime"
         >
@@ -48,14 +48,14 @@ export default function EventCard(props) {
           <h9
             style={{
               fontWeight: "500",
-              fontSize: "0.8rem",
+              fontSize: "0.9rem",
             }}
           >
             {props.eachEvent.organizer}
           </h9>
         </div>
 
-        <div className="mt-3 d-flex justify-content-between">
+        <div className="mt-2 d-flex justify-content-between">
           <button
             className="eventCardBtn customBtn customBtnAccentThree"
             data-bs-toggle="modal"

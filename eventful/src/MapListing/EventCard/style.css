@@ -1,5 +1,5 @@
 .card {
-  width: 13rem;
+  width: 16rem;
   /* margin: 1rem; */
   border: none !important;
 }
@@ -13,12 +13,11 @@
 
 .card-text {
   color: rgb(179, 179, 179);
-  font-size: 0.7rem;
+  font-size: 1rem;
 }
 
 .dateTime {
   font-weight: bold;
-  font-size: 0.9rem;
 }
 
 .eventCardBtn {
