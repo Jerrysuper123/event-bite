@@ -13,28 +13,42 @@ export default function FeedbackForm(props) {
     setName(event.target.value);
   };
   const [feedbackValue, setFeedback] = React.useState("");
+  const [validError, setValidError] = React.useState("");
 
   const handleFeedbackInput = (event) => {
     props.setSubmitState(false);
     setFeedback(event.target.value);
   };
 
+  const validateInputFields = () => {
+    if (ratingValue !== "" && nameValue !== "") {
+      return true;
+    }
+  };
+
   const postFeedback = async () => {
-    let eventId = props.eventId;
-    try {
-      let response = await axios.put(
-        `${BASE_API_URL}/events/${eventId}/reviews/create`,
-        {
-          name: nameValue,
-          rating: ratingValue,
-          feedback: feedbackValue,
-        }
-      );
-      // console.log(response);
-      props.setSubmitState(true);
-      await props.getAllEventsFromAPI();
-    } catch (e) {
-      console.log(e);
+    if (validateInputFields()) {
+      let eventId = props.eventId;
+      try {
+        let response = await axios.put(
+          `${BASE_API_URL}/events/${eventId}/reviews/create`,
+          {
+            name: nameValue,
+            rating: ratingValue,
+            feedback: feedbackValue,
+          }
+        );
+        setName("");
+        setRating(2);
+        setFeedback("");
+        // console.log(response);
+        props.setSubmitState(true);
+        await props.getAllEventsFromAPI();
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      setValidError("Your name and feedback fields are required.");
     }
   };
 
@@ -80,6 +94,7 @@ export default function FeedbackForm(props) {
         placeholder="Your feedback*"
         onChange={handleFeedbackInput}
       ></textarea>
+      <p className="validationColor">{validError}</p>
 
       <div className="mt-3">
         <button className="customBtn customBtnPrimary" onClick={postFeedback}>
