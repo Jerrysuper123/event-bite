@@ -15,6 +15,8 @@ class App extends React.Component {
     active: "map",
     data: [],
     userLocationLatLng: [],
+    todayDate: "",
+    mapData: [],
     //to selectbox and dropdown
   };
 
@@ -34,12 +36,21 @@ class App extends React.Component {
   };
 
   getAllEventsFromAPI = async () => {
-    console.log("get events api starts");
     try {
       let response = await axios.get(`${BASE_API_URL}/events`);
-      console.log("API events", response.data.data);
+      console.log(response.data.data);
       this.setState({
         data: [...response.data.data],
+      });
+
+      console.log(
+        "filter list",
+        response.data.data[2].startDateTime.slice(0, 10)
+      );
+      this.setState({
+        mapData: response.data.data.filter(
+          (el) => el.startDateTime.slice(0, 10) === this.state.todayDate
+        ),
       });
     } catch (e) {
       console.log(e);
@@ -47,6 +58,10 @@ class App extends React.Component {
   };
 
   componentDidMount = async () => {
+    this.setState({
+      todayDate: new Date().toISOString().slice(0, 10),
+    });
+
     await this.getAllEventsFromAPI();
   };
 
@@ -127,6 +142,9 @@ class App extends React.Component {
             searchByDate={this.searchByDate}
             searchTags={this.searchTags}
             searchCategories={this.searchCategories}
+            dataLength={this.state.data.length}
+            mapDataLength={this.state.mapData.length}
+            getAllEventsFromAPI={this.getAllEventsFromAPI}
           />
         )}
 
@@ -136,7 +154,7 @@ class App extends React.Component {
           display={this.state.active === "landing" ? "block" : "none"}
         />
         <MapListing
-          data={this.state.data}
+          data={this.state.mapData}
           display={this.state.active === "map" ? "block" : "none"}
           getAllEventsFromAPI={this.getAllEventsFromAPI}
         />

@@ -16,6 +16,7 @@
     height: 2rem !important;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
+    border-radius: 1rem;
 }
 
 .filterToggler {
@@ -35,10 +36,16 @@
 
 .filteredResultSummary {
     font-size: 0.9rem;
-    color: #11675a !important;
+    color: #1f1f1f !important;
     text-decoration: none;
 }
 
 .sortBtn {
-    color: #11675a !important;
+    color: #414141 !important;
+}
+
+.clearFilterBtn:hover {
+    background-color: rgb(205, 205, 205);
+    border-radius: 1rem;
+    padding: 3px;
 }

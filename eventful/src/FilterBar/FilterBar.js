@@ -82,6 +82,10 @@ export default class FilterBar extends React.Component {
     await this.props.searchTags(this.state.searchHashtags);
   };
 
+  resetFilter = () => {
+    this.props.getAllEventsFromAPI();
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -249,8 +253,10 @@ export default class FilterBar extends React.Component {
           <span className="d-flex flex-column flex-lg-row">
             <span className="me-5">Found:</span>
             <span className="d-flex flex-column flex-lg-row">
-              <span className="me-5">map (0 results)</span>
-              <span>calendar (4 results)</span>
+              <span className="me-5">
+                map ({this.props.mapDataLength} results)
+              </span>
+              <span>calendar ({this.props.dataLength} results)</span>
             </span>
           </span>
 
@@ -273,8 +279,8 @@ export default class FilterBar extends React.Component {
               </ul>
             </span>
 
-            <span>
-              clear filters{" "}
+            <div className="clearFilterBtn" onClick={this.resetFilter}>
+              clear filters
               <img
                 style={{
                   width: "1rem",
@@ -282,7 +288,7 @@ export default class FilterBar extends React.Component {
                 src={clearFilter}
                 alt="clearFilter"
               />
-            </span>
+            </div>
           </span>
         </section>
       </React.Fragment>
