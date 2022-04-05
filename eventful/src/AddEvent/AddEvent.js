@@ -42,7 +42,15 @@ export default class AddEvent extends React.Component {
 
     //to delete an event
     toDeletedEvent: {},
-    validationError: "",
+
+    // validation errors
+    validateTitleError: "",
+    validateOrganizerError: "",
+    validateCatError:
+      "Please select a category, otherwise it will default to education",
+    validateAddError: "",
+    validatePostalError: "",
+    validateDateError: "",
   };
 
   //load hashtags and categories for selectbox and dropdown list
@@ -70,9 +78,66 @@ export default class AddEvent extends React.Component {
     });
   };
 
+  validationFunction(fieldName, inputValue) {
+    if (fieldName === "title") {
+      this.setState({
+        validateTitleError: "Title is required and must be less than 10 words.",
+      });
+      if (inputValue.length > 2 && inputValue.split(" ").length < 10) {
+        this.setState({
+          validateTitleError: "",
+        });
+      }
+    }
+
+    if (fieldName === "organizer") {
+      this.setState({
+        validateOrganizerError: "Organizer name is required.",
+      });
+      if (inputValue.length > 1) {
+        this.setState({
+          validateOrganizerError: "",
+        });
+      }
+    }
+
+    if (fieldName === "category") {
+      if (inputValue !== "") {
+        this.setState({
+          validateCatError: "",
+        });
+      }
+    }
+
+    if (fieldName === "address") {
+      this.setState({
+        validateAddError: "Address is required.",
+      });
+      if (inputValue.length > 2) {
+        this.setState({
+          validateAddError: "",
+        });
+      }
+    }
+
+    if (fieldName === "postalCode") {
+      this.setState({
+        validatePostalError: "Postal code is required.",
+      });
+      if (inputValue.length > 5) {
+        this.setState({
+          validatePostalError: "",
+        });
+      }
+    }
+  }
+
   updateFormField = (e) => {
+    let fieldName = e.target.name;
+    let inputValue = e.target.value;
+    this.validationFunction(fieldName, inputValue);
     this.setState({
-      [e.target.name]: e.target.value,
+      [fieldName]: inputValue,
     });
   };
 
@@ -143,7 +208,8 @@ export default class AddEvent extends React.Component {
       await this.getLatLng();
       if (this.state.latLng.length === 0) {
         this.setState({
-          validationError: "The postal code does not exist. Please try again",
+          validatePostalError:
+            "The postal code does not exist. Please try again",
         });
       }
     }
@@ -254,33 +320,41 @@ export default class AddEvent extends React.Component {
           <div>
             <h3>BASIC INFO</h3>
             <label>
-              Event title<span className="validationColor">*</span> :
+              Event title<span className="validationColor"> *</span> :
             </label>
             <input
               type="text"
               className="form-control"
-              placeholder="Be clear and concise"
+              placeholder="be clear and concise, limit to 10 words"
               value={this.state.title}
               name="title"
               onChange={this.updateFormField}
             />
+            <p className="validationColor">{this.state.validateTitleError}</p>
           </div>
 
           <div>
-            <label>Organizer:</label>
+            <label>
+              Organizer <span className="validationColor"> *</span> :
+            </label>
             <input
               type="text"
               className="form-control"
-              placeholder="Tell attendees who is organizing the event"
+              placeholder="tell attendees who is organizing the event"
               value={this.state.organizer}
               name="organizer"
               onChange={this.updateFormField}
             />
+            <p className="validationColor">
+              {this.state.validateOrganizerError}
+            </p>
             <p>This profile will appear in all events created by you.</p>
           </div>
 
           <div>
-            <label>Category:</label>
+            <label>
+              Select one category <span className="validationColor"> *</span> :
+            </label>
             <select
               className="form-control"
               value={this.state.category}
@@ -291,6 +365,7 @@ export default class AddEvent extends React.Component {
                 return <option>{cat}</option>;
               })}
             </select>
+            <p className="validationColor">{this.state.validateCatError}</p>
           </div>
 
           <div>
@@ -323,26 +398,6 @@ export default class AddEvent extends React.Component {
                 />
               )}
             />
-            {/* <Stack spacing={3} sx={{ width: 500 }}>
-              <Autocomplete
-                multiple
-                id="tags-outlined"
-                options={[1, 2, 3]}
-                getOptionLabel={(option) => option}
-                defaultValue={[1]}
-                filterSelectedOptions
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="tags"
-                    placeholder="add more..."
-                  />
-                )}
-                onChange={this.setState({
-                  hashtags: params,
-                })}
-              />
-            </Stack> */}
 
             <div>
               {this.state.formHashtags
@@ -371,19 +426,24 @@ export default class AddEvent extends React.Component {
             <div className="location border-top pt-5">
               <h3>LOCATION</h3>
               <div>
-                <label>Address:</label>
+                <label>
+                  Address <span className="validationColor"> *</span> :
+                </label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="address..."
+                  placeholder="block no., street, floor and unit..."
                   value={this.state.address}
                   name="address"
                   onChange={this.updateFormField}
                 />
+                <p className="validationColor">{this.state.validateAddError}</p>
               </div>
 
               <div>
-                <label>Singapore postal:</label>
+                <label>
+                  Singapore postal <span className="validationColor"> *</span> :
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -392,6 +452,9 @@ export default class AddEvent extends React.Component {
                   name="postalCode"
                   onChange={this.getLatLngFromPostalCode}
                 />
+                <p className="validationColor">
+                  {this.state.validatePostalError}
+                </p>
               </div>
               <p>
                 {this.state.validationError ? this.state.validationError : null}
@@ -399,30 +462,33 @@ export default class AddEvent extends React.Component {
 
               <p>Help people to know where to show up for your event</p>
             </div>
-            <div className="dateTimeAdd border-top pt-5">
+            <div className="dateTimeAdd border-top pt-5 border-bottom">
               <h3>DATE & TIME</h3>
               <div>
-                <label>Event starts:</label>
+                <label>
+                  Event starts <span className="validationColor"> *</span> :
+                </label>
                 <input
                   className="form-control"
                   type="datetime-local"
-                  placeholder="address..."
                   value={this.state.startDateTime}
                   name="startDateTime"
                   onChange={this.updateFormField}
                 />
               </div>
               <div>
-                <label>Event ends:</label>
+                <label>
+                  Event ends <span className="validationColor"> *</span> :
+                </label>
                 <input
                   className="form-control"
                   type="datetime-local"
-                  placeholder="address..."
                   value={this.state.endDateTime}
                   name="endDateTime"
                   onChange={this.updateFormField}
                 />
               </div>
+              <p className="validationColor">{this.state.validateDateError}</p>
               <p>
                 Tell event-goers when your event starts and ends so they can
                 make plans to attend.
@@ -448,7 +514,9 @@ export default class AddEvent extends React.Component {
             <div className="eventImage border-bottom">
               <h3>EVENT IMAGE</h3>
               <div>
-                <label>Main event image:</label>
+                <label>
+                  Main event image <span className="validationColor"> *</span> :
+                </label>
                 <input
                   className="form-control"
                   type="text"
@@ -502,7 +570,9 @@ export default class AddEvent extends React.Component {
                 featured guests.
               </p>
               <div>
-                <label>Summary:</label>
+                <label>
+                  Summary <span className="validationColor"> *</span> :
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -514,7 +584,10 @@ export default class AddEvent extends React.Component {
               </div>
 
               <div className="border-bottom pb-3">
-                <label>Detailed description:</label>
+                <label>
+                  Detailed description{" "}
+                  <span className="validationColor"> *</span> :
+                </label>
                 <textarea
                   className="form-control"
                   type="text"
