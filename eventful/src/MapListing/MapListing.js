@@ -155,6 +155,7 @@ export default function MapListing(props) {
   const [oneEventDetails, setOneEventDetails] = useState(null);
 
   const setOneEvent = (oneEvent) => {
+    setOneEventDetails(null);
     setOneEventDetails(oneEvent);
   };
 

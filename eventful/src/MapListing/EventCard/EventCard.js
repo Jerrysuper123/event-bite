@@ -1,7 +1,7 @@
 import "./style.css";
 import { convertDateString } from "../../Utility";
 import { useEffect } from "react";
-import { useState } from "react";
+
 export default function EventCard(props) {
   const setEvent = () => {
     props.setOneEvent(props.eachEvent);

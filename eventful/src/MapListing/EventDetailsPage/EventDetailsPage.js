@@ -52,6 +52,7 @@ export default function EventDetailsPage(props) {
                 <p
                   style={{
                     color: props.data.brandColor,
+                    fontWeight: "500",
                   }}
                 >
                   {props.data.organizer}
@@ -106,7 +107,7 @@ export default function EventDetailsPage(props) {
               <h6>Tags</h6>
             </div>
 
-            <div className="mt-4 ms-3">
+            <div className="mt-4 ms-3 tagContainer d-flex flex-md-column flex-sm-column flex-lg-row">
               {props.data.hashtags
                 ? props.data.hashtags.map((tag) => {
                     return (
@@ -118,7 +119,7 @@ export default function EventDetailsPage(props) {
                 : null}
             </div>
 
-            <div className="border-bottom pb-5 mx-4 pt-4">
+            <div className="border-bottom pb-5 mx-4 pt-4 text-center">
               <h6>Share with friends</h6>
               <div className="shareIcon">
                 <i class="fa-brands fa-whatsapp"></i>

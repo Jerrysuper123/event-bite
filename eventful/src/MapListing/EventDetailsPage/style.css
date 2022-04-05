@@ -24,6 +24,8 @@ i {
     background-color: rgb(255, 255, 255);
     padding: 0.2rem 0.5rem;
     margin: 0.3rem;
+    text-align: center;
+    width: 5rem;
     font-size: small;
     font-weight: 500;
     border-radius: 50px;
