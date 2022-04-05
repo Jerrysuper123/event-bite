@@ -41,6 +41,11 @@ export default class FilterBar extends React.Component {
     });
   };
 
+  searchEventByString = async (e) => {
+    await this.updateFormField(e);
+    setTimeout(this.props.searchEvent(this.state.searchString), 500);
+  };
+
   updateFormFieldAndSearchByDate = async (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -220,9 +225,9 @@ export default class FilterBar extends React.Component {
                   aria-label="Search"
                   name="searchString"
                   value={this.state.searchString}
-                  onChange={this.updateFormField}
+                  onChange={this.searchEventByString}
                 />
-                <button
+                {/* <button
                   className="btn btn-outline-success me-3"
                   type="submit"
                   onClick={() => {
@@ -230,7 +235,7 @@ export default class FilterBar extends React.Component {
                   }}
                 >
                   Search
-                </button>
+                </button> */}
               </section>
             </div>
           </div>

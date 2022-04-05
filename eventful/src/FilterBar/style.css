@@ -1,4 +1,4 @@
-#filterBar{
+#filterBar {
     z-index: 200;
     color: rgb(80, 80, 80) !important;
     background-color: #d7ffef !important;
@@ -8,39 +8,37 @@
     top: 3.4rem;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     margin-top: -0.5rem !important;
 }
 
-#filterBar input{
+#filterBar input {
     height: 2rem !important;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
 }
 
-
-.filterToggler{
+.filterToggler {
     border: none !important;
 }
 
 @media only screen and (max-width: 991px) {
-    #navbarFilter{
-        background-color: #c38d9e;
-        color: white !important
+    #navbarFilter {
+        background-color: #58816e;
+        color: white !important;
     }
 
-    #filterBar .dropdown-toggle{
-    color: white !important;
+    #filterBar .dropdown-toggle {
+        color: rgb(255, 255, 255) !important;
+    }
 }
-  }
 
-.filteredResultSummary{
+.filteredResultSummary {
     font-size: 0.9rem;
     color: #11675a !important;
     text-decoration: none;
 }
 
-.sortBtn{
+.sortBtn {
     color: #11675a !important;
 }
-
