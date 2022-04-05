@@ -2,11 +2,9 @@ import * as React from "react";
 import axios from "axios";
 import { BASE_API_URL } from "../../../Utility";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import "./style.css";
 
 export default function FeedbackForm(props) {
   const [ratingValue, setRating] = React.useState(2);
@@ -42,11 +40,16 @@ export default function FeedbackForm(props) {
 
   return (
     <React.Fragment>
-      <h3 className="mt-5">Been to the event, give us some feedback?</h3>
-      <TextField
+      <h5 className="mt-5">Been to the event, give us some feedback?</h5>
+      {/* <TextField
         required
         id="outlined-required"
         label="Your name"
+        onChange={hanleNameInput}
+      /> */}
+      <input
+        className="form-control customInput"
+        placeholder="Your name*"
         onChange={hanleNameInput}
       />
       <Box
@@ -54,7 +57,7 @@ export default function FeedbackForm(props) {
           "& > legend": { mt: 2 },
         }}
       >
-        <Typography component="legend">rating from 1 to 5:</Typography>
+        <Typography component="legend">Rating out of 5</Typography>
         <Rating
           name="simple-controlled"
           value={ratingValue}
@@ -63,22 +66,25 @@ export default function FeedbackForm(props) {
           }}
         />
       </Box>
-      <TextField
+      {/* <TextField
         id="outlined-multiline-static"
         required
         label="Feedback"
         multiline
         rows={4}
         onChange={handleFeedbackInput}
-      />
+      /> */}
+
+      <textarea
+        className="form-control"
+        placeholder="Your feedback*"
+        onChange={handleFeedbackInput}
+      ></textarea>
+
       <div className="mt-3">
-        <Button
-          variant="contained"
-          endIcon={<SendIcon />}
-          onClick={postFeedback}
-        >
-          Submit Feedback
-        </Button>
+        <button className="customBtn customBtnPrimary" onClick={postFeedback}>
+          Submit
+        </button>
       </div>
     </React.Fragment>
   );

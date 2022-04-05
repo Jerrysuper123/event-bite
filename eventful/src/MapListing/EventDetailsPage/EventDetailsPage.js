@@ -24,7 +24,7 @@ export default function EventDetailsPage(props) {
         <div className="modal-content">
           <button
             type="button"
-            className="btn-close"
+            className="btn-close ms-auto"
             data-bs-dismiss="modal"
             aria-label="Close"
             onClick={resetReviewForm}
@@ -89,7 +89,14 @@ export default function EventDetailsPage(props) {
             <div className="d-flex">
               <i class="fa-solid fa-align-center me-3"></i>
               <div>
-                <h7>{props.data.descriptionSummary}</h7>
+                <h7
+                  style={{
+                    color: "black",
+                    fontSize: "1.3rem",
+                  }}
+                >
+                  {props.data.descriptionSummary}
+                </h7>
                 <h6 className="mt-3">About this event</h6>
                 <p>{props.data.description}</p>
               </div>
@@ -111,9 +118,9 @@ export default function EventDetailsPage(props) {
               </div>
             </div>
 
-            <div className="border-bottom pb-5">
+            <div className="border-bottom pb-5 mx-4 pt-4">
               <h6>Share with friends</h6>
-              <div className="shareIcons">
+              <div className="shareIcon">
                 <i class="fa-brands fa-whatsapp"></i>
                 <i class="fa-brands fa-linkedin-in"></i>
                 <i class="fa-brands fa-twitter"></i>
@@ -151,7 +158,7 @@ export default function EventDetailsPage(props) {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="customBtn customBtnAccentThree"
               data-bs-dismiss="modal"
               onClick={resetReviewForm}
             >
