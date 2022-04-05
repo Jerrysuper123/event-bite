@@ -1,5 +1,5 @@
 .eventList {
-  width: 20rem;
+  width: 21.5rem;
   background-color: rgba(179, 112, 133, 0.7);
   /* border-radius: 1rem; */
   display: flex;
@@ -23,13 +23,14 @@
     width: 100%;
   }
   .listOfEvent {
-    width: 90%;
+    width: 100%;
     display: flex !important;
     flex-direction: row !important;
-    height: 22rem;
+    align-items: center;
+    height: 23rem;
   }
   .eventListCard {
-    margin-left: 3rem !important;
+    /* margin-left: 1rem !important; */
   }
 }
 

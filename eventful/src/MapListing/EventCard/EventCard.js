@@ -20,7 +20,7 @@ export default function EventCard(props) {
     <div
       className="card shadow"
       style={{
-        marginTop: props.margin ? props.margin : 0,
+        margin: props.margin ? props.margin : 0,
       }}
     >
       <img

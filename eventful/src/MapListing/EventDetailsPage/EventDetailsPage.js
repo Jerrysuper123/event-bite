@@ -53,6 +53,7 @@ export default function EventDetailsPage(props) {
                   style={{
                     color: props.data.brandColor,
                     fontWeight: "500",
+                    fontStyle: "italic",
                   }}
                 >
                   {props.data.organizer}
