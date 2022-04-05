@@ -1,27 +1,26 @@
-#modalBtnElement{
+#modalBtnElement {
     display: none !important;
 }
 
-
-.calendarContainer a{
+.calendarContainer a {
     color: grey;
     text-decoration: none;
 }
-.calendar{
+.calendar {
     background-color: white;
 }
 
 .Kalend__main {
-    height: 63vh !important;
-  }
+    height: 70vh !important;
+}
 
-.calenderAside{
+.calenderAside {
     width: 100%;
     height: 7rem;
 }
 
-.calendarBg{
-
+.calendarBg {
+    background-color: #c38d9e;
 }
 
 @media (min-width: 992px) {

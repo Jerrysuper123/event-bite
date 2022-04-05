@@ -262,7 +262,7 @@ export default function MapListing(props) {
         <section
           className="eventList"
           style={{
-            height: eventListState === "hide" ? "7rem" : "100%",
+            height: eventListState === "hide" ? "6.5rem" : "100%",
           }}
         >
           <h2 className="text-light text-light mt-4">Today's events</h2>

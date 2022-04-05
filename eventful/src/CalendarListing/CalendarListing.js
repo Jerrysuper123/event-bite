@@ -38,7 +38,7 @@ export default function CalendarListing(props) {
         display: props.display,
       }}
     >
-      <section className="container-fluid">
+      <section className="container-fluid calendarBg pt-5 pb-4 shadow border">
         {/* <div className="d-lg-flex"> */}
         {/* <aside
             className="
@@ -64,8 +64,8 @@ export default function CalendarListing(props) {
           <Kalend
             //To adjust colors for today date circle, you can pass style prop to Kalend like this:
             style={{
-              primaryColor: "#c38d9e",
-              baseColor: "#c38d9e",
+              primaryColor: "#e27d60",
+              baseColor: "#e27d60",
               inverseBaseColor: "#f2ecec",
             }}
             onEventClick={onEventClick}
