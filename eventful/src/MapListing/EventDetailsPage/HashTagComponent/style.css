@@ -1,7 +1,10 @@
 .tagStyle {
-  background-color: peru;
-  padding: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  padding: 0.2rem 0.5rem;
   margin: 0.3rem;
+  font-size: small;
+  font-weight: 500;
   border-radius: 50px;
-  color: white;
+  border: 1px solid rgb(194, 194, 194);
+  color: rgb(71, 65, 85);
 }

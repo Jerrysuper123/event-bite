@@ -4,25 +4,28 @@
   border: none !important;
 }
 
-.card-img-top{
+.card-img-top {
   object-fit: cover;
   object-position: center;
   height: 7rem;
   overflow: hidden;
 }
 
-.card-text{
+.card-text {
   color: rgb(179, 179, 179);
   font-size: 0.7rem;
 }
 
-.dateTime{
+.dateTime {
   font-weight: bold;
   font-size: 0.9rem;
 }
 
-.eventCardBtn{
-  font-size: 0.7rem !important;
-  height: 1.7rem;
-  width: 4.9rem;
+.eventCardBtn {
+  font-size: 0.8rem !important;
+  padding: 0.4rem 0.6rem;
+  font-style: italic;
+  font-weight: 500;
+  /* height: 1.7rem;
+  width: 4.9rem; */
 }

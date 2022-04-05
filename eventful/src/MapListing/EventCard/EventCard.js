@@ -25,7 +25,7 @@ export default function EventCard(props) {
       />
       <div className="card-body">
         <div className="d-flex">
-          <h6 className="card-title">{props.eachEvent.title}</h6>
+          <h6 className="card-title">{props.eachEvent.title.slice(0, 20)}</h6>
           <i
             className="ms-auto fa-brands fa-gratipay"
             style={{
@@ -35,38 +35,29 @@ export default function EventCard(props) {
           ></i>
         </div>
 
-        <div className="primaryColor dateTime">
+        <div
+          style={{
+            fontSize: "0.9rem",
+          }}
+          className="primaryColor dateTime"
+        >
           {convertDateString(props.eachEvent.startDateTime)}
         </div>
-        {/* <div className="text-center">event in progress now...</div> */}
-        <h7 className="card-text">
-          {props.eachEvent.descriptionSummary.slice(0, 20)}...
-        </h7>
 
         <div className="organizerBrand d-flex my-2">
           <h9
             style={{
               fontWeight: "500",
+              fontSize: "0.8rem",
             }}
           >
             {props.eachEvent.organizer}
           </h9>
-          {props.eachEvent.customizedMapMarker ? (
-            <img
-              className="ms-1"
-              src={props.eachEvent.customizedMapMarker}
-              alt={props.eachEvent.title}
-              style={{
-                width: "1.5rem",
-                height: "1.5rem",
-              }}
-            />
-          ) : null}
         </div>
 
-        <div className=" d-flex justify-content-between">
+        <div className="mt-3 d-flex justify-content-between">
           <button
-            className="eventCardBtn btn btn-info"
+            className="eventCardBtn customBtn customBtnAccentThree"
             data-bs-toggle="modal"
             // moreInfoModel
             data-bs-target="#moreInfoModel"
@@ -79,7 +70,7 @@ export default function EventCard(props) {
           {/* modal to show the event details */}
 
           <button
-            className="eventCardBtn btn btn-danger"
+            className="eventCardBtn customBtn customBtnPrimary"
             onClick={() => {
               props.showRouter(props.eachEvent);
             }}

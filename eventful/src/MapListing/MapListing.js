@@ -264,19 +264,14 @@ export default function MapListing(props) {
               height: eventListState === "hide" ? "10rem" : "28rem",
             }}
           >
-            <DisplayRealTime />
-            <div
-              className="weatherIcon text-center"
-              style={{
-                marginTop: eventListState === "hide" ? "2rem" : "1rem",
-                fontSize: "0.8rem",
-              }}
-            >
-              <i className="fa-solid fa-cloud-sun"></i>
-            </div>
-            <div className="text-light text-light mt-2">Today's events</div>
+            <h2 className="text-light text-light mt-3">Today's events</h2>
 
-            <div className="hideShowEvents ms-2 me-0 text-light">
+            <div
+              style={{
+                fontSize: "1em",
+              }}
+              className="hideShowEvents ms-2 me-0 text-light"
+            >
               {renderHideShowBtn()}
             </div>
             <section
