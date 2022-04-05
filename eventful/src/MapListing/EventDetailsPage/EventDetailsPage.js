@@ -1,4 +1,3 @@
-import HashTagComponent from "./HashTagComponent/HashTagComponent";
 import "./style.css";
 import DisplayFeedback from "./DisplayFeedback.js/DisplayFeedback";
 import FeedbackForm from "./FeedbackForm.js/FeedbackForm";
@@ -104,18 +103,19 @@ export default function EventDetailsPage(props) {
 
             <div className="d-flex">
               <i class="fa-solid fa-tag me-3"></i>
-              <div>
-                <h6>Tags</h6>
-                <div className="mt-5">
-                  {props.data.hashtags
-                    ? props.data.hashtags.map((tag) => {
-                        return (
-                          <HashTagComponent key={props.data._id} tag={tag} />
-                        );
-                      })
-                    : null}
-                </div>
-              </div>
+              <h6>Tags</h6>
+            </div>
+
+            <div className="mt-4 ms-3">
+              {props.data.hashtags
+                ? props.data.hashtags.map((tag) => {
+                    return (
+                      <span key={props.data._id} className="tagStyle">
+                        {tag}
+                      </span>
+                    );
+                  })
+                : null}
             </div>
 
             <div className="border-bottom pb-5 mx-4 pt-4">
