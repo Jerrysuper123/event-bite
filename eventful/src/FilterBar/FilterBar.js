@@ -11,6 +11,7 @@ export default class FilterBar extends React.Component {
     filterCategories: [],
     filterTags: [],
     dateTimeFilter: "",
+
     searchString: "",
     searchEventStartDate: "",
     searchCategories: [],
@@ -251,7 +252,23 @@ export default class FilterBar extends React.Component {
         d-flex justify-content-around align-items-center"
         >
           <span className="d-flex flex-column flex-lg-row">
-            <span className="me-5">Found:</span>
+            <span className="me-5">
+              Searched
+              <span className="mx-1 searchedItems">
+                {this.state.searchString.slice(0, 5)}
+              </span>
+              <span className="me-1 searchedItems">
+                {this.state.searchCategories[0]}
+              </span>
+              <span className="me-1 searchedItems">
+                {" "}
+                {this.state.searchHashtags[0]}
+              </span>
+              <span className="me-1 searchedItems">
+                {this.state.searchEventStartDate}
+              </span>
+              and found:
+            </span>
             <span className="d-flex flex-column flex-lg-row">
               <span className="me-5">
                 map ({this.props.mapDataLength} results)

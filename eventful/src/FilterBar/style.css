@@ -49,3 +49,7 @@
     border-radius: 1rem;
     padding: 3px;
 }
+
+.searchedItems {
+    color: rgb(0, 143, 0);
+}

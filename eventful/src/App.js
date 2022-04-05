@@ -35,6 +35,14 @@ class App extends React.Component {
     });
   };
 
+  FilterMapData = (data) => {
+    this.setState({
+      mapData: data.filter(
+        (el) => el.startDateTime.slice(0, 10) === this.state.todayDate
+      ),
+    });
+  };
+
   getAllEventsFromAPI = async () => {
     try {
       let response = await axios.get(`${BASE_API_URL}/events`);
@@ -43,15 +51,16 @@ class App extends React.Component {
         data: [...response.data.data],
       });
 
-      console.log(
-        "filter list",
-        response.data.data[2].startDateTime.slice(0, 10)
-      );
-      this.setState({
-        mapData: response.data.data.filter(
-          (el) => el.startDateTime.slice(0, 10) === this.state.todayDate
-        ),
-      });
+      // console.log(
+      //   "filter list",
+      //   response.data.data[2].startDateTime.slice(0, 10)
+      // );
+      // this.setState({
+      //   mapData: response.data.data.filter(
+      //     (el) => el.startDateTime.slice(0, 10) === this.state.todayDate
+      //   ),
+      // });
+      this.FilterMapData(response.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -80,6 +89,7 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
+      this.FilterMapData(response.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -94,6 +104,7 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
+      this.FilterMapData(response.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -110,6 +121,7 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
+      this.FilterMapData(response.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -126,6 +138,7 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
+      this.FilterMapData(response.data.data);
     } catch (e) {
       console.log(e);
     }
