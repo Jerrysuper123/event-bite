@@ -3,26 +3,41 @@
     color: rgb(80, 80, 80) !important;
     background-color: #d7ffef !important;
     height: 3.2rem;
-    font-size: 0.9em;
+    font-size: 1rem;
     position: sticky;
     top: 3.4rem;
 }
 
 .dropdown-menu {
-    margin-top: -0.5rem !important;
+    margin-top: -1rem !important;
+    color: rgb(96, 96, 96) !important;
+    font-weight: 600;
+    /* font-style: italic; */
+    box-shadow: 1px 1px 1px #bdbdbd;
+    /* border: 1px solid rgb(165, 165, 165); */
+}
+
+.dropdown-item:hover {
+    background-color: #d0a3b5 !important;
+    color: white;
+}
+
+.dropdown-item {
+    padding: 0.6rem 0.4rem;
 }
 
 .filterSearchInput {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     padding: 0 0.5rem;
-    height: 2rem;
+    height: 2.3rem;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
 }
 
 .filterSearchInput input {
-    height: 2rem !important;
+    background-color: rgb(255, 255, 255);
+    height: 2.3rem !important;
     border: none !important;
 }
 
@@ -32,12 +47,29 @@
 
 @media only screen and (max-width: 991px) {
     #navbarFilter {
-        background-color: #58816e;
-        color: white !important;
+        background-color: #d7e9e2;
+        color: rgb(36, 36, 36) !important;
+        /* box-shadow: 5px 5px 50px rgb(128, 128, 128); */
+        box-shadow: 1px 1px 1px #bdbdbd;
+        /* border: 1px solid rgb(117, 155, 129); */
     }
 
     #filterBar .dropdown-toggle {
-        color: rgb(255, 255, 255) !important;
+        color: rgb(36, 36, 36) !important;
+    }
+
+    .dropdown-menu {
+        margin-top: 0rem !important;
+        /* color: rgb(96, 96, 96) !important;
+        font-weight: 600; */
+        /* font-style: italic; */
+    }
+
+    .nav-item {
+        padding: 0.5rem 1rem !important;
+    }
+    .searchSection {
+        padding: 0.5rem 1rem !important;
     }
 }
 
@@ -52,9 +84,15 @@
 }
 
 .clearFilterBtn:hover {
-    background-color: rgb(205, 205, 205);
+    /* background-color: rgb(205, 205, 205);
+    width: 8rem;
+    border-radius: 1rem !important;
+    padding: 0.3px; */
+    /* padding: 3px; */
+    border: 3px solid rgb(142, 142, 142);
+    padding: 0.3rem 0.6rem;
     border-radius: 1rem;
-    padding: 3px;
+    width: 8rem;
 }
 
 .searchedItems {

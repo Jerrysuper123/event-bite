@@ -179,7 +179,7 @@ export default class FilterBar extends React.Component {
             >
               <span
                 style={{
-                  fontSize: "0.9rem",
+                  fontSize: "1rem",
                 }}
               >
                 filter
@@ -208,7 +208,7 @@ export default class FilterBar extends React.Component {
                       return (
                         <React.Fragment key={index}>
                           <li>
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item border-bottom" href="#">
                               <input
                                 type="checkbox"
                                 name="searchCategories"
@@ -249,7 +249,7 @@ export default class FilterBar extends React.Component {
                       return (
                         <React.Fragment key={index}>
                           <li>
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item border-bottom" href="#">
                               <input
                                 type="checkbox"
                                 id={tag}
@@ -301,7 +301,7 @@ export default class FilterBar extends React.Component {
                 </li>
               </ul>
 
-              <section className="d-flex p-3">
+              <section className="searchSection d-flex p-3">
                 <span className="filterSearchInput d-flex align-items-center">
                   <i class="fa-solid fa-magnifying-glass"></i>
                   <input
@@ -325,7 +325,8 @@ export default class FilterBar extends React.Component {
                   Search
                 </button> */}
               </section>
-              <div className="clearFilterBtn p-3" onClick={this.resetFilter}>
+
+              <div className="clearFilterBtn m-2" onClick={this.resetFilter}>
                 clear filters
                 <img
                   style={{
