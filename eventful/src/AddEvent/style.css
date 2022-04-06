@@ -42,10 +42,6 @@
     background-color: white;
 }
 
-.mainForm button {
-    font-size: 1.3rem;
-}
-
 .mainForm input,
 textarea,
 select {
@@ -107,4 +103,18 @@ select {
 
 .validationColor {
     color: #f4316e !important;
+}
+
+.publishImage {
+    width: 100%;
+}
+
+.customFormBtn {
+    color: white;
+    background-color: #da517d;
+}
+
+.customFormBtn:hover {
+    color: #da517d;
+    background-color: white;
 }

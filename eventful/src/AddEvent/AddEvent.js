@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm.js/ModalBody.js/ModalBody";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -58,7 +59,64 @@ export default class AddEvent extends React.Component {
       "https://maps.google.com/maps?q=1.34771540923723,103.754994802909&hl=es;z=14&amp;output=embed",
   };
 
-  //load hashtags and categories for selectbox and dropdown list
+  clearAllData = () => {
+    this.setState({
+      editedId: "",
+      /*Basic info */
+      title: "",
+      organizer: "",
+      category: "education",
+      hashtags: ["party"],
+      /*location */
+      address: "",
+      postalCode: "",
+      latLng: [],
+      /*date time*/
+      startDateTime: "",
+      endDateTime: "",
+      /*main event image */
+      eventImage: "",
+      customizedMapMarker: "",
+      brandColor: "#e27d60",
+      /*description */
+      descriptionSummary: "",
+      description: "",
+
+      //to delete an event
+      toDeletedEvent: {},
+
+      // validation errors
+      validateTitleError: "",
+      validateOrganizerError: "",
+      validateCatError:
+        "Please select a category, otherwise it will default to education",
+      validateAddError: "",
+      validatePostalError: "",
+      validateDateError: "Event start and end date is required",
+      validateEventImageError: "",
+      validateSummaryError: "",
+      validateDescriptionError: "",
+    });
+  };
+
+  //Make sure no validation error to submit the form
+  checkAllValidated = () => {
+    if (
+      this.state.validateTitleError === "" &&
+      this.state.validateOrganizerError === "" &&
+      this.state.validateCatError === "" &&
+      this.state.validateAddError === "" &&
+      this.state.validatePostalError === "" &&
+      this.state.validateDateError === "" &&
+      this.state.validateEventImageError === "" &&
+      this.state.validateSummaryError === "" &&
+      this.state.validateDescriptionError === ""
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   componentDidMount = async () => {
     try {
       let hashtagsRequest = axios.get(`${BASE_API_URL}/events/hashtags`);
@@ -302,7 +360,7 @@ export default class AddEvent extends React.Component {
   };
 
   postEvent = async () => {
-    if (this.state.title !== "") {
+    if (this.state.title !== "" && this.checkAllValidated()) {
       try {
         let response = await axios.post(`${BASE_API_URL}/events/create`, {
           title: this.state.title,
@@ -354,29 +412,31 @@ export default class AddEvent extends React.Component {
   };
 
   updateEventAPI = async () => {
-    try {
-      let response = await axios.put(
-        `${BASE_API_URL}/events/${this.state.editedId}/update`,
-        {
-          title: this.state.title,
-          organizer: this.state.organizer,
-          category: this.state.category,
-          hashtags: this.state.hashtags,
-          address: this.state.address,
-          postalCode: this.state.postalCode,
-          latLng: this.state.latLng,
-          startDateTime: this.state.startDateTime,
-          endDateTime: this.state.endDateTime,
-          eventImage: this.state.eventImage,
-          customizedMapMarker: this.state.customizedMapMarker,
-          brandColor: this.state.brandColor,
-          descriptionSummary: this.state.descriptionSummary,
-          description: this.state.description,
-        }
-      );
-      await this.props.getAllEventsFromAPI();
-    } catch (e) {
-      console.log(e);
+    if (this.checkAllValidated()) {
+      try {
+        let response = await axios.put(
+          `${BASE_API_URL}/events/${this.state.editedId}/update`,
+          {
+            title: this.state.title,
+            organizer: this.state.organizer,
+            category: this.state.category,
+            hashtags: this.state.hashtags,
+            address: this.state.address,
+            postalCode: this.state.postalCode,
+            latLng: this.state.latLng,
+            startDateTime: this.state.startDateTime,
+            endDateTime: this.state.endDateTime,
+            eventImage: this.state.eventImage,
+            customizedMapMarker: this.state.customizedMapMarker,
+            brandColor: this.state.brandColor,
+            descriptionSummary: this.state.descriptionSummary,
+            description: this.state.description,
+          }
+        );
+        await this.props.getAllEventsFromAPI();
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -591,14 +651,15 @@ export default class AddEvent extends React.Component {
               </p>
             </div>
           </div>
+
           <section className="d-flex justify-content-end">
             <button
-              className="customBtn customBtnAccentTwo"
+              className="customBtn customFormBtn"
               onClick={() => {
                 this.updateActive("details");
               }}
             >
-              next <i class="fa-solid fa-angle-right"></i>
+              next
             </button>
           </section>
         </div>
@@ -703,28 +764,51 @@ export default class AddEvent extends React.Component {
                 </p>
               </div>
               <section className="d-flex justify-content-end">
-                {this.state.editedId === "" ? (
-                  <button
-                    className="customBtn customBtnAccentTwo"
-                    onClick={this.postEvent}
-                  >
-                    submit
-                  </button>
-                ) : (
-                  <button
-                    className="customBtn customBtnAccentTwo"
-                    onClick={this.updateEventAPI}
-                  >
-                    update
-                  </button>
-                )}
+                <button
+                  className="customBtn customFormBtn"
+                  onClick={() => {
+                    this.updateActive("publish");
+                  }}
+                >
+                  next
+                </button>
               </section>
             </div>
           </section>
         </React.Fragment>
       );
-    } else if (this.state.active === "publish") {
-      return <React.Fragment>publish event preview</React.Fragment>;
+    } else if (this.state.active === "publish" && this.checkAllValidated()) {
+      return (
+        <React.Fragment>
+          <h4>Review and publish your event</h4>
+          <section>
+            <img
+              className="publishImage mb-4"
+              src={this.state.eventImage ? this.state.eventImage : null}
+              alt={this.state.title}
+            />
+
+            <ModalBody data={this.state} />
+          </section>
+          <section className="d-flex justify-content-end mt-5">
+            {this.state.editedId === "" ? (
+              <button
+                className="customBtn customFormBtn"
+                onClick={this.postEvent}
+              >
+                submit
+              </button>
+            ) : (
+              <button
+                className="customBtn customBtnAccentThree"
+                onClick={this.updateEventAPI}
+              >
+                update
+              </button>
+            )}
+          </section>
+        </React.Fragment>
+      );
     }
   };
 
@@ -779,9 +863,20 @@ export default class AddEvent extends React.Component {
               {/* render each form page */}
 
               <div className="mainForm shadow col-lg-6 p-5">
-                <h1 className="mb-4">
-                  {this.state.editedId === "" ? "Add New Event" : "Edit Event"}
-                </h1>
+                <section className="d-flex align-items-center mb-4">
+                  <h1>
+                    {this.state.editedId === ""
+                      ? "Add New Event"
+                      : "Update Event"}
+                  </h1>
+                  <button
+                    className="customBtn customFormBtn ms-auto"
+                    onClick={this.clearAllData}
+                  >
+                    reset
+                  </button>
+                </section>
+
                 {this.renderFormPage()}
               </div>
 
