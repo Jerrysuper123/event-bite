@@ -405,7 +405,22 @@ export default function LandingPage(props) {
           {/* timeline ends here */}
         </article>
 
-        <sectio className="container mt-5 p-5">image of QR code</sectio>
+        <sectio className="container mt-5 p-5 d-flex flex-column align-items-center justify-content-center">
+          <h2>Download QR code below to promote your events</h2>
+          <p>(Do not use, below for demo purpose only)</p>
+          <img
+            style={{
+              width: "60%",
+            }}
+            src="https://raw.githubusercontent.com/Jerrysuper123/eventfulSources/main/images/fakeQRCode.png"
+            alt="QRCode"
+          />
+          <p className="subText">
+            Disclaimer: The ongoing events in this app are dummy data, which are
+            used for school project only. Do not take them as formal events from
+            the official organizers.
+          </p>
+        </sectio>
       </main>
     </section>
   );
