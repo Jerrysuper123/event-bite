@@ -69,7 +69,7 @@ export default class FilterBar extends React.Component {
   };
 
   updateFormFieldAndSearchByDate = async (e) => {
-    this.setState({
+    await this.setState({
       [e.target.name]: e.target.value,
     });
     await this.props.searchByDate(this.state.searchEventStartDate);

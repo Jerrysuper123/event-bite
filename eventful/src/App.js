@@ -35,6 +35,7 @@ class App extends React.Component {
     });
   };
 
+  // this fitler map's data to one day's events - today or any days user selected
   FilterMapData = (data) => {
     this.setState({
       mapData: data.filter(
@@ -43,6 +44,7 @@ class App extends React.Component {
     });
   };
 
+  // below get all events from API and filter only 1 day's events to map
   getAllEventsFromAPI = async () => {
     try {
       let response = await axios.get(`${BASE_API_URL}/events`);
@@ -50,22 +52,13 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
-
-      // console.log(
-      //   "filter list",
-      //   response.data.data[2].startDateTime.slice(0, 10)
-      // );
-      // this.setState({
-      //   mapData: response.data.data.filter(
-      //     (el) => el.startDateTime.slice(0, 10) === this.state.todayDate
-      //   ),
-      // });
       this.FilterMapData(response.data.data);
     } catch (e) {
       console.log(e);
     }
   };
 
+  //when app first loaded, create today's date for filter map data
   componentDidMount = async () => {
     this.setState({
       todayDate: new Date().toISOString().slice(0, 10),
@@ -74,6 +67,7 @@ class App extends React.Component {
     await this.getAllEventsFromAPI();
   };
 
+  // switch between different pages
   setActive = (activePage) => {
     this.setState({
       active: activePage,
@@ -101,6 +95,7 @@ class App extends React.Component {
         `${BASE_API_URL}/events?startDateTime=${eventStartDate}`
       );
       console.log("API events", response.data.data);
+
       this.setState({
         data: [...response.data.data],
       });
@@ -118,6 +113,26 @@ class App extends React.Component {
         },
       });
       console.log("tag filtered", response.data.data);
+      this.setState({
+        data: [...response.data.data],
+      });
+      this.FilterMapData(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  allInSearch = async () => {
+    try {
+      let response = await axios.get(`${BASE_API_URL}/events`, {
+        params: {
+          searchTags: ["art", "music", "party"],
+          searchCategories: [],
+          startDateTime: "2022-04-07",
+          search: "face",
+        },
+      });
+      console.log("allInsearch filtered", response.data.data);
       this.setState({
         data: [...response.data.data],
       });
@@ -147,6 +162,7 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <button onClick={this.allInSearch}>all in search</button>
         <NavBar setActive={this.setActive} />
         {this.state.active === "landing" ||
         this.state.active === "addNew" ? null : (
