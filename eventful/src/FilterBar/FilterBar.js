@@ -268,15 +268,19 @@ export default class FilterBar extends React.Component {
               </ul>
 
               <section className="d-flex p-3">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  name="searchString"
-                  value={this.state.searchString}
-                  onChange={this.searchEventByString}
-                />
+                <span className="filterSearchInput d-flex align-items-center">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input
+                    className="me-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    name="searchString"
+                    value={this.state.searchString}
+                    onChange={this.searchEventByString}
+                  />
+                </span>
+
                 {/* <button
                   className="btn btn-outline-success me-3"
                   type="submit"

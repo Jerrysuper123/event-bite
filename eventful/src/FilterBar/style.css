@@ -12,11 +12,18 @@
     margin-top: -0.5rem !important;
 }
 
-#filterBar input {
-    height: 2rem !important;
+.filterSearchInput {
+    background-color: white;
+    padding: 0 0.5rem;
+    height: 2rem;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
     border-radius: 1rem;
+}
+
+.filterSearchInput input {
+    height: 2rem !important;
+    border: none !important;
 }
 
 .filterToggler {
