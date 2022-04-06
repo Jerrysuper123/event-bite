@@ -36,6 +36,7 @@ export default class AddEvent extends React.Component {
     /*description */
     descriptionSummary: "",
     description: "",
+    reviews: [],
 
     //for loading the form
     formHashtags: [],

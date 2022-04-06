@@ -20,7 +20,7 @@ export default function DisplayFeedback(props) {
             color: "grey",
           }}
         >
-          Thur, 2012 Jan 12
+          {props.review.date}
         </span>
       </div>
       <Box

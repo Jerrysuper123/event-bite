@@ -14,6 +14,7 @@ export default function FeedbackForm(props) {
   };
   const [feedbackValue, setFeedback] = React.useState("");
   const [validError, setValidError] = React.useState("");
+  const [date, setDate] = React.useState("");
 
   const handleFeedbackInput = (event) => {
     props.setSubmitState(false);
@@ -23,11 +24,16 @@ export default function FeedbackForm(props) {
   const setReviews = () => {
     // below push new review into the state
     let clone = { ...props.oneEventDetails };
-    clone.reviews.push({
+    if (!clone["reviews"]) {
+      clone["reviews"] = [];
+    }
+
+    clone["reviews"].push({
       _id: Math.floor(Math.random() * 1000),
       name: nameValue,
       rating: ratingValue,
       feedback: feedbackValue,
+      date: date,
     });
 
     props.setOneEventDetails(clone);
@@ -41,6 +47,9 @@ export default function FeedbackForm(props) {
 
   const postFeedback = async () => {
     if (validateInputFields()) {
+      let date = new Date().toString().slice(4, 15);
+      // console.log(date);
+      await setDate(date);
       let eventId = props.data._id;
       try {
         let response = await axios.put(
@@ -49,11 +58,13 @@ export default function FeedbackForm(props) {
             name: nameValue,
             rating: ratingValue,
             feedback: feedbackValue,
+            date: date,
           }
         );
         setName("");
         setRating(2);
         setFeedback("");
+        setDate("");
         //display "Thank you for submitting your feedback, when user click submit"
         props.setSubmitState(true);
 

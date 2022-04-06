@@ -74,54 +74,6 @@ class App extends React.Component {
     });
   };
 
-  searchEvent = async (searchString) => {
-    try {
-      let response = await axios.get(
-        `${BASE_API_URL}/events?search=${searchString}`
-      );
-      // console.log("API events", response.data.data);
-      this.setState({
-        data: [...response.data.data],
-      });
-      this.FilterMapData(response.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  searchByDate = async (eventStartDate) => {
-    try {
-      let response = await axios.get(
-        `${BASE_API_URL}/events?startDateTime=${eventStartDate}`
-      );
-      console.log("API events", response.data.data);
-
-      this.setState({
-        data: [...response.data.data],
-      });
-      this.FilterMapData(response.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  searchTags = async (tagsArray) => {
-    try {
-      let response = await axios.get(`${BASE_API_URL}/events`, {
-        params: {
-          searchTags: tagsArray,
-        },
-      });
-      console.log("tag filtered", response.data.data);
-      this.setState({
-        data: [...response.data.data],
-      });
-      this.FilterMapData(response.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   allInSearch = async (tagsArray, searchCatArray, startDateTime, searchStr) => {
     try {
       let response = await axios.get(`${BASE_API_URL}/events`, {
@@ -142,27 +94,9 @@ class App extends React.Component {
     }
   };
 
-  searchCategories = async (catArray) => {
-    try {
-      let response = await axios.get(`${BASE_API_URL}/events`, {
-        params: {
-          searchCategories: catArray,
-        },
-      });
-
-      this.setState({
-        data: [...response.data.data],
-      });
-      this.FilterMapData(response.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   render() {
     return (
       <React.Fragment>
-        <button onClick={this.allInSearch}>all in search</button>
         <NavBar setActive={this.setActive} />
         {this.state.active === "landing" ||
         this.state.active === "addNew" ? null : (

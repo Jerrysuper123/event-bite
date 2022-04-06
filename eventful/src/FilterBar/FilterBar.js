@@ -134,7 +134,7 @@ export default class FilterBar extends React.Component {
 
   resetFilter = () => {
     this.setState({
-      earchString: "",
+      searchString: "",
       searchEventStartDate: "",
       searchCategories: [],
       searchHashtags: [],
@@ -325,6 +325,16 @@ export default class FilterBar extends React.Component {
                   Search
                 </button> */}
               </section>
+              <div className="clearFilterBtn p-3" onClick={this.resetFilter}>
+                clear filters
+                <img
+                  style={{
+                    width: "1rem",
+                  }}
+                  src={clearFilter}
+                  alt="clearFilter"
+                />
+              </div>
             </div>
           </div>
         </nav>
@@ -336,19 +346,18 @@ export default class FilterBar extends React.Component {
           <section
             className="
                 filteredResultSummary
-                d-flex justify-content-around align-items-center"
+                d-flex justify-content-center align-items-center"
           >
-            <span className="d-flex flex-column flex-lg-row">
-              <span className="me-5">
+            <span>
+              <span className="me-2">
                 Searched {this.renderFilteredItems()}
                 and found:
               </span>
-              <span className="d-flex flex-column flex-lg-row">
-                <span className="me-5">
-                  map ({this.props.mapDataLength} results)
-                </span>
-                <span>calendar ({this.props.dataLength} results)</span>
+
+              <span className="me-5">
+                map ({this.props.mapDataLength} results)
               </span>
+              <span>calendar ({this.props.dataLength} results)</span>
             </span>
 
             {/* sort and clear filter button */}
@@ -370,17 +379,6 @@ export default class FilterBar extends React.Component {
                   <li>date</li>
                 </ul>
               </span>
-
-              <div className="clearFilterBtn" onClick={this.resetFilter}>
-                clear filters
-                <img
-                  style={{
-                    width: "1rem",
-                  }}
-                  src={clearFilter}
-                  alt="clearFilter"
-                />
-              </div>
             </span>
           </section>
         ) : null}
