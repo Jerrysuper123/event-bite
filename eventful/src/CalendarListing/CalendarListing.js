@@ -1,11 +1,16 @@
 import React, { useState, useRef } from "react";
 import "./style.css";
-import Footer from "../Footer/Footer";
-//import calendar and its styles
 import Kalend, { CalendarView } from "kalend";
 import "kalend/dist/styles/index.css";
+import { setOptions } from "leaflet";
+import { useEffect } from "react";
 
 export default function CalendarListing(props) {
+  // const [eventData, setEventData] = useState([]);
+  // useEffect(() => {
+  //   setEventData(props.data);
+  // }, [props.data]);
+
   let events = props.data.map((e) => {
     return {
       id: e._id,
@@ -16,19 +21,38 @@ export default function CalendarListing(props) {
       summary: `${e.organizer} - ${e.title}`,
       // make this calendar event and event card color dynamic to brandColor chosen
       color: e.brandColor,
+      summary: e.descriptionSummary,
+      description: e.description,
+      title: e.title,
+      category: e.category,
+      eventImage: e.eventImage,
+      hashtags: e.hashtags,
+      organizer: e.organizer,
+      address: e.address,
+      postalCode: e.postalCode,
+      reviews: e.reviews,
     };
   });
+
+  // const filterEventData = (dataId) => {
+  //   let clickedEvent = props.data.filter((e) => e._id === dataId);
+  //   console.log(clickedEvent);
+  //   // setOneEventDetails(clickedEvent[0]);
+  //   // modalBtnElement.current.click();
+  // };
+
+  const handleEventClick = (data) => {
+    //get the event details where the event._id is the same as the calendar event.id
+    // event.preventDefault();
+    console.log("clicked event");
+    console.log(data);
+    setOneEventDetails(data);
+    modalBtnElement.current.click();
+  };
 
   const [oneEventDetails, setOneEventDetails] = useState({});
   //ref to the button
   const modalBtnElement = useRef(null);
-
-  const onEventClick = (data) => {
-    //get the event details where the event._id is the same as the calendar event.id
-    let clickedEvent = props.data.filter((e) => e._id === data.id);
-    setOneEventDetails(clickedEvent[0]);
-    modalBtnElement.current.click();
-  };
 
   return (
     <div
@@ -38,7 +62,7 @@ export default function CalendarListing(props) {
         display: props.display,
       }}
     >
-      <section className="container-fluid calendarBg pt-5 pb-4 shadow border">
+      <section className="container-fluid calendarBg pt-4 pb-4 shadow border">
         {/* <div className="d-lg-flex"> */}
         {/* <aside
             className="
@@ -56,7 +80,14 @@ export default function CalendarListing(props) {
             <h1>7:30 pm Thur, Mar 22 2022</h1>
             <i className="fa-solid fa-cloud-sun"></i>
           </aside> */}
-
+        <h2
+          className="text-center text-light pb-3"
+          style={{
+            fontStyle: "italic",
+          }}
+        >
+          Clicking on the event below to check out its details
+        </h2>
         <section
           className="
           calendar shadow-lg"
@@ -68,7 +99,7 @@ export default function CalendarListing(props) {
               baseColor: "#e27d60",
               inverseBaseColor: "#f2ecec",
             }}
-            onEventClick={onEventClick}
+            onEventClick={handleEventClick}
             // onNewEventClick={onNewEventClick}
             events={events}
             initialDate={new Date().toISOString()}
@@ -120,17 +151,14 @@ export default function CalendarListing(props) {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">...</div>
+            <div className="modal-body">this is event details page</div>
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="customBtn customBtnAccentThree"
                 data-bs-dismiss="modal"
               >
                 Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
               </button>
             </div>
           </div>

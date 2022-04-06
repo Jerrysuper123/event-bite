@@ -84,7 +84,31 @@ export default class FilterBar extends React.Component {
   };
 
   resetFilter = () => {
+    this.setState({
+      earchString: "",
+      searchEventStartDate: "",
+      searchCategories: [],
+      searchHashtags: [],
+    });
     this.props.getAllEventsFromAPI();
+  };
+
+  renderFilteredItems = () => {
+    return (
+      <React.Fragment>
+        <span
+          className="
+        searchedItems"
+        >
+          {this.state.searchString.slice(0, 5)}{" "}
+        </span>
+        <span className="searchedItems">{this.state.searchCategories[0]} </span>
+        <span className="searchedItems"> {this.state.searchHashtags[0]} </span>
+        <span className="searchedItems">
+          {this.state.searchEventStartDate}{" "}
+        </span>
+      </React.Fragment>
+    );
   };
 
   render() {
@@ -253,20 +277,7 @@ export default class FilterBar extends React.Component {
         >
           <span className="d-flex flex-column flex-lg-row">
             <span className="me-5">
-              Searched
-              <span className="mx-1 searchedItems">
-                {this.state.searchString.slice(0, 5)}
-              </span>
-              <span className="me-1 searchedItems">
-                {this.state.searchCategories[0]}
-              </span>
-              <span className="me-1 searchedItems">
-                {" "}
-                {this.state.searchHashtags[0]}
-              </span>
-              <span className="me-1 searchedItems">
-                {this.state.searchEventStartDate}
-              </span>
+              Searched {this.renderFilteredItems()}
               and found:
             </span>
             <span className="d-flex flex-column flex-lg-row">

@@ -108,11 +108,11 @@ export default function EventDetailsPage(props) {
               <h6>Tags</h6>
             </div>
 
-            <div className="mt-4 ms-3 tagContainer d-flex flex-md-column flex-sm-column flex-lg-row">
+            <div className="tagContainer">
               {props.data.hashtags
-                ? props.data.hashtags.map((tag) => {
+                ? props.data.hashtags.map((tag, index) => {
                     return (
-                      <span key={props.data._id} className="tagStyle">
+                      <span key={index} className="tagStyle">
                         {tag}
                       </span>
                     );

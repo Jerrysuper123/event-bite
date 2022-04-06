@@ -32,3 +32,10 @@ i {
     border: 1px solid rgb(194, 194, 194);
     color: rgb(71, 65, 85);
 }
+
+.tagContainer {
+    overflow-x: auto;
+    height: 3rem;
+    width: 100%;
+    scrollbar-width: none !important;
+}
