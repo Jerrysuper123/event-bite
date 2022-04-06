@@ -29,7 +29,7 @@ export default function FeedbackForm(props) {
     }
 
     clone["reviews"].push({
-      _id: Math.floor(Math.random() * 1000),
+      _id: Math.floor(Math.random() * 1000000),
       name: nameValue,
       rating: ratingValue,
       feedback: feedbackValue,
@@ -40,7 +40,7 @@ export default function FeedbackForm(props) {
   };
 
   const validateInputFields = () => {
-    if (ratingValue !== "" && nameValue !== "") {
+    if (ratingValue !== null && nameValue !== "" && feedbackValue !== "") {
       return true;
     }
   };
@@ -80,7 +80,7 @@ export default function FeedbackForm(props) {
         console.log(e);
       }
     } else {
-      setValidError("Your name and feedback fields are required.");
+      setValidError("Your name, rating and feedback fields are required.");
     }
   };
 
