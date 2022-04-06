@@ -21,6 +21,7 @@
 
 .calendarBg {
     background-color: #c38d9e;
+    border-radius: 0.5rem;
 }
 
 @media (min-width: 992px) {

@@ -12,10 +12,31 @@ export default class FilterBar extends React.Component {
     filterTags: [],
     dateTimeFilter: "",
 
+    // search parameters from user
     searchString: "",
     searchEventStartDate: "",
     searchCategories: [],
     searchHashtags: [],
+
+    //Fiter on or not
+    filterOn: false,
+  };
+
+  switchFilterOnOff = () => {
+    if (
+      this.state.searchString !== "" ||
+      this.state.searchEventStartDate !== "" ||
+      this.state.searchCategories !== "" ||
+      this.state.searchHashtags !== ""
+    ) {
+      this.setState({
+        filterOn: true,
+      });
+    } else {
+      this.setState({
+        filterOn: false,
+      });
+    }
   };
 
   componentDidMount = async () => {
@@ -270,56 +291,61 @@ export default class FilterBar extends React.Component {
           </div>
         </nav>
         {/* filtered results summary */}
-        <section
-          className="
-        filteredResultSummary
-        d-flex justify-content-around align-items-center"
-        >
-          <span className="d-flex flex-column flex-lg-row">
-            <span className="me-5">
-              Searched {this.renderFilteredItems()}
-              and found:
-            </span>
+        {this.state.searchString !== "" ||
+        this.state.searchEventStartDate !== "" ||
+        this.state.searchCategories.length !== 0 ||
+        this.state.searchHashtags.length !== 0 ? (
+          <section
+            className="
+                filteredResultSummary
+                d-flex justify-content-around align-items-center"
+          >
             <span className="d-flex flex-column flex-lg-row">
               <span className="me-5">
-                map ({this.props.mapDataLength} results)
+                Searched {this.renderFilteredItems()}
+                and found:
               </span>
-              <span>calendar ({this.props.dataLength} results)</span>
-            </span>
-          </span>
-
-          {/* sort and clear filter button */}
-          <span className="d-flex align-items-center flex-column flex-lg-row">
-            <span className="nav-item dropdown">
-              {/* not gonna built sort currently */}
-              {/* <span
-                className="nav-link dropdown-toggle sortBtn"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                sort
-              </span> */}
-              {/* this only shows up on map */}
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>title</li>
-                <li>date</li>
-              </ul>
+              <span className="d-flex flex-column flex-lg-row">
+                <span className="me-5">
+                  map ({this.props.mapDataLength} results)
+                </span>
+                <span>calendar ({this.props.dataLength} results)</span>
+              </span>
             </span>
 
-            <div className="clearFilterBtn" onClick={this.resetFilter}>
-              clear filters
-              <img
-                style={{
-                  width: "1rem",
-                }}
-                src={clearFilter}
-                alt="clearFilter"
-              />
-            </div>
-          </span>
-        </section>
+            {/* sort and clear filter button */}
+            <span className="d-flex align-items-center flex-column flex-lg-row">
+              <span className="nav-item dropdown">
+                {/* not gonna built sort currently */}
+                {/* <span
+                        className="nav-link dropdown-toggle sortBtn"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        sort
+                      </span> */}
+                {/* this only shows up on map */}
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>title</li>
+                  <li>date</li>
+                </ul>
+              </span>
+
+              <div className="clearFilterBtn" onClick={this.resetFilter}>
+                clear filters
+                <img
+                  style={{
+                    width: "1rem",
+                  }}
+                  src={clearFilter}
+                  alt="clearFilter"
+                />
+              </div>
+            </span>
+          </section>
+        ) : null}
       </React.Fragment>
     );
   }
