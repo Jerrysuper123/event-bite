@@ -2,7 +2,7 @@ import "./style.css";
 import DisplayFeedback from "./DisplayFeedback.js/DisplayFeedback";
 import FeedbackForm from "./FeedbackForm.js/FeedbackForm";
 import React from "react";
-import { convertDateString } from "../../Utility";
+import ModalBody from "./FeedbackForm.js/ModalBody.js/ModalBody";
 
 export default function EventDetailsPage(props) {
   const [submitState, setSubmitState] = React.useState(false);
@@ -23,13 +23,17 @@ export default function EventDetailsPage(props) {
         <div className="modal-content">
           <button
             type="button"
-            className="btn-close ms-auto"
+            className="btn-close ms-auto btn-close-white me-1"
             data-bs-dismiss="modal"
             aria-label="Close"
             onClick={resetReviewForm}
           ></button>
 
-          <img src={props.data.eventImage} alt={props.data.title} />
+          <img
+            className="modalImg"
+            src={props.data.eventImage}
+            alt={props.data.title}
+          />
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
               {props.data.title}
@@ -37,7 +41,8 @@ export default function EventDetailsPage(props) {
           </div>
 
           <div className="modal-body">
-            <div className="d-flex">
+            <ModalBody data={props.data} />
+            {/* <div className="d-flex">
               <i class="fa-solid fa-hourglass-start me-3"></i>
               <div>
                 <h6>Category</h6>
@@ -128,7 +133,7 @@ export default function EventDetailsPage(props) {
                 <i class="fa-brands fa-twitter"></i>
                 <i class="fa-brands fa-facebook-f"></i>
               </div>
-            </div>
+            </div> */}
 
             {/* display reviews */}
             <section>

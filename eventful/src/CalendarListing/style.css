@@ -34,3 +34,15 @@
       }
      */
 }
+
+.modal-footer {
+    border-top: none !important;
+}
+
+.modalImg {
+    margin-top: -1.5rem;
+}
+
+.closeBtnModal {
+    color: white !important;
+}

@@ -2,8 +2,7 @@ import React, { useState, useRef } from "react";
 import "./style.css";
 import Kalend, { CalendarView } from "kalend";
 import "kalend/dist/styles/index.css";
-import { setOptions } from "leaflet";
-import { useEffect } from "react";
+import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm.js/ModalBody.js/ModalBody";
 
 export default function CalendarListing(props) {
   // const [eventData, setEventData] = useState([]);
@@ -21,7 +20,8 @@ export default function CalendarListing(props) {
       summary: `${e.organizer} - ${e.title}`,
       // make this calendar event and event card color dynamic to brandColor chosen
       color: e.brandColor,
-      summary: e.descriptionSummary,
+
+      descriptionSummary: e.descriptionSummary,
       description: e.description,
       title: e.title,
       category: e.category,
@@ -31,6 +31,8 @@ export default function CalendarListing(props) {
       address: e.address,
       postalCode: e.postalCode,
       reviews: e.reviews,
+      startDateTime: e.startDateTime,
+      endDateTime: e.endDateTime,
     };
   });
 
@@ -140,18 +142,27 @@ export default function CalendarListing(props) {
       >
         <div className="modal-dialog">
           <div className="modal-content">
+            <button
+              type="button"
+              className="btn-close ms-auto btn-close-white me-1"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+            <img
+              className="modalImg"
+              src={
+                oneEventDetails.eventImage ? oneEventDetails.eventImage : null
+              }
+              alt={oneEventDetails.title}
+            />
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 {oneEventDetails.title ? oneEventDetails.title : "sample title"}
               </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
             </div>
-            <div className="modal-body">this is event details page</div>
+            <div className="modal-body">
+              <ModalBody data={oneEventDetails ? oneEventDetails : null} />
+            </div>
             <div className="modal-footer">
               <button
                 type="button"
