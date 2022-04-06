@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";
 import "./style.css";
-import Draggable from "react-draggable";
-import DisplayRealTime from "./DisplayRealTime/DisplayRealTime";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { convertDateString } from "../Utility";
 import "leaflet-routing-machine";
@@ -187,7 +185,7 @@ export default function MapListing(props) {
     setOneEventDetails(oneEvent);
   };
 
-  const moreInfoBtnRef = React.useRef(null);
+  // const moreInfoBtnRef = React.useRef(null);
 
   //custom marker
   function createCustomMarkerIcon(imageUrl) {
@@ -212,13 +210,19 @@ export default function MapListing(props) {
   const renderHideShowBtn = () => {
     if (eventListState === "hide") {
       return (
-        <span onClick={() => setEventListState("show")}>
+        <span
+          className="hideShowEventList"
+          onClick={() => setEventListState("show")}
+        >
           show<i className="fa-solid fa-angle-down"></i>
         </span>
       );
     } else if (eventListState === "show") {
       return (
-        <span onClick={() => setEventListState("hide")}>
+        <span
+          className="hideShowEventList"
+          onClick={() => setEventListState("hide")}
+        >
           hide<i className="fa-solid fa-angle-up"></i>
         </span>
       );
@@ -236,9 +240,11 @@ export default function MapListing(props) {
         <span class="tooltiptext">Tooltip text</span>
       </div> */}
       <EventDetailsPage
-        moreInfoBtnRef={moreInfoBtnRef}
+        // moreInfoBtnRef={moreInfoBtnRef}
         data={oneEventDetails ? oneEventDetails : {}}
         getAllEventsFromAPI={props.getAllEventsFromAPI}
+        setOneEventDetails={setOneEventDetails}
+        oneEventDetails={oneEventDetails}
       />
 
       <div className="mapEventListContainer">
@@ -318,7 +324,7 @@ export default function MapListing(props) {
               return (
                 <div className="eventListCard ms-1">
                   <EventCard
-                    moreInfoBtnRef={moreInfoBtnRef}
+                    // moreInfoBtnRef={moreInfoBtnRef}
                     eachEvent={eachEvent}
                     setOneEvent={setOneEvent}
                     showRouter={showRouter}

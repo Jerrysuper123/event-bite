@@ -90,9 +90,10 @@
   color: white;
 }
 
-.weatherIcon {
-  color: white;
-  font-size: 0.7rem;
+.hideShowEventList:hover {
+  background-color: rgba(179, 112, 133, 0.7);
+  border-radius: 2rem;
+  padding: 0.3rem 0.7rem;
 }
 
 /* tool tip */

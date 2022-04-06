@@ -20,6 +20,16 @@ export default function FeedbackForm(props) {
     setFeedback(event.target.value);
   };
 
+  const setReviews = () => {
+    // below push new review into the state
+    props.oneEventDetails.reviews.push({
+      _id: Math.floor(Math.random() * 1000),
+      name: nameValue,
+      rating: ratingValue,
+      feedback: feedbackValue,
+    });
+  };
+
   const validateInputFields = () => {
     if (ratingValue !== "" && nameValue !== "") {
       return true;
@@ -44,11 +54,14 @@ export default function FeedbackForm(props) {
         //display "Thank you for submitting your feedback, when user click submit"
         props.setSubmitState(true);
 
+        //reset state of reviews, so that users can review being updated;
+        setReviews();
+
         //this calls all events again from app.js and trickle down here
         await props.getAllEventsFromAPI();
 
         // trying to get click more info again
-        props.moreInfoBtnRef.current.click();
+        // props.moreInfoBtnRef.current.click();
       } catch (e) {
         console.log(e);
       }
