@@ -46,6 +46,9 @@ export default function FeedbackForm(props) {
 
         //this calls all events again from app.js and trickle down here
         await props.getAllEventsFromAPI();
+
+        // trying to get click more info again
+        props.moreInfoBtnRef.current.click();
       } catch (e) {
         console.log(e);
       }

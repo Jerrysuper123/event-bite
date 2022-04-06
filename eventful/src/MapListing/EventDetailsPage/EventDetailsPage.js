@@ -149,6 +149,7 @@ export default function EventDetailsPage(props) {
                 </p>
               ) : (
                 <FeedbackForm
+                  moreInfoBtnRef={props.moreInfoBtnRef}
                   data={props.data}
                   getAllEventsFromAPI={props.getAllEventsFromAPI}
                   setSubmitState={setSubmitState}

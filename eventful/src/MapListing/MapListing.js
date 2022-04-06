@@ -101,6 +101,7 @@ export default function MapListing(props) {
 
 `;
   };
+
   // console.log("end", end);
   // Ref for our routing machine instace:
   const RoutingMachineRef = useRef(null);
@@ -186,6 +187,8 @@ export default function MapListing(props) {
     setOneEventDetails(oneEvent);
   };
 
+  const moreInfoBtnRef = React.useRef(null);
+
   //custom marker
   function createCustomMarkerIcon(imageUrl) {
     //customized pharmacy location marker
@@ -233,6 +236,7 @@ export default function MapListing(props) {
         <span class="tooltiptext">Tooltip text</span>
       </div> */}
       <EventDetailsPage
+        moreInfoBtnRef={moreInfoBtnRef}
         data={oneEventDetails ? oneEventDetails : {}}
         getAllEventsFromAPI={props.getAllEventsFromAPI}
       />
@@ -314,6 +318,7 @@ export default function MapListing(props) {
               return (
                 <div className="eventListCard ms-1">
                   <EventCard
+                    moreInfoBtnRef={moreInfoBtnRef}
                     eachEvent={eachEvent}
                     setOneEvent={setOneEvent}
                     showRouter={showRouter}

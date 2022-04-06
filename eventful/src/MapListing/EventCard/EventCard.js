@@ -1,6 +1,6 @@
 import "./style.css";
+import React from "react";
 import { convertDateString } from "../../Utility";
-import { useEffect } from "react";
 
 export default function EventCard(props) {
   const setEvent = () => {
@@ -66,6 +66,7 @@ export default function EventCard(props) {
             data-bs-toggle="modal"
             // moreInfoModel
             data-bs-target="#moreInfoModel"
+            ref={props.moreInfoBtnRef}
             onClick={() => {
               setEvent();
             }}
