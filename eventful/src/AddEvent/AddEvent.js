@@ -822,11 +822,11 @@ export default class AddEvent extends React.Component {
           }}
         >
           <section className="container-fluid mt-4">
-            <div className="row gx-4">
+            <div className="row">
               {/* form navgiation  */}
 
               {/* d-none */}
-              <nav className="d-md-inline-flex shadow formNav col-lg-1 d-flex flex-lg-column justify-content-center justify-content-lg-start align-items-center ">
+              <nav className="pt-lg-3 d-md-inline-flex shadow formNav col-lg-2 d-flex flex-lg-column justify-content-center justify-content-lg-start align-items-center ">
                 <a
                   id="basicInfo"
                   className={
@@ -862,7 +862,7 @@ export default class AddEvent extends React.Component {
 
               {/* render each form page */}
 
-              <div className="mainForm shadow col-lg-6 p-5">
+              <div className="mainForm shadow col-lg-5 p-5">
                 <section className="d-flex align-items-center mb-4">
                   <h1>
                     {this.state.editedId === ""

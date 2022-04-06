@@ -68,6 +68,10 @@ select {
     .formNav {
         border: none;
     }
+
+    .formNav a {
+        width: 12rem !important;
+    }
 }
 
 .formNav a {
