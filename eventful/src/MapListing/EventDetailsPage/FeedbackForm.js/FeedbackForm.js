@@ -22,12 +22,15 @@ export default function FeedbackForm(props) {
 
   const setReviews = () => {
     // below push new review into the state
-    props.oneEventDetails.reviews.push({
+    let clone = { ...props.oneEventDetails };
+    clone.reviews.push({
       _id: Math.floor(Math.random() * 1000),
       name: nameValue,
       rating: ratingValue,
       feedback: feedbackValue,
     });
+
+    props.setOneEventDetails(clone);
   };
 
   const validateInputFields = () => {

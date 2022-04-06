@@ -154,6 +154,7 @@ export default function EventDetailsPage(props) {
                 </p>
               ) : (
                 <FeedbackForm
+                  setOneEventDetails={props.setOneEventDetails}
                   oneEventDetails={props.oneEventDetails}
                   data={props.data}
                   getAllEventsFromAPI={props.getAllEventsFromAPI}
