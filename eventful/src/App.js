@@ -122,37 +122,17 @@ class App extends React.Component {
     }
   };
 
-  allInSearchSample = async () => {
-    try {
-      let response = await axios.get(`${BASE_API_URL}/events`, {
-        params: {
-          searchTags: ["art", "music", "party"],
-          searchCategories: [],
-          startDateTime: "2022-04-07",
-          search: "face",
-        },
-      });
-      console.log("allInsearch filtered", response.data.data);
-      this.setState({
-        data: [...response.data.data],
-      });
-      this.FilterMapData(response.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   allInSearch = async (tagsArray, searchCatArray, startDateTime, searchStr) => {
     try {
       let response = await axios.get(`${BASE_API_URL}/events`, {
         params: {
-          searchTags: ["health", "music"],
-          searchCategories: [],
-          startDateTime: "2022-04-06",
-          search: "",
+          searchTags: tagsArray,
+          searchCategories: searchCatArray,
+          startDateTime: startDateTime,
+          search: searchStr,
         },
       });
-      console.log("allInsearch filtered", response.data.data);
+      // console.log("allInsearch filtered", response.data.data);
       this.setState({
         data: [...response.data.data],
       });
@@ -188,10 +168,6 @@ class App extends React.Component {
         this.state.active === "addNew" ? null : (
           <FilterBar
             allInSearch={this.allInSearch}
-            searchEvent={this.searchEvent}
-            searchByDate={this.searchByDate}
-            searchTags={this.searchTags}
-            searchCategories={this.searchCategories}
             dataLength={this.state.data.length}
             mapDataLength={this.state.mapData.length}
             getAllEventsFromAPI={this.getAllEventsFromAPI}

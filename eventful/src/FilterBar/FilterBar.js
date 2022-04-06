@@ -84,6 +84,7 @@ export default class FilterBar extends React.Component {
     await this.setState({
       [e.target.name]: e.target.value,
     });
+    console.log(this.state.searchEventStartDate);
     await this.props.allInSearch(
       this.state.searchHashtags,
       this.state.searchCategories,
