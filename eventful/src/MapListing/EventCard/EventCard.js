@@ -12,9 +12,9 @@ export default function EventCard(props) {
     props.showRouter(props.eachEvent);
   };
 
-  useEffect(() => {
-    setEvent();
-  }, [props.eachEvent]);
+  // useEffect(() => {
+  //   setEvent();
+  // }, [props.eachEvent]);
 
   return (
     <div

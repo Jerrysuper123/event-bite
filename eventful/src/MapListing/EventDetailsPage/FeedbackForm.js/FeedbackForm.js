@@ -28,7 +28,7 @@ export default function FeedbackForm(props) {
 
   const postFeedback = async () => {
     if (validateInputFields()) {
-      let eventId = props.eventId;
+      let eventId = props.data._id;
       try {
         let response = await axios.put(
           `${BASE_API_URL}/events/${eventId}/reviews/create`,
@@ -41,8 +41,10 @@ export default function FeedbackForm(props) {
         setName("");
         setRating(2);
         setFeedback("");
-        // console.log(response);
+        //display "Thank you for submitting your feedback, when user click submit"
         props.setSubmitState(true);
+
+        //this calls all events again from app.js and trickle down here
         await props.getAllEventsFromAPI();
       } catch (e) {
         console.log(e);

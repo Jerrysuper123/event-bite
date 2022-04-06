@@ -149,7 +149,7 @@ export default function EventDetailsPage(props) {
                 </p>
               ) : (
                 <FeedbackForm
-                  eventId={props.data._id}
+                  data={props.data}
                   getAllEventsFromAPI={props.getAllEventsFromAPI}
                   setSubmitState={setSubmitState}
                 />
