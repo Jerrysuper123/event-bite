@@ -74,9 +74,16 @@
 }
 
 .filteredResultSummary {
+    /* position: sticky;
+    top: 20rem; */
+    position: sticky;
+    z-index: 3;
+    top: 6.5rem;
     font-size: 0.9rem;
+    text-align: center;
     color: #1f1f1f !important;
     text-decoration: none;
+    background-color: white;
 }
 
 .sortBtn {

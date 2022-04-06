@@ -253,7 +253,7 @@ export default function MapListing(props) {
           zoom={13}
           style={{
             width: "100%",
-            height: "900px",
+            height: "89vh",
             zIndex: 0,
           }}
           id="my-leaflet-map"

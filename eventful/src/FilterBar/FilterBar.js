@@ -349,16 +349,20 @@ export default class FilterBar extends React.Component {
                 filteredResultSummary
                 d-flex justify-content-center align-items-center"
           >
-            <span>
-              <span className="me-2">
+            <span className="d-flex flex-column flex-sm-row">
+              <span>
                 Searched {this.renderFilteredItems()}
                 and found:
               </span>
 
-              <span className="me-5">
-                map ({this.props.mapDataLength} results)
+              <span>
+                <span className="ms-1">
+                  map ({this.props.mapDataLength} results)
+                </span>
+                <span className="ms-1">
+                  calendar ({this.props.dataLength} results)
+                </span>
               </span>
-              <span>calendar ({this.props.dataLength} results)</span>
             </span>
 
             {/* sort and clear filter button */}
