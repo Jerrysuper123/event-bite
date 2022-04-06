@@ -26,8 +26,8 @@ export default class FilterBar extends React.Component {
     if (
       this.state.searchString !== "" ||
       this.state.searchEventStartDate !== "" ||
-      this.state.searchCategories !== "" ||
-      this.state.searchHashtags !== ""
+      this.state.searchCategories.length !== 0 ||
+      this.state.searchHashtags.length !== 0
     ) {
       this.setState({
         filterOn: true,
@@ -63,16 +63,33 @@ export default class FilterBar extends React.Component {
     });
   };
 
+  // searchString: "",
+  // searchEventStartDate: "",
+  // searchCategories: [],
+  // searchHashtags: [],
   searchEventByString = async (e) => {
     await this.updateFormField(e);
-    setTimeout(this.props.searchEvent(this.state.searchString), 500);
+    setTimeout(
+      this.props.allInSearch(
+        this.state.searchHashtags,
+        this.state.searchCategories,
+        this.state.searchEventStartDate,
+        this.state.searchString
+      ),
+      1
+    );
   };
 
   updateFormFieldAndSearchByDate = async (e) => {
     await this.setState({
       [e.target.name]: e.target.value,
     });
-    await this.props.searchByDate(this.state.searchEventStartDate);
+    await this.props.allInSearch(
+      this.state.searchHashtags,
+      this.state.searchCategories,
+      this.state.searchEventStartDate,
+      this.state.searchString
+    );
   };
 
   processCheckbox = (e) => {
@@ -95,13 +112,23 @@ export default class FilterBar extends React.Component {
   processCheckboxAndGetCats = async (e) => {
     /*we have to put await here to update the checkbox before the api call */
     await this.processCheckbox(e);
-    await this.props.searchCategories(this.state.searchCategories);
+    await this.props.allInSearch(
+      this.state.searchHashtags,
+      this.state.searchCategories,
+      this.state.searchEventStartDate,
+      this.state.searchString
+    );
   };
 
   processCheckboxAndGetTags = async (e) => {
     /*we have to put await here to update the checkbox before the api call */
     await this.processCheckbox(e);
-    await this.props.searchTags(this.state.searchHashtags);
+    await this.props.allInSearch(
+      this.state.searchHashtags,
+      this.state.searchCategories,
+      this.state.searchEventStartDate,
+      this.state.searchString
+    );
   };
 
   resetFilter = () => {
@@ -184,13 +211,16 @@ export default class FilterBar extends React.Component {
                               <input
                                 type="checkbox"
                                 name="searchCategories"
+                                id={cat}
                                 value={cat}
                                 checked={this.state.searchCategories.includes(
                                   cat
                                 )}
                                 onChange={this.processCheckboxAndGetCats}
                               />
-                              <label>{cat}</label>
+                              <label className="ms-1" for={cat}>
+                                {cat}
+                              </label>
                             </a>
                           </li>
                         </React.Fragment>
@@ -221,6 +251,7 @@ export default class FilterBar extends React.Component {
                             <a className="dropdown-item" href="#">
                               <input
                                 type="checkbox"
+                                id={tag}
                                 name="searchHashtags"
                                 value={tag}
                                 checked={this.state.searchHashtags.includes(
@@ -228,7 +259,9 @@ export default class FilterBar extends React.Component {
                                 )}
                                 onChange={this.processCheckboxAndGetTags}
                               />
-                              <label>{tag}</label>
+                              <label className="ms-1" for={tag}>
+                                {tag}
+                              </label>
                             </a>
                           </li>
                         </React.Fragment>
