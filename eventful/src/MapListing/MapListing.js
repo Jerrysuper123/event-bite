@@ -178,6 +178,23 @@ export default function MapListing(props) {
     // remove dependancy on routingMachine, just depends router to change from true to false
   }, [router]);
 
+  //for user current location pop up
+  const [refReady, setRefReady] = useState(false);
+  let popupRef = useRef();
+
+  useEffect(() => {
+    if (!map) {
+      return;
+    }
+
+    map.setZoom(18).flyTo(start);
+    let pop2 = L.popup()
+      .setLatLng(start)
+      .setContent(`<h3 class="primaryColor">You are here!</h3>`)
+      .openOn(map);
+    // map.setView(start, 20);
+  }, [start]);
+
   const [oneEventDetails, setOneEventDetails] = useState(null);
 
   const setOneEvent = (oneEvent) => {
@@ -268,6 +285,14 @@ export default function MapListing(props) {
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
             // id="mapbox/dark-v10"
           />
+
+          {/* user current location marker */}
+          {start.length === 2 ? (
+            <Marker
+              position={start}
+              icon={createCustomMarkerIcon(userLocationMarker)}
+            ></Marker>
+          ) : null}
 
           {props.data.map((eachEvent) => {
             return (
