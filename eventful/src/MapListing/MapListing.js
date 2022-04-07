@@ -32,6 +32,27 @@ export default function MapListing(props) {
   //state to manage our routing machine instance:
   const [routingMachine, setRoutingMachine] = useState(null);
 
+  //return error message if unable to get user's location
+  const error = (err) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+    alert(
+      `Please allow us to access your location to find the events near you!
+
+      On your Mac：
+      1）choose Apple menu > System Preferences, click Security & Privacy, then click Privacy. 
+      2）Click Location Services. 
+      3）If the lock at the bottom left is locked, click it to unlock the preference pane. 
+      4）Select the checkbox next to an app to allow it to use Location Services.
+
+      For the new Microsoft Edge:
+      1）Go to Start > Settings > Privacy > Location.
+      2）Turn on Allow access to location on this device.
+      3）Turn on Allow apps to access your location.
+      4）Turn on Allow desktop apps to access your location if present.
+      `
+    );
+  };
+
   const getUserLocation = () => {
     // must use arrow function inside getCurrentPosition in order to acess this.setState
     navigator.geolocation.getCurrentPosition((position) => {
@@ -40,7 +61,7 @@ export default function MapListing(props) {
       let lat = position.coords.latitude;
       let lng = position.coords.longitude;
       setStart([lat, lng]);
-    });
+    }, error);
   };
 
   useEffect(() => {
