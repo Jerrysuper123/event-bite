@@ -221,7 +221,7 @@ export default class FilterBar extends React.Component {
                                 )}
                                 onChange={this.processCheckboxAndGetCats}
                               />
-                              <label className="ms-1" for={cat}>
+                              <label className="ms-1" htmlFor={cat}>
                                 {cat}
                               </label>
                             </a>
@@ -262,7 +262,7 @@ export default class FilterBar extends React.Component {
                                 )}
                                 onChange={this.processCheckboxAndGetTags}
                               />
-                              <label className="ms-1" for={tag}>
+                              <label className="ms-1" htmlFor={tag}>
                                 {tag}
                               </label>
                             </a>
