@@ -82,6 +82,15 @@
   display: none;
 }
 
+@media (min-width: 992px) {
+  .leaflet-routing-container {
+    display: block;
+    width: 15rem !important;
+    background-color: rgba(254, 214, 227, 0.8) !important;
+    /* height: 10rem !important; */
+  }
+}
+
 .hideShowEvents {
   font-size: 0.7rem;
   color: white !important;
