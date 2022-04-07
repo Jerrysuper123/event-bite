@@ -145,8 +145,7 @@ class App extends React.Component {
           </div>
         </section>
         <NavBar setActive={this.setActive} />
-        {this.state.active === "landing" ||
-        this.state.active === "addNew" ? null : (
+        {this.state.active === "landing" ? null : (
           <FilterBar
             allInSearch={this.allInSearch}
             dataLength={this.state.data.length}

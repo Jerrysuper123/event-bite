@@ -8,7 +8,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm.js/ModalBody.js/ModalBody";
-
+import PostalCodeMap from "./PostalCodeMap/PostalCodeMap";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -616,6 +616,11 @@ export default class AddEvent extends React.Component {
                   <iframe src={this.state.mapUrlPath}></iframe>
                 </div>
               ) : null} */}
+              <section>
+                {this.state.latLng.length === 2 ? (
+                  <PostalCodeMap latLng={this.state.latLng} />
+                ) : null}
+              </section>
 
               <p>Help people to know where to show up for your event</p>
             </div>
