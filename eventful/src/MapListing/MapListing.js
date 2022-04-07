@@ -303,7 +303,16 @@ export default function MapListing(props) {
             height: eventListState === "hide" ? "6.5rem" : "100%",
           }}
         >
-          <h2 className="text-light text-light mt-4">
+          <span
+            style={{
+              fontSize: "0.8rem",
+              fontWeight: "600",
+            }}
+            className="text-light ms-auto me-2"
+          >
+            {props.data.length} results
+          </span>
+          <h2 className="text-light text-light">
             {props.userFilteredDate ? (
               props.userFilteredDate
             ) : (
@@ -316,7 +325,7 @@ export default function MapListing(props) {
             style={{
               fontSize: "1.3em",
             }}
-            className="hideShowEvents ms-2 mb-2"
+            className="hideShowEvents"
           >
             {renderHideShowBtn()}
           </div>
