@@ -522,8 +522,8 @@ export default class AddEvent extends React.Component {
               name="category"
               onChange={this.updateFormField}
             >
-              {this.state.formCategories.map((cat) => {
-                return <option>{cat}</option>;
+              {this.state.formCategories.map((cat, index) => {
+                return <option key={index}>{cat}</option>;
               })}
             </select>
             <p className="validationColor">{this.state.validateCatError}</p>
@@ -532,7 +532,7 @@ export default class AddEvent extends React.Component {
           <div>
             <label className="mb-3">Tags:</label>
             {/* material UI autocomplete has map key errors in react */}
-            {/* <Autocomplete
+            <Autocomplete
               multiple
               id="checkboxes-tags-demo"
               options={this.state.formHashtags}
@@ -561,15 +561,16 @@ export default class AddEvent extends React.Component {
                   placeholder="more..."
                 />
               )}
-            /> */}
+            />
 
             {/* <CheckboxesTags /> */}
 
-            <div>
+            {/* basic HTML checkboxes */}
+            {/* <div>
               {this.state.formHashtags
                 ? this.state.formHashtags.map((tag, index) => {
                     return (
-                      <React.Fragment key={tag}>
+                      <React.Fragment key={index}>
                         <span className="ms-2">
                           <input
                             id={tag + index}
@@ -590,7 +591,7 @@ export default class AddEvent extends React.Component {
                     );
                   })
                 : null}
-            </div>
+            </div> */}
 
             <p>
               Improve discoverability by adding tags relevant to subject matter
