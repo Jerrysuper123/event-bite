@@ -77,9 +77,20 @@ class App extends React.Component {
   getTodayDateLocalTime = () => {
     let date = new Date();
     let year = date.getFullYear();
+    //Jan is index 0, so plus 1 for getMonth()
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    return `${year}-0${month}-0${day}`;
+
+    // we are using date string to filter data, so if the digit is less than 10, we add a 0 in front
+    if (month < 10) {
+      month = "0" + month;
+    }
+
+    if (day < 10) {
+      day = "0" + day;
+    }
+
+    return `${year}-${month}-${day}`;
   };
 
   //when app first loaded, create today's date for filter map data
