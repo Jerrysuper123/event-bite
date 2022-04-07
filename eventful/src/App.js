@@ -17,6 +17,7 @@ class App extends React.Component {
     userLocationLatLng: [],
     todayDate: "",
     mapData: [],
+    userFilteredDate: "",
     //to selectbox and dropdown
   };
 
@@ -36,12 +37,26 @@ class App extends React.Component {
   };
 
   // this fitler map's data to one day's events - today or any days user selected
-  FilterMapData = (data) => {
+  // default is today's date, if user chose to filter by date, a different date will be used
+  FilterMapData = (filteredDate) => {
     this.setState({
-      mapData: data.filter(
-        (el) => el.startDateTime.slice(0, 10) === this.state.todayDate
-      ),
+      userFilteredDate: filteredDate,
     });
+    console.log("Filter date", filteredDate);
+
+    if (this.state.userFilteredDate === undefined) {
+      this.setState({
+        mapData: this.state.data.filter(
+          (el) => el.startDateTime.slice(0, 10) === this.state.todayDate
+        ),
+      });
+    } else {
+      this.setState({
+        mapData: this.state.data.filter(
+          (el) => el.startDateTime.slice(0, 10) === this.state.userFilteredDate
+        ),
+      });
+    }
   };
 
   // below get all events from API and filter only 1 day's events to map
@@ -52,16 +67,24 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
-      this.FilterMapData(response.data.data);
+      this.FilterMapData();
     } catch (e) {
       console.log(e);
     }
   };
 
+  getTodayDateLocalTime = () => {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    return `${year}-0${month}-0${day}`;
+  };
+
   //when app first loaded, create today's date for filter map data
   componentDidMount = async () => {
     this.setState({
-      todayDate: new Date().toISOString().slice(0, 10),
+      todayDate: this.getTodayDateLocalTime(),
     });
 
     await this.getAllEventsFromAPI();
@@ -88,7 +111,7 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
-      this.FilterMapData(response.data.data);
+      this.FilterMapData();
     } catch (e) {
       console.log(e);
     }
@@ -105,6 +128,7 @@ class App extends React.Component {
             dataLength={this.state.data.length}
             mapDataLength={this.state.mapData.length}
             getAllEventsFromAPI={this.getAllEventsFromAPI}
+            FilterMapData={this.FilterMapData}
           />
         )}
 
@@ -117,6 +141,11 @@ class App extends React.Component {
           data={this.state.mapData}
           display={this.state.active === "map" ? "block" : "none"}
           getAllEventsFromAPI={this.getAllEventsFromAPI}
+          userFilteredDate={
+            this.state.userFilteredDate === this.state.todayDate
+              ? null
+              : this.state.userFilteredDate
+          }
         />
         <CalendarListing
           data={this.state.data}

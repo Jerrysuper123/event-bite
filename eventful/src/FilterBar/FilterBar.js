@@ -69,7 +69,7 @@ export default class FilterBar extends React.Component {
   // searchHashtags: [],
   searchEventByString = async (e) => {
     await this.updateFormField(e);
-    setTimeout(
+    await setTimeout(
       this.props.allInSearch(
         this.state.searchHashtags,
         this.state.searchCategories,
@@ -84,13 +84,15 @@ export default class FilterBar extends React.Component {
     await this.setState({
       [e.target.name]: e.target.value,
     });
-    console.log(this.state.searchEventStartDate);
+    console.log("search date starts", this.state.searchEventStartDate);
     await this.props.allInSearch(
       this.state.searchHashtags,
       this.state.searchCategories,
       this.state.searchEventStartDate,
       this.state.searchString
     );
+
+    this.props.FilterMapData(e.target.value);
   };
 
   processCheckbox = (e) => {

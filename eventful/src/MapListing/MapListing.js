@@ -303,7 +303,14 @@ export default function MapListing(props) {
             height: eventListState === "hide" ? "6.5rem" : "100%",
           }}
         >
-          <h2 className="text-light text-light mt-4">Today's events</h2>
+          <h2 className="text-light text-light mt-4">
+            {props.userFilteredDate ? (
+              props.userFilteredDate
+            ) : (
+              <span>Today</span>
+            )}
+            's events
+          </h2>
 
           <div
             style={{
