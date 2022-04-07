@@ -214,7 +214,7 @@ export default function LandingPage(props) {
               }}
             >
               Automatically detects your current location and suggests events in
-              vicinity
+              the vicinity
             </h4>
           </section>
           <section className="ms-5">
@@ -325,7 +325,7 @@ export default function LandingPage(props) {
                 fontStyle: "italic",
               }}
             >
-              Publish your events in real-time and attract all guests in
+              Publish your events in real-time and attract all guests in the
               vicinity
             </h4>
           </section>

@@ -819,6 +819,13 @@ export default class AddEvent extends React.Component {
           </section>
         </React.Fragment>
       );
+    } else if (this.state.active === "publish" && this.state.submitted) {
+      return (
+        <section>
+          <h4>You have successfully submitted your request</h4>
+          <p>Thank you!</p>
+        </section>
+      );
     }
   };
 
@@ -888,12 +895,6 @@ export default class AddEvent extends React.Component {
                 </section>
 
                 {this.renderFormPage()}
-                {this.state.submitted ? (
-                  <section>
-                    <h4>You have successfully submitted your request</h4>
-                    <p>Thank you!</p>
-                  </section>
-                ) : null}
               </div>
 
               {/* bootstrap accordian */}
