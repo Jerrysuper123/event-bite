@@ -56,6 +56,7 @@ export default class AddEvent extends React.Component {
     validateEventImageError: "",
     validateSummaryError: "",
     validateDescriptionError: "",
+    submitted: false,
     mapUrlPath:
       "https://maps.google.com/maps?q=1.34771540923723,103.754994802909&hl=es;z=14&amp;output=embed",
   };
@@ -97,6 +98,7 @@ export default class AddEvent extends React.Component {
       validateEventImageError: "",
       validateSummaryError: "",
       validateDescriptionError: "",
+      // submitted: false,
     });
   };
 
@@ -354,12 +356,6 @@ export default class AddEvent extends React.Component {
     }
   };
 
-  getIframeString = () => {
-    let mapString = `https://maps.google.com/maps?q=${this.state.latLng[0]},${this.state.latLng[1]}&hl=es;z=14&amp;output=embed`;
-    console.log(mapString);
-    return mapString;
-  };
-
   postEvent = async () => {
     if (this.state.title !== "" && this.checkAllValidated()) {
       try {
@@ -379,8 +375,9 @@ export default class AddEvent extends React.Component {
           descriptionSummary: this.state.descriptionSummary,
           description: this.state.description,
         });
-        console.log(response);
-        await this.props.getAllEventsFromAPI();
+        // console.log(response);
+        // await this.props.getAllEventsFromAPI();
+        await this.afterUserSubmitted(response);
       } catch (e) {
         console.log(e);
       }
@@ -434,11 +431,22 @@ export default class AddEvent extends React.Component {
             description: this.state.description,
           }
         );
-        await this.props.getAllEventsFromAPI();
+
+        await this.afterUserSubmitted(response);
       } catch (e) {
         console.log(e);
       }
     }
+  };
+
+  afterUserSubmitted = async (response) => {
+    if ((response.status = 200)) {
+      this.setState({
+        submitted: true,
+      });
+    }
+    this.clearAllData();
+    await this.props.getAllEventsFromAPI();
   };
 
   saveToDeletedEvent = (event) => {
@@ -611,11 +619,7 @@ export default class AddEvent extends React.Component {
               <p>
                 {this.state.validationError ? this.state.validationError : null}
               </p>
-              {/* {this.state.latLng.length !== 0 ? (
-                <div>
-                  <iframe src={this.state.mapUrlPath}></iframe>
-                </div>
-              ) : null} */}
+
               <section>
                 {this.state.latLng.length === 2 ? (
                   <PostalCodeMap latLng={this.state.latLng} />
@@ -884,6 +888,12 @@ export default class AddEvent extends React.Component {
                 </section>
 
                 {this.renderFormPage()}
+                {this.state.submitted ? (
+                  <section>
+                    <h4>You have successfully submitted your request</h4>
+                    <p>Thank you!</p>
+                  </section>
+                ) : null}
               </div>
 
               {/* bootstrap accordian */}
@@ -1024,7 +1034,10 @@ export default class AddEvent extends React.Component {
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLabel">
                     Are you sure you want to delete
-                    {this.state.toDeletedEvent.title}?
+                    <span className="ms-1">
+                      {this.state.toDeletedEvent.title}
+                    </span>
+                    ?
                   </h5>
 
                   <button
@@ -1040,14 +1053,8 @@ export default class AddEvent extends React.Component {
                 <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="customBtn customBtnRed"
                     data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
                     onClick={this.deleteEvent}
                   >
                     Confirm delete
