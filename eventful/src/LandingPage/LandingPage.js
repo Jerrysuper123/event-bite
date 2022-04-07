@@ -331,12 +331,12 @@ export default function LandingPage(props) {
           </section>
 
           {/* timeline starts here */}
-          <div class="timeline">
-            <div class="containerTimeline left">
-              <div class="content">
+          <div className="timeline">
+            <div className="containerTimeline left">
+              <div className="content">
                 <section>
                   <h5 className="card-title">
-                    <i class="fa-solid fa-circle-check"></i>
+                    <i className="fa-solid fa-circle-check"></i>
                     <span className="ms-2">Step 1. create event</span>
                   </h5>
                   <div className="card-text">
@@ -358,11 +358,11 @@ export default function LandingPage(props) {
               </div>
             </div>
 
-            <div class="containerTimeline right">
-              <div class="content">
+            <div className="containerTimeline right">
+              <div className="content">
                 <section>
                   <h5 className="card-title">
-                    <i class="fa-solid fa-circle-check"></i>
+                    <i className="fa-solid fa-circle-check"></i>
                     <span className="ms-2">Step 2. paste QR code</span>
                   </h5>
                   <div className="card-text">
@@ -379,11 +379,11 @@ export default function LandingPage(props) {
                 </section>
               </div>
             </div>
-            <div class="containerTimeline left">
-              <div class="content">
+            <div className="containerTimeline left">
+              <div className="content">
                 <section>
                   <h5 className="card-title">
-                    <i class="fa-solid fa-circle-check"></i>
+                    <i className="fa-solid fa-circle-check"></i>
                     <span className="ms-2">
                       Step 3. relax and welcome guests
                     </span>
@@ -405,7 +405,7 @@ export default function LandingPage(props) {
           {/* timeline ends here */}
         </article>
 
-        <sectio className="container mt-5 p-5 d-flex flex-column align-items-center justify-content-center">
+        <section className="container mt-5 p-5 d-flex flex-column align-items-center justify-content-center">
           <h2>Download QR code below to promote your events</h2>
           <p>(Do not use, below for demo purpose only)</p>
           <img
@@ -420,7 +420,7 @@ export default function LandingPage(props) {
             used for school project only. Do not take them as formal events from
             the official organizers.
           </p>
-        </sectio>
+        </section>
       </main>
     </section>
   );

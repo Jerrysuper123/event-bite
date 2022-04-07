@@ -78,22 +78,22 @@ export default function Footer(props) {
             <ul className="list-unstyled">
               <li>
                 <a href="#!">
-                  <i class="fa-brands fa-facebook"></i>
+                  <i className="fa-brands fa-facebook"></i>
                 </a>
               </li>
               <li>
                 <a href="#!">
-                  <i class="fa-brands fa-instagram-square"></i>
+                  <i className="fa-brands fa-instagram-square"></i>
                 </a>
               </li>
               <li>
                 <a href="#!">
-                  <i class="fa-brands fa-twitter-square"></i>
+                  <i className="fa-brands fa-twitter-square"></i>
                 </a>
               </li>
               <li>
                 <a href="#!">
-                  <i class="fa-brands fa-whatsapp-square"></i>
+                  <i className="fa-brands fa-whatsapp-square"></i>
                 </a>
               </li>
             </ul>

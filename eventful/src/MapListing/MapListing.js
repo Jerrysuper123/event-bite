@@ -279,10 +279,6 @@ export default function MapListing(props) {
         display: props.display,
       }}
     >
-      {/* <div class="tooltip">
-        Hover over me
-        <span class="tooltiptext">Tooltip text</span>
-      </div> */}
       <EventDetailsPage
         // moreInfoBtnRef={moreInfoBtnRef}
         data={oneEventDetails ? oneEventDetails : {}}
@@ -388,9 +384,9 @@ export default function MapListing(props) {
               display: eventListState === "hide" ? "none" : "block",
             }}
           >
-            {props.data.map((eachEvent) => {
+            {props.data.map((eachEvent, index) => {
               return (
-                <div className="eventListCard ms-1">
+                <div key={index} className="eventListCard ms-1">
                   <EventCard
                     // moreInfoBtnRef={moreInfoBtnRef}
                     eachEvent={eachEvent}

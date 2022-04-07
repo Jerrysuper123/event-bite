@@ -305,7 +305,7 @@ export default class FilterBar extends React.Component {
 
               <section className="searchSection d-flex p-3">
                 <span className="filterSearchInput d-flex align-items-center">
-                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <i className="fa-solid fa-magnifying-glass"></i>
                   <input
                     className="me-2"
                     type="search"

@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm.js/ModalBody.js/ModalBody";
+import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm/ModalBody/ModalBody";
 import PostalCodeMap from "./PostalCodeMap/PostalCodeMap";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -1072,7 +1072,7 @@ export default class AddEvent extends React.Component {
           <div
             className="modal fade"
             id="deleteModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >

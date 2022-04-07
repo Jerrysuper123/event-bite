@@ -50,14 +50,14 @@ export default function EventCard(props) {
         </div>
 
         <div className="organizerBrand d-flex my-2">
-          <h9
+          <div
             style={{
               fontWeight: "500",
               fontSize: "0.9rem",
             }}
           >
             {props.eachEvent.organizer}
-          </h9>
+          </div>
         </div>
 
         <div className="mt-2 d-flex justify-content-between">

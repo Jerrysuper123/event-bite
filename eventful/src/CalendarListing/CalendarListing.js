@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "./style.css";
 import Kalend, { CalendarView } from "kalend";
 import "kalend/dist/styles/index.css";
-import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm.js/ModalBody.js/ModalBody";
+import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm/ModalBody/ModalBody";
 
 export default function CalendarListing(props) {
   // const [eventData, setEventData] = useState([]);
@@ -121,7 +121,7 @@ export default function CalendarListing(props) {
           <button
             type="button"
             id="modalBtnElement"
-            classNameName="btn btn-primary"
+            className="btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target="#calendarEventModal"
             ref={modalBtnElement}
@@ -136,7 +136,7 @@ export default function CalendarListing(props) {
       <div
         className="modal fade"
         id="calendarEventModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >

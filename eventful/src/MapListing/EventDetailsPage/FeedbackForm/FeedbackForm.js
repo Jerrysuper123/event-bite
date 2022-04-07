@@ -103,7 +103,7 @@ export default function FeedbackForm(props) {
           "& > legend": { mt: 2 },
         }}
       >
-        <Typography component="legend">Rating out of 5</Typography>
+        <Typography component="legend">rating out of 5</Typography>
         <Rating
           name="simple-controlled"
           value={ratingValue}

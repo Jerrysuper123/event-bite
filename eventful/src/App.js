@@ -140,7 +140,7 @@ class App extends React.Component {
             display: this.state.componentMounted ? "none" : "block",
           }}
         >
-          <div class="lds-spinner">
+          <div className="lds-spinner">
             <div></div>
             <div></div>
             <div></div>
