@@ -199,16 +199,6 @@ export default function MapListing(props) {
     // remove dependancy on routingMachine, just depends router to change from true to false
   }, [router]);
 
-  //for user current location pop up
-  useEffect(() => {
-    if (props.activeState === "map") {
-      // var scale = "scale(1)";
-      // document.body.style.webkitTransform = scale; // Chrome, Opera, Safari
-      // document.body.style.msTransform = scale; // IE 9
-      // document.body.style.transform = scale; // General
-    }
-  }, [props.activeState]);
-
   useEffect(() => {
     if (!map) {
       return;
