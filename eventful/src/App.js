@@ -18,6 +18,7 @@ class App extends React.Component {
     todayDate: "",
     mapData: [],
     userFilteredDate: "",
+    componentMounted: false,
     //to selectbox and dropdown
   };
 
@@ -88,6 +89,9 @@ class App extends React.Component {
     });
 
     await this.getAllEventsFromAPI();
+    this.setState({
+      componentMounted: true,
+    });
   };
 
   // switch between different pages
@@ -120,6 +124,26 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <section
+          style={{
+            display: this.state.componentMounted ? "none" : "block",
+          }}
+        >
+          <div class="lds-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </section>
         <NavBar setActive={this.setActive} />
         {this.state.active === "landing" ||
         this.state.active === "addNew" ? null : (
@@ -140,6 +164,7 @@ class App extends React.Component {
         <MapListing
           data={this.state.mapData}
           display={this.state.active === "map" ? "block" : "none"}
+          activeState={this.state.active}
           getAllEventsFromAPI={this.getAllEventsFromAPI}
           userFilteredDate={
             this.state.userFilteredDate === this.state.todayDate

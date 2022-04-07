@@ -200,14 +200,19 @@ export default function MapListing(props) {
   }, [router]);
 
   //for user current location pop up
-  const [refReady, setRefReady] = useState(false);
-  let popupRef = useRef();
+  useEffect(() => {
+    if (props.activeState === "map") {
+      // var scale = "scale(1)";
+      // document.body.style.webkitTransform = scale; // Chrome, Opera, Safari
+      // document.body.style.msTransform = scale; // IE 9
+      // document.body.style.transform = scale; // General
+    }
+  }, [props.activeState]);
 
   useEffect(() => {
     if (!map) {
       return;
     }
-
     map.setZoom(18).flyTo(start);
     let pop2 = L.popup()
       .setLatLng(start)
@@ -269,6 +274,7 @@ export default function MapListing(props) {
 
   return (
     <div
+      id="map"
       style={{
         display: props.display,
       }}
@@ -346,7 +352,7 @@ export default function MapListing(props) {
         <section
           className="eventList"
           style={{
-            height: eventListState === "hide" ? "6.5rem" : "100%",
+            height: eventListState === "hide" ? "6rem" : "100%",
           }}
         >
           <span

@@ -15,6 +15,9 @@ priority:
 2. data query
 3. validation - yup for front end
 
+4. spinner
+   https://loading.io/css/
+
 //query all array
 https://www.mongodb.com/docs/manual/tutorial/query-arrays/
 

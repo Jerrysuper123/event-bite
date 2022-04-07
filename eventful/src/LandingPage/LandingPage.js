@@ -182,7 +182,7 @@ export default function LandingPage(props) {
             fontStyle: "italic",
           }}
         >
-          Check out this WEEK's events on a calendar
+          Check out this MONTH's events on a calendar
         </h5>
         <button
           className="btn btn-info mt-3 text-light"

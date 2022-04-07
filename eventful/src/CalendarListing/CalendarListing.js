@@ -64,7 +64,7 @@ export default function CalendarListing(props) {
         display: props.display,
       }}
     >
-      <section className="container-fluid calendarBg pt-4 pb-4 shadow border">
+      <section className="container-fluid calendarBg pt-3 pb-4 shadow border">
         {/* <div className="d-lg-flex"> */}
         {/* <aside
             className="
@@ -82,14 +82,14 @@ export default function CalendarListing(props) {
             <h1>7:30 pm Thur, Mar 22 2022</h1>
             <i className="fa-solid fa-cloud-sun"></i>
           </aside> */}
-        <h2
-          className="text-center text-light pb-3"
+        <h5
+          className="text-center text-light pb-2"
           style={{
             fontStyle: "italic",
           }}
         >
-          Clicking on the event below to check out its details
-        </h2>
+          Click on the event below to check out its details
+        </h5>
         <section
           className="
           calendar shadow-lg"
@@ -106,7 +106,7 @@ export default function CalendarListing(props) {
             events={events}
             initialDate={new Date().toISOString()}
             hourHeight={60}
-            initialView={CalendarView.WEEK}
+            initialView={CalendarView.MONTH}
             disabledViews={[CalendarView.AGENDA, CalendarView.THREE_DAYS]}
             // onSelectView={onSelectView}
             // selectedView={selectedView}
