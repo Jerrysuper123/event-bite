@@ -9,6 +9,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm.js/ModalBody.js/ModalBody";
 import PostalCodeMap from "./PostalCodeMap/PostalCodeMap";
+import CheckboxesTags from "./MUICheckbox/MUICheckbox";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -530,7 +531,8 @@ export default class AddEvent extends React.Component {
 
           <div>
             <label className="mb-3">Tags:</label>
-            <Autocomplete
+            {/* material UI autocomplete has map key errors in react */}
+            {/* <Autocomplete
               multiple
               id="checkboxes-tags-demo"
               options={this.state.formHashtags}
@@ -538,12 +540,14 @@ export default class AddEvent extends React.Component {
               getOptionLabel={(option) => option}
               value={this.state.hashtags}
               renderOption={(props, option, { selected }) => (
-                <li key={option} {...props}>
+                <li {...props}>
                   <Checkbox
+                    key={option}
                     icon={icon}
                     checkedIcon={checkedIcon}
                     style={{ marginRight: 8 }}
-                    checked={this.state.hashtags.includes(option)}
+                    // checked={this.state.hashtags.includes(option)
+                    checked={selected}
                   />
                   {option}
                 </li>
@@ -557,22 +561,30 @@ export default class AddEvent extends React.Component {
                   placeholder="more..."
                 />
               )}
-            />
+            /> */}
+
+            {/* <CheckboxesTags /> */}
 
             <div>
               {this.state.formHashtags
-                ? this.state.formHashtags.map((tag) => {
+                ? this.state.formHashtags.map((tag, index) => {
                     return (
                       <React.Fragment key={tag}>
                         <span className="ms-2">
                           <input
+                            id={tag + index}
                             type="checkbox"
                             name="hashtags"
                             value={tag}
                             checked={this.state.hashtags.includes(tag)}
                             onChange={this.processCheckbox}
                           />
-                          <label className="ms-1 text-secondary">{tag}</label>
+                          <label
+                            className="ms-1 text-secondary"
+                            for={tag + index}
+                          >
+                            {tag}
+                          </label>
                         </span>
                       </React.Fragment>
                     );
