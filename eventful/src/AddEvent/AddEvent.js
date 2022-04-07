@@ -120,6 +120,25 @@ export default class AddEvent extends React.Component {
       return false;
     }
   };
+
+  checkAllRequiredFields = () => {
+    if (
+      this.state.title !== "" &&
+      this.state.organizer !== "" &&
+      this.state.category !== "" &&
+      this.state.address !== "" &&
+      this.state.postalCode !== "" &&
+      this.state.startDateTime !== "" &&
+      this.state.endDateTime !== "" &&
+      this.state.eventImage !== "" &&
+      this.state.descriptionSummary !== "" &&
+      this.state.description !== ""
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   componentDidMount = async () => {
     try {
       let hashtagsRequest = axios.get(`${BASE_API_URL}/events/hashtags`);
@@ -552,7 +571,7 @@ export default class AddEvent extends React.Component {
                 </li>
               )}
               onChange={this.handleChange}
-              style={{ width: 500 }}
+              style={{ width: 300 }}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -799,7 +818,11 @@ export default class AddEvent extends React.Component {
           </section>
         </React.Fragment>
       );
-    } else if (this.state.active === "publish" && this.checkAllValidated()) {
+    } else if (
+      this.state.active === "publish" &&
+      this.checkAllValidated() &&
+      this.checkAllRequiredFields()
+    ) {
       return (
         <React.Fragment>
           <h4>Review and publish your event</h4>
@@ -836,6 +859,17 @@ export default class AddEvent extends React.Component {
         <section>
           <h4>You have successfully submitted your request</h4>
           <p>Thank you!</p>
+        </section>
+      );
+    } else if (
+      (this.state.active = "publish" && !this.checkAllRequiredFields())
+    ) {
+      return (
+        <section className="accentTwoBgColor text-light p-4">
+          <div>
+            Not all required fields are filled up, please check again. Once
+            done, the review and submit form will appear.
+          </div>
         </section>
       );
     }
