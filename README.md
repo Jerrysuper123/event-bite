@@ -11,8 +11,9 @@ priority:
 
 # eventful
 
-![brand](./READMESources/readMeFrontImg.png)
+![brand](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/landPage.png?raw=true)
 
+The landing page above summarizes everything about this app.
 Access the live demo [here]().
 
 Eventful is a central portal connecting event attendees and organizers in real-time. The front-end is built using React connectng to the restful API powered by Express and Node Js.
@@ -30,11 +31,6 @@ The events are defined as follows but non-exhaustive:
 - promotional events
 - any other public events
 
-//stop face to face intreaction, esp events
-//recover, this app will reginite the travel and event, and retail
-//bring people into
-//allow organier to publish events, tantazlied
-
 ### Value proposition
 
 The event apps currently in the market only showcase the events in a list. It does not tell users:
@@ -42,7 +38,7 @@ The event apps currently in the market only showcase the events in a list. It do
 1. Are there any good events today? Are these events near me?
 2. Is there a better way to plan my time going to some events? Rather than scanning through pages of listed events.
 
-The users today want instant answers to these questions. This app is designed for this.
+The users today want instant answers to these questions. This app is designed for this, hoping to rejuvenate the travel, event and retail industries.
 
 ## 1. Strategy
 
@@ -102,10 +98,13 @@ As a organizer, I want quick acess to crowds to my events rather than doing heav
 1. Display today's events on a map near the event attendee
 2. Display events for the month on a calendar so that the event attendees could easily plan their times
 3. Allow event organizers to publish events instantly, displaying the events on the map or calendar with their corporate logos and color for branding purposes
+4. QR code for the event organizers to paste the QR in the vicinity, so as to allow people to scan the code to explore nearby events
 
 ## 2. Scope
 
 ### Functional specification
+
+- Users could scan the QR to explore nearby events on the app
 
 ### Content
 
@@ -118,52 +117,49 @@ As a organizer, I want quick acess to crowds to my events rather than doing heav
 
 ## 3. Structure
 
-Opted for a tree information structure, with the map as the home page.
+The left diagram - site map
 
-![site map](./READMESources/siteMap.jpeg)
+- User through landing page could navigate to three main pages
+
+1. events on the calendar
+2. events on the map
+3. create new event form (organizer could create, update and delete events here)
+
+The right diagram - react component design
+
+- Used as a reference, the final app is more complicated with multitude of components, in order to reuse the components
+
+![site map](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/siteMap.png?raw=true)
 
 ### Restful API
 
-data schema
+<em>Data schema design</em>
 
-for more info please
+The detailed implementation can be found [here](https://github.com/Jerrysuper123/eventfulAPI).
+
+![data schema](https://github.com/Jerrysuper123/eventfulAPI/raw/main/images/dataBaseDesign.png)
 
 ## 4. Skeleton
 
-![wireframe](./READMESources/wireframe.png)
+Click [wireframe](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/wireframeEvent.pdf) to see the draft design.
 
 ## 5. Surface - visual design
 
 ### Colors
 
-As this is a medical app, we have chosen colors resembling hospital or medical theme below.
-![Color](./READMESources/color.png)
-
-Using the above color wheel, we have set the colors in the \_constant.scss file to be global variables - to be used consistently through the application.
-
 - ColorPrimary is used the mostly throughout the app, including the app logo design, icon color, and data chart theme (see below)
 - ColorAccentThree is mostly used as the background color e.g. the drug advisor page background color.
 - The rest of the colors are also widely used, but mostly as supporting hues.
 
-```
+![Color](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/colorEvent.png?raw=true)
 
-/_ color setting _/
-$colorPrimary: #ab5e69;
-$colorSecondary: #c2fbcd;
-$colorAccentOne: #F7c1c9;
-$colorAccentTwo: #E0ffe7;
-$colorAccentThree: #8fb095;
+### Font pair - Roboto and Montserrat
 
-```
+Warm and cool hues are combined in this colorful yet not overwhelming palette. From an appealing and bright bluish-green to an earthy terracotta, this color scheme is well-suited for youthful and modern designs.
 
-PrimaryColor consistency
-![color](./READMESources/primaryColorUsage.png)
+![font](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/fontEvent.png?raw=true)
 
-### Font pair - Lora and Roboto
-
-Although they are two sans serifs, but the imperfect/perfect pairing of their character sets creates a good balance. This would work really well in giving a youthful and trustworthy vibe.
-
-![font](https://elementor.com/cdn-cgi/image/f=auto,w=720/marketing/wp-content/uploads/sites/9/2020/11/4-Archivo-Black_Roboto.png)
+These two simple sans-serif typefaces offer a clean, modern font pairing. Roboto combines geometric forms with friendly, open curves, designed to facilitate a natural reading rhythm. Montserrat – named after designer Julieta Ulanovsky's neighbourhood in Buenos Aires – has various options in its family, giving you plenty to play around with.
 
 Against, in the \_constant.scss file, we have set below font variables to be used globally.
 
@@ -198,7 +194,7 @@ $bodyTextFront: 'Roboto', sans-serif;
 
 ## 7. testing
 
-Click [here](https://github.com/Jerrysuper123/pharmacy-pal/blob/main/READMESources/testCases.pdf) for the detailed test list.
+Click [here](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/eventfulTestCases.pdf) for the detailed test list.
 
 ## 8. deployment
 
