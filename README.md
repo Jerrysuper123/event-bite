@@ -16,7 +16,7 @@ priority:
 The landing page above summarizes everything about this app.
 Access the live demo [here]().
 
-Eventful is a central portal connecting event attendees and organizers in real-time. The front-end is built using React connectng to the restful API powered by Express and Node Js.
+Eventful is a central portal connecting event attendees and organizers in real-time. The front-end is built using React connecting to the restful API powered by Express and Node Js.
 
 ## Summary
 
@@ -83,7 +83,7 @@ Most organizers want crowds to their events instantly. However, this is not poss
 
 ### User stories
 
-As a student, I like go to school events without reading event postals or events near me because I want instant acces to these info.
+As a student, I like go to school events without reading event posters or events near me because I want instant acces to these info.
 
 As a shopper, I like to instantly access promotional events near me because I have no time to collect value coupons or keep track of event dates.
 
@@ -91,7 +91,7 @@ As a tourist, I would like to plan my days around tourism events better rather t
 
 As a diner, I would like to see restaurant offers near me once I stepped out the office, because I had a tiring day at work and I just want quick access to good food at great prices.
 
-As a organizer, I want quick acess to crowds to my events rather than doing heavy planning, because I want my marketing and promotional activities to be nimble and efficient (cost & time).
+As a organizer, I want quick access to crowds to my events rather than doing heavy planning, because I want my marketing and promotional activities to be nimble and efficient (cost & time).
 
 ### Key features based on user story
 
@@ -159,7 +159,7 @@ Click [wireframe](https://github.com/Jerrysuper123/eventfulSources/blob/main/ima
 
 ### Font pair - Roboto and Montserrat
 
-- These two simple sans-serif typefaces offer a clean, modern font pairing,giving a cool feel for the events listed on the app.
+- These two simple sans-serif typefaces offer a clean, modern font pairing, giving a cool feel for the events listed on the app.
 
 - Roboto combines geometric forms with friendly, open curves, designed to facilitate a natural reading rhythm. The Roboto is mostly used in the event description page, where users need to read the text.
 
