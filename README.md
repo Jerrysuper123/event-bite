@@ -9,21 +9,6 @@ https://tiny-starlight-6da1cc.netlify.app/
 
 priority:
 
-### notes
-
-- some prevent default errors, so we went into React Node Modules to remove the preventDefault line
-
-> react-dom.development.js
-
-```
-if (event.preventDefault) {
-//remove preventDefaul due to error triggered by calendar clicking
-// event.preventDefault(); // $FlowFixMe - flow is not aware of `unknown` in IE
-} else if (typeof event.returnValue !== 'unknown') {
-event.returnValue = false;
-}
-```
-
 # eventful
 
 ![brand](./READMESources/readMeFrontImg.png)
@@ -36,80 +21,112 @@ Eventful is a central portal connecting event attendees and organizers in real-t
 
 ### Project Context
 
-Covid19 has put a standstill to much of tthe face-to-face interaction with each other. In the early 2022, the world is slowly recovering from the impacts of the pandemic. In Singapore, the government has set aside [half a billion dollar]() to rejuvenate the tourism industry.
+Covid19 has put a standstill to much of the face-to-face interaction with each other. In the early 2022, the world is slowly recovering from the impacts of the pandemic. In Singapore, the government has set aside [half a billion dollar](https://www.channelnewsasia.com/singapore/singapore-tourism-recovery-support-stb-covid-19-singaporeimagine-grants-2610691) to rejuvenate the tourism industry. Hence, there is a need to design a better event app to jump on the bandwagon.
+
+The events are defined as follows but non-exhaustive:
+
+- tourism events
+- school events
+- promotional events
+- any other public events
 
 //stop face to face intreaction, esp events
 //recover, this app will reginite the travel and event, and retail
 //bring people into
 //allow organier to publish events, tantazlied
 
-### Value proposition and objective
+### Value proposition
 
-Pharmacy-pal is designed to aid "self-care through pharmacy" in the pandemic. Not only does it provide the direction for the legitimate nearby pharmacy, it also offers symptom diagnosis & medication recommendation.
+The event apps currently in the market only showcase the events in a list. It does not tell users:
+
+1. Are there any good events today? Are these events near me?
+2. Is there a better way to plan my time going to some events? Rather than scanning through pages of listed events.
+
+The users today want instant answers to these questions. This app is designed for this.
 
 ## 1. Strategy
 
 ### target market
 
-The target market could be segmented into:
+<em>Event Attendees</em>
 
-1. basic users
+- students - currently studying in school and love to go for school events
+- shopper - love to go to brands' promotional events
+- tourists - like to explore tourist sites and events
+- diners - frequent restaurants with good deals
 
-Those who only want to find the nearby drugstore.
+<em>Event Organizers</em>
 
-- aged 18 to 50
-- adequate IT literacy
+Below organizers are for the above corresponding event attendees.
 
-2. super users
-
-Those who wants to get information on the pharmacist's background and require symptom diagnosis & medication search-up.
-
-- aged 18 to 40
-- high IT literacy
-- poly/degree holders and above
+- school
+- retail shops
+- tourism boards
+- restaurants
 
 ### Needs and pain points
 
-- For people attending event, they do not need know what kind of public events nearby.
+<em>Event Attendees</em>
 
-- For organizers, it is hard to publizing their events without heavy spending.
+- students who like to browse through ongoing activities in school in one central portal, but reading event posters/emails is a hassle
 
-- This website will be mostly mobile-friendly. As user enters an area, they could just scan the QR code, they will be able to see the events organized around them
+- Shoppers who enjoys promotional activities from their favorite brands, but keeping track of the dates is cumbersome
+
+- Tourists like to explore ongoing events onsite, but reading and sorting out info through the information pamphlet is a pain
+
+- Diners like to grab the nearby cuisines with the offers from restaurants, but collection coupons is cumbersome
+
+<em>Event Organizers</em>
+
+Most organizers want crowds to their events instantly. However, this is not possible because planning and publicising events costs time and money. The inflexibility has high opportunity costs such as loss of potential sales and publicity.
+
+- school
+- retail shops
+- tourism boards
+- restaurants
 
 ### User stories
 
-Based on the aforementioned pain points, access the user-story list [here]
+As a student, I like go to school events without reading event postals or events near me because I want instant acces to these info.
 
-### Features based on user story
+As a shopper, I like to instantly access promotional events near me because I have no time to collect value coupons or keep track of event dates.
 
-1. Display the route from user's location to the nearest pharmacy
-2. Provide pharmacists' names based on locations
-3. Offer symptom diagnosis and description of possible conditions
-4. Recommend possible medications for the users' conditions
-5. Display the drug side-effect statistics to users
+As a tourist, I would like to plan my days around tourism events better rather than gathering info piecemeal, because I am on a trip to relax, not to do heavy planning.
+
+As a diner, I would like to see restaurant offers near me once I stepped out the office, because I had a tiring day at work and I just want quick access to good food at great prices.
+
+As a organizer, I want quick acess to crowds to my events rather than doing heavy planning, because I want my marketing and promotional activities to be nimble and efficient (cost & time).
+
+### Key features based on user story
+
+1. Display today's events on a map near the event attendee
+2. Display events for the month on a calendar so that the event attendees could easily plan their times
+3. Allow event organizers to publish events instantly, displaying the events on the map or calendar with their corporate logos and color for branding purposes
 
 ## 2. Scope
 
 ### Functional specification
 
-It would be based on the aforementioned features.
-
 ### Content
 
-The main content are similar as described in the features section.
-
-For more details on info content used, refer to the credits section below for the list of data sources.
+- Event details published by organizers
+- Enable event attendees to filter events by category, date and search string on a map or calendar
 
 ### Non-functional
 
-- The app should be mobile responsive, as users might be on the go towards the pharmacy location.
-- When in mobile format, the screen should have less buttons/features to prevent accidental press while walking.
+- The app should be mobile responsive for instant access to event info on users' mobiles
 
 ## 3. Structure
 
 Opted for a tree information structure, with the map as the home page.
 
 ![site map](./READMESources/siteMap.jpeg)
+
+### Restful API
+
+data schema
+
+for more info please
 
 ## 4. Skeleton
 
@@ -216,3 +233,16 @@ The deployment is done through Github with the instructions [here](https://gist.
 9. [Singapor One Map API](https://www.onemap.gov.sg/docs/) - to return latitude and longitude based on postal code for plotting markers on the map
 
 10. [Kalend - calendar component for React](https://www.npmjs.com/package/kalend) - to use for the display of events on a calendar
+
+## Additional notes for developers
+
+- Due to some prevent default error triggered by Kalend Calendar, went into React Node Modules to remove the preventDefault line from "react-dom.development.js"
+
+```
+if (event.preventDefault) {
+//remove preventDefaul due to error triggered by calendar clicking
+// event.preventDefault(); // $FlowFixMe - flow is not aware of `unknown` in IE
+} else if (typeof event.returnValue !== 'unknown') {
+event.returnValue = false;
+}
+```
