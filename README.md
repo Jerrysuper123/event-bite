@@ -147,50 +147,37 @@ Click [wireframe](https://github.com/Jerrysuper123/eventfulSources/blob/main/ima
 
 ### Colors
 
-- ColorPrimary is used the mostly throughout the app, including the app logo design, icon color, and data chart theme (see below)
-- ColorAccentThree is mostly used as the background color e.g. the drug advisor page background color.
-- The rest of the colors are also widely used, but mostly as supporting hues.
+- The first color below (orange "#E27D60") is the primary color used. The bright orange color gives a feel of liveliness, resembling the liveliness of events. Brand logo and icons are designed with this color.
+
+- The fourth color (purple "#C38D9E) is used as contrast with the primary color.
+
+- The fifth color (dark green "#41B3A3") is also used to contrast with the primary color to bring out its liveliness.
+
+- The rest of the colours are used mostly as the support hues.
 
 ![Color](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/colorEvent.png?raw=true)
 
 ### Font pair - Roboto and Montserrat
 
-Warm and cool hues are combined in this colorful yet not overwhelming palette. From an appealing and bright bluish-green to an earthy terracotta, this color scheme is well-suited for youthful and modern designs.
+- These two simple sans-serif typefaces offer a clean, modern font pairing,giving a cool feel for the events listed on the app.
+
+- Roboto combines geometric forms with friendly, open curves, designed to facilitate a natural reading rhythm. The Roboto is mostly used in the event description page, where users need to read the text.
 
 ![font](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/fontEvent.png?raw=true)
-
-These two simple sans-serif typefaces offer a clean, modern font pairing. Roboto combines geometric forms with friendly, open curves, designed to facilitate a natural reading rhythm. Montserrat – named after designer Julieta Ulanovsky's neighbourhood in Buenos Aires – has various options in its family, giving you plenty to play around with.
-
-Against, in the \_constant.scss file, we have set below font variables to be used globally.
-
-```
-
-/_ font family and size setting _/
-$headerFront: 'Lora', serif;
-$bodyTextFront: 'Roboto', sans-serif;
-
-```
 
 ## 6. technology stack
 
 ### Stack used:
 
-| Tech                                                                        | Usage                                     |
-| --------------------------------------------------------------------------- | ----------------------------------------- |
-| HTML, CSS, vanilla Javascript, Bootstrap 5                                  | Build the main frame of the website       |
-| SASS                                                                        | Organize and structure css                |
-| [Axios](https://axios-http.com/docs/intro)                                  | Call APIs                                 |
-| [Apexcharts](https://apexcharts.com/)                                       | Plot charts of drug side effects reported |
-| [Leaflet](https://leafletjs.com/)                                           | Create map and markers                    |
-| [Leaflet routing machine](https://www.liedman.net/leaflet-routing-machine/) | Draw routes on the map                    |
-| Fontawesome                                                                 | Use icons throughout the site             |
-
-### Algorithm used:
-
-| Algorithm                                                                                                                               | Usage                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [Check if an array is a subset of another array](https://www.geeksforgeeks.org/find-whether-an-array-is-subset-of-another-array-set-1/) | Match symptoms selected to disease types                                |
-| Linear algorithm to calculate the shortest distance between two nodes                                                                   | Display nearest pharmacy to user, but time complexity could be improved |
+| Tech                                                                        | Usage                               |
+| --------------------------------------------------------------------------- | ----------------------------------- |
+| HTML, CSS, React, Bootstrap 5                                               | Build the main frame of the website |
+| Express                                                                     | Build restful API                   |
+| [Axios](https://axios-http.com/docs/intro)                                  | Call APIs                           |
+| Material UI components                                                      | Build front end react components    |
+| [Leaflet](https://leafletjs.com/)                                           | Create map and markers              |
+| [Leaflet routing machine](https://www.liedman.net/leaflet-routing-machine/) | Draw routes on the map              |
+| Fontawesome                                                                 | Use icons throughout the site       |
 
 ## 7. testing
 
@@ -198,15 +185,11 @@ Click [here](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/s
 
 ## 8. deployment
 
-The deployment is done through Github with the instructions [here](https://gist.github.com/TylerFisher/6127328).
+The deployment is done through Netifly with the instructions [here](https://www.youtube.com/watch?v=OPalwvWO63U&t=39s&ab_channel=SanskarTiwari).
 
 ## 9. Limitations and future implementations
 
-- [Use passive event listener](https://web.dev/uses-passive-event-listeners/) - not implemented currently, but could significantly improve the mobile scrolling experience especally on a map
-
 - Leeflet Routing Machine is an open-source project, not suitable for production use. Its server could be halted without prior notice. To commercialize this project, we might consider paid services.
-
-- The disease and symptom dataset is rather small - less than 50 disease types currently. To improve the predictive accuracy, we might need a larger dataset or implement a back-end server to collect users' info.
 
 ## 10. Credits
 
