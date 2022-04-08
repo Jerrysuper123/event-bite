@@ -85,7 +85,7 @@ export default function MapListing(props) {
     />
     <div class="card-body">
       <div class="d-flex">
-        <h5 class="card-title">${oneEventDetails.title.slice(0, 20)}</h5>
+        <h6 class="mapCardTitle">${oneEventDetails.title.slice(0, 5)}...</h6>
         <i
           class="ms-auto fa-brands fa-gratipay"
           style="

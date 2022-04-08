@@ -145,3 +145,7 @@
   visibility: visible;
   opacity: 1;
 } */
+
+.mapCardTitle {
+  font-size: 1rem !important;
+}
