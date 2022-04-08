@@ -39,3 +39,10 @@ i {
     width: 100%;
     scrollbar-width: none !important;
 }
+
+.modalImg {
+    object-fit: cover;
+    object-position: center;
+    height: 30rem;
+    overflow: hidden;
+}

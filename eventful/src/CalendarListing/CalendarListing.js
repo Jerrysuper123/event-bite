@@ -140,7 +140,7 @@ export default function CalendarListing(props) {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-sm modal-md modal-lg modal-xl">
           <div className="modal-content">
             <button
               type="button"

@@ -10,6 +10,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
 //Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17
 
 // If you want to start measuring performance in your app, pass a function

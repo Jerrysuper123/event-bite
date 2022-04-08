@@ -2,6 +2,15 @@
 
 priority:
 
+if (event.preventDefault) {
+//remove preventDefaul due to error triggered by calendar clicking
+// event.preventDefault(); // $FlowFixMe - flow is not aware of `unknown` in IE
+} else if (typeof event.returnValue !== 'unknown') {
+event.returnValue = false;
+}
+
+react-dom.development.js
+
 1. submit form front end
 
 - past events list
