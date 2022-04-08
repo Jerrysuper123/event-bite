@@ -1,173 +1,53 @@
-# event-bite
+# event-ful
+
+//disable scroll when in other pages, or click to zoom in to user to solve th bugs
+load map first (No error)
+https://cheery-melomakarona-af8b24.netlify.app/
+
+load landing first
+https://tiny-starlight-6da1cc.netlify.app/
 
 priority:
 
+### notes
+
+- some prevent default errors, so we went into React Node Modules to remove the preventDefault line
+
+> react-dom.development.js
+
+```
 if (event.preventDefault) {
 //remove preventDefaul due to error triggered by calendar clicking
 // event.preventDefault(); // $FlowFixMe - flow is not aware of `unknown` in IE
 } else if (typeof event.returnValue !== 'unknown') {
 event.returnValue = false;
 }
-
-react-dom.development.js
-
-1. submit form front end
-
-- past events list
-- accordian (expand to update or delete)
-- picture on the left and content on the right;
-
-- when update or delete, remove from state (update instantly)
-- update/delete API
-- whenever users go to map home page (retrieve again)
-
-2. data query
-3. validation - yup for front end
-
-4. spinner
-   https://loading.io/css/
-
-//query all array
-https://www.mongodb.com/docs/manual/tutorial/query-arrays/
-
-use text-muted for form
-
-//create timeline for landing page
-//change 3rd picture of timeline to people scan qr code
-https://www.w3schools.com/howto/howto_css_timeline.asp
-
-//create tooltip
-https://www.w3schools.com/howto/howto_css_tooltip.asp
-//lottie
-https://lottiefiles.com/featured
-// flip card for the event card
-https://www.w3schools.com/howto/howto_css_flip_card.asp
-
-Credit: 0. footer
-https://gist.github.com/Luke-zhang-04/7cb523899ca4044f805f0d0909e4c5c1
-
-https://freefrontend.com/assets/img/bootstrap-footers/bootstrap-footer-v12.png
-
-//maybe toast to let users know event in progress
-https://getbootstrap.com/docs/5.0/components/toasts/
-
-1. start rating
-   https://www.devwares.com/docs/contrast/react/components/rating/
-2. Make elemeent draggable in react
-   https://lo-victoria.com/making-draggable-components-in-react
-
-//display real time date and time
-https://dev.to/atif_dev/get-real-time-date-and-time-using-javascript-5eep
-
-//summernote editor
-https://codesandbox.io/s/d2qev?file=/src/App.js
-
-https://summernote.org/getting-started/#for-bootstrap-5
-
-Credit
-https://codepen.io/juliepark/pen/pLMxoP
-
-//draggable elements
-https://www.w3schools.com/howto/howto_js_draggable.asp
-//draggable and resizeable div
-https://codepen.io/jkasun/pen/QrLjXP
-
-//collapse to show and unshow content
-https://getbootstrap.com/docs/5.0/components/collapse/
-
-//toast to show event has started
-https://getbootstrap.com/docs/5.0/components/toasts/
-
-//convert iso dates
-const event = new Date('05 October 2011 14:48 UTC');
-console.log(event.toString());
-// expected output: Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)
-// (note: your timezone may vary)
-
-console.log(event.toISOString());
-// expected output: 2011-10-05T14:48:00.000Z
-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-
-Singapore map to return lat and lng by postal code
-https://www.onemap.gov.sg/
-https://developers.onemap.sg/commonapi/search?searchVal=650230&returnGeom=Y&getAddrDetails=Y&pageNum=1
-
-```
-//rating 1/5
-<html>
-<head>
-<!-- Font Awesome Icon Library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.checked {
-  color: orange;
-}
-</style>
-</head>
-<body>
-
-<h2>Star Rating</h2>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-
-</body>
-</html>
-
 ```
 
-let date = new Date();
-console.log("current date GTM", new Date())
-//2022-03-21T03:57:51.847Z
-//this is ISO date, for Singapore we should plus GMT+8
-//add 8 hours for singagpore
-date.setHours(date.getHours() + 8);
-console.log("Current date Singapore GMT+8",date);
-//Current date Singapore GMT+8
-//2022-03-21T13:35:13.776Z
-
-document.querySelector("#dateTime").addEventListener("change",function(){
-let dateTime = document.querySelector("#dateTime").value;
-console.log("datetime picker", dateTime )
-})
-
-// <input id="dateTime" type="datetime-local"/>
-//datetime picker 2022-03-15T14:10
-
-//test color
-// <input id="colorPicker" type="color" value="#ff0000">
-document.querySelector("#colorPicker").addEventListener("change",function(){
-let colorPicked = document.querySelector("#colorPicker").value;
-console.log("color picked", colorPicked )
-})
-
-```
-
-# pharmacy-pal
+# eventful
 
 ![brand](./READMESources/readMeFrontImg.png)
 
 Access the live demo [here]().
 
+Eventful is a central portal connecting event attendees and organizers in real-time. The front-end is built using React connectng to the restful API powered by Express and Node Js.
+
 ## Summary
 
 ### Project Context
 
-xxx
+Covid19 has put a standstill to much of tthe face-to-face interaction with each other. In the early 2022, the world is slowly recovering from the impacts of the pandemic. In Singapore, the government has set aside [half a billion dollar]() to rejuvenate the tourism industry.
+
+//stop face to face intreaction, esp events
+//recover, this app will reginite the travel and event, and retail
+//bring people into
+//allow organier to publish events, tantazlied
 
 ### Value proposition and objective
 
 Pharmacy-pal is designed to aid "self-care through pharmacy" in the pandemic. Not only does it provide the direction for the legitimate nearby pharmacy, it also offers symptom diagnosis & medication recommendation.
 
 ## 1. Strategy
-
-This section mainly discusses:
-
-- App creator's objective and users' needs match-fit
-- Users' pain points and app features designed to resolve them
 
 ### target market
 
@@ -317,28 +197,22 @@ The deployment is done through Github with the instructions [here](https://gist.
 
 ## 10. Credits
 
-For both visual and data-set credits below:
-
-Icons and images:
-
 1. [Fontawesome icon](https://fontawesome.com/) - to embelish the website with icons throughout for better UI UX
+
 2. [Google fronts](https://www.google.com/search?q=google+fonts&oq=google+front&aqs=chrome.1.69i57j0i10j0i512l2j0i10l6.4333j0j4&sourceid=chrome&ie=UTF-8) - to set the primary and secondary font types
+
 3. [Unsplash images](https://unsplash.com/) - to use it as the landing page background image
+
 4. [Flaticon icons](https://www.flaticon.com/) - to customize the map markers
 
-DataSets:
+5. [spinner](https://loading.io/css/) - to inform users that the app is loading
 
-1. [Pharmacy geoJson CSV data from data.gov.sg](https://data.gov.sg/dataset/retail-pharmacy-locations?resource_id=ae46281d-8ee1-4fa3-ab07-03ab409946d8) - to plot the markers on the map and acess the address info
+6. [timeline](https://www.w3schools.com/howto/howto_css_timeline.asp) from W3School - used for the landing page
 
-2. [Liscensed pharmacists API from data.gov.sg](https://data.gov.sg/dataset/listing-of-licensed-pharmacies) - to identify the names of the registered pharmacists
+7. [footer template](https://gist.github.com/Luke-zhang-04/7cb523899ca4044f805f0d0909e4c5c1) - to customize and use for various pages
 
-3. [Kaggle disease symptom CSV dataset - credit to Pranay Patil](https://www.kaggle.com/itachi9604/disease-symptom-description-dataset) - to predict users' conditions/diseases based on symptoms selected
+8. [Material UI](https://mui.com/) - to use the rating form and auto-complete checkboxes
 
-4. [Wikipedia API](https://www.mediawiki.org/wiki/API:Main_page) - to retrieve the extract of disease info to display to users
+9. [Singapor One Map API](https://www.onemap.gov.sg/docs/) - to return latitude and longitude based on postal code for plotting markers on the map
 
-5. [Pexels API](https://www.pexels.com/api/) - to retrieve disease image and display to users
-
-6. [Disease match drug API from Open FDA](https://open.fda.gov/apis/drug/label/) - to match drug for users' conditions
-
-7. [Adverse events data API from Open FDA](https://open.fda.gov/apis/drug/event/) - to plot the trends of drug side effects reported on charts
-```
+10. [Kalend - calendar component for React](https://www.npmjs.com/package/kalend) - to use for the display of events on a calendar
