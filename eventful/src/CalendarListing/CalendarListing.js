@@ -5,13 +5,9 @@ import "kalend/dist/styles/index.css";
 import ModalBody from "../MapListing/EventDetailsPage/FeedbackForm/ModalBody/ModalBody";
 
 export default function CalendarListing(props) {
-  // const [eventData, setEventData] = useState([]);
-  // useEffect(() => {
-  //   setEventData(props.data);
-  // }, [props.data]);
-
   let events = props.data.map((e) => {
     return {
+      /*below 5 parameters are for the event on the calendar */
       id: e._id,
       //slice to convert 2022-03-25T18:00:00.000+00:00
       // into "2022-03-25T18:00" regardless of timezone
@@ -21,6 +17,7 @@ export default function CalendarListing(props) {
       // make this calendar event and event card color dynamic to brandColor chosen
       color: e.brandColor,
 
+      //below data for the event detail pages when user click on event
       descriptionSummary: e.descriptionSummary,
       description: e.description,
       title: e.title,
@@ -36,25 +33,17 @@ export default function CalendarListing(props) {
     };
   });
 
-  // const filterEventData = (dataId) => {
-  //   let clickedEvent = props.data.filter((e) => e._id === dataId);
-  //   console.log(clickedEvent);
-  //   // setOneEventDetails(clickedEvent[0]);
-  //   // modalBtnElement.current.click();
-  // };
+  //contain one event details when user click on event
+  const [oneEventDetails, setOneEventDetails] = useState({});
+  //ref to the invisible modal button
+  const modalBtnElement = useRef(null);
 
   const handleEventClick = (data) => {
     //get the event details where the event._id is the same as the calendar event.id
-    // event.preventDefault();
-    console.log("clicked event");
-    console.log(data);
     setOneEventDetails(data);
+    //click on the invisible modal button to show the modal
     modalBtnElement.current.click();
   };
-
-  const [oneEventDetails, setOneEventDetails] = useState({});
-  //ref to the button
-  const modalBtnElement = useRef(null);
 
   return (
     <div
@@ -65,23 +54,6 @@ export default function CalendarListing(props) {
       }}
     >
       <section className="container-fluid calendarBg pt-3 pb-4 shadow border">
-        {/* <div className="d-lg-flex"> */}
-        {/* <aside
-            className="
-        calenderAside
-        accentTwoBgColor
-        d-flex
-        flex-column
-        text-light
-        align-items-center
-        justify-content-center
-        p-5
-        shadow
-      "
-          >
-            <h1>7:30 pm Thur, Mar 22 2022</h1>
-            <i className="fa-solid fa-cloud-sun"></i>
-          </aside> */}
         <h5
           className="text-center text-light pb-2"
           style={{
@@ -117,7 +89,7 @@ export default function CalendarListing(props) {
             language={"en"}
           />
 
-          {/*Launch the modal but is displayed none  */}
+          {/*Launch the modal button but is displayed none  */}
           <button
             type="button"
             id="modalBtnElement"
