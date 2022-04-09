@@ -56,10 +56,7 @@ export default function EventDetailsPage(props) {
             {/* asking for more reviews */}
             <section>
               {submitState ? (
-                <p>
-                  Thank you for your feedback and your feedback has been
-                  submitted.
-                </p>
+                <p>Thank you and your feedback has been submitted.</p>
               ) : (
                 <FeedbackForm
                   setOneEventDetails={props.setOneEventDetails}
