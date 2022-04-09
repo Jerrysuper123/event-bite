@@ -79,15 +79,15 @@ Most organizers want crowds to their events instantly. However, this is not poss
 
 ### User stories
 
-- As a student, I like go to school events without reading event posters or events near me because I want instant acces to these info.
+- As a student, I like go to school events without reading event posters or school emails, so that I could have instant access to these info.
 
-- As a shopper, I like to instantly access promotional events near me because I have no time to collect value coupons or keep track of event dates.
+- As a shopper, I like to instantly access promotional events near me so that I can save the time to collect value coupons or keep track of event dates.
 
-- As a tourist, I would like to plan my days around tourism events easily rather than gathering info piecemeal, because I am on a trip to relax, not to do heavy planning.
+- As a tourist, I would like to plan my days around tourism events easily rather than gathering info piecemeal, so that on the trip I could relax, not to do heavy planning.
 
 - As a diner, I would like to see restaurant offers near me once I stepped out the office, because I had a tiring day at work and I just want quick access to good food at great prices.
 
-- As a organizer, I want quick access to crowds to my events rather than doing heavy planning, because I want my marketing and promotional activities to be nimble and efficient (cost & time).
+- As a organizer, I want quick access to crowds to my events rather than doing heavy planning, so that my marketing and promotional activities could be nimble and efficient (cost & time).
 
 ### Key features based on user story
 
