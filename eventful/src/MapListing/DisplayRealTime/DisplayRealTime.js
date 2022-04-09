@@ -1,3 +1,4 @@
+//we are not using this function, but keep it here
 import React, { useState } from "react";
 import "./style.css";
 export default function DisplayRealTime() {
