@@ -76,7 +76,7 @@ class App extends React.Component {
   getAllEventsFromAPI = async () => {
     try {
       let response = await axios.get(`${BASE_API_URL}/events`);
-      console.log(response.data.data);
+      // console.log(response.data.data);
       this.setState({
         data: [...response.data.data],
       });

@@ -56,9 +56,9 @@ export default class AddEvent extends React.Component {
     validateEventImageError: "",
     validateSummaryError: "",
     validateDescriptionError: "",
+
+    // display thank you message when user submitted
     submitted: false,
-    mapUrlPath:
-      "https://maps.google.com/maps?q=1.34771540923723,103.754994802909&hl=es;z=14&amp;output=embed",
   };
 
   clearAllData = () => {
@@ -98,11 +98,10 @@ export default class AddEvent extends React.Component {
       validateEventImageError: "",
       validateSummaryError: "",
       validateDescriptionError: "",
-      // submitted: false,
     });
   };
 
-  //Make sure no validation error to submit the form
+  //Make sure no validation error before submitting the form
   checkAllValidated = () => {
     if (
       this.state.validateTitleError === "" &&
@@ -121,6 +120,7 @@ export default class AddEvent extends React.Component {
     }
   };
 
+  // check all required fields are filled up before showing the submit button
   checkAllRequiredFields = () => {
     if (
       this.state.title !== "" &&
@@ -139,12 +139,12 @@ export default class AddEvent extends React.Component {
       return false;
     }
   };
+
+  // load hashtags and categories for the adde event form checkboxes and dropdown component
   componentDidMount = async () => {
     try {
       let hashtagsRequest = axios.get(`${BASE_API_URL}/events/hashtags`);
-
       let categoriesRequest = axios.get(`${BASE_API_URL}/events/categories`);
-      // console.log(response);
       let hashtagsResponse = await hashtagsRequest;
       let categoriesResponse = await categoriesRequest;
 
@@ -157,12 +157,14 @@ export default class AddEvent extends React.Component {
     }
   };
 
+  // switching pages in the add event form
   updateActive = (active) => {
     this.setState({
       active: active,
     });
   };
 
+  // below validate and output validation errors to users
   validationFunction(fieldName, inputValue) {
     if (fieldName === "title") {
       this.setState({
@@ -279,8 +281,8 @@ export default class AddEvent extends React.Component {
     }
   }
 
+  // function to make sure event start date is before event end date
   compareStartEndDate = () => {
-    console.log("compare date");
     if (this.state.startDateTime < this.state.endDateTime) {
       this.setState({
         validateDateError: "",
@@ -301,21 +303,7 @@ export default class AddEvent extends React.Component {
     this.validationFunction(fieldName, inputValue);
   };
 
-  updateLatLng = (e) => {
-    let clone = this.state.latLng.slice();
-    if (e.target.name === "lat") {
-      clone[0] = Number(e.target.value);
-      this.setState({
-        latLng: clone,
-      });
-    } else if (e.target.name === "lng") {
-      clone[1] = Number(e.target.value);
-      this.setState({
-        latLng: clone,
-      });
-    }
-  };
-
+  // we are not using below function for checkbox, because Material UI autocomplete checkbox takes care of updating
   processCheckbox = (e) => {
     let currentValues = this.state[e.target.name];
     let modifiedValues;
@@ -333,9 +321,24 @@ export default class AddEvent extends React.Component {
     });
   };
 
-  getLatLng = async () => {
-    // console.log("start retrieving Lat and lng");
+  // updateLatLng when users input different postal codes
+  updateLatLng = (e) => {
+    let clone = this.state.latLng.slice();
+    if (e.target.name === "lat") {
+      clone[0] = Number(e.target.value);
+      this.setState({
+        latLng: clone,
+      });
+    } else if (e.target.name === "lng") {
+      clone[1] = Number(e.target.value);
+      this.setState({
+        latLng: clone,
+      });
+    }
+  };
 
+  // get lat and lng from One Map Singapore
+  getLatLng = async () => {
     try {
       let response = await axios.get(
         `https://developers.onemap.sg/commonapi/search?searchVal=${this.state.postalCode}&returnGeom=Y&getAddrDetails=Y&pageNum=1`
@@ -357,6 +360,7 @@ export default class AddEvent extends React.Component {
     }
   };
 
+  // output validation error if user key in the wrong postal code
   getLatLngFromPostalCode = async (e) => {
     await this.updateFormField(e);
     if (this.state.postalCode.length !== 6) {
@@ -394,8 +398,8 @@ export default class AddEvent extends React.Component {
           descriptionSummary: this.state.descriptionSummary,
           description: this.state.description,
         });
-        // console.log(response);
-        // await this.props.getAllEventsFromAPI();
+
+        // check if the response is 200 that the database has been updated
         await this.afterUserSubmitted(response);
       } catch (e) {
         console.log(e);
@@ -429,6 +433,7 @@ export default class AddEvent extends React.Component {
   };
 
   updateEventAPI = async () => {
+    // make sure all fields are validated
     if (this.checkAllValidated()) {
       try {
         let response = await axios.put(
@@ -451,6 +456,7 @@ export default class AddEvent extends React.Component {
           }
         );
 
+        //check if response code is 200, that the database has been updated
         await this.afterUserSubmitted(response);
       } catch (e) {
         console.log(e);
@@ -464,7 +470,10 @@ export default class AddEvent extends React.Component {
         submitted: true,
       });
     }
+
+    // after submission, clear all fields
     this.clearAllData();
+    // retrieve all events again in App.js
     await this.props.getAllEventsFromAPI();
   };
 
@@ -486,6 +495,7 @@ export default class AddEvent extends React.Component {
     }
   };
 
+  // Material UI checkbox - update the values of the hashtags
   handleChange = (event, values) => {
     this.setState({
       hashtags: values,
@@ -614,6 +624,7 @@ export default class AddEvent extends React.Component {
             <p>
               Improve discoverability by adding tags relevant to subject matter
             </p>
+
             <div className="location border-top pt-5">
               <h3>LOCATION</h3>
               <div>
@@ -651,6 +662,7 @@ export default class AddEvent extends React.Component {
                 {this.state.validationError ? this.state.validationError : null}
               </p>
 
+              {/* show user input postal code on a map */}
               <section>
                 {this.state.latLng.length === 2 ? (
                   <PostalCodeMap latLng={this.state.latLng} />
@@ -659,6 +671,7 @@ export default class AddEvent extends React.Component {
 
               <p>Help people to know where to show up for your event</p>
             </div>
+
             <div className="dateTimeAdd border-top pt-5 border-bottom">
               <h3>DATE & TIME</h3>
               <div>
@@ -673,6 +686,7 @@ export default class AddEvent extends React.Component {
                   onChange={this.updateFormField}
                 />
               </div>
+
               <div>
                 <label>
                   Event ends <span className="validationColor"> *</span> :
@@ -693,6 +707,7 @@ export default class AddEvent extends React.Component {
             </div>
           </div>
 
+          {/* switch page */}
           <section className="d-flex justify-content-end">
             <button
               className="customBtn customFormBtn"
@@ -764,6 +779,7 @@ export default class AddEvent extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="description">
               <h3>DESCRIPTION</h3>
               <p>
@@ -881,7 +897,6 @@ export default class AddEvent extends React.Component {
         <main
           style={{
             display: this.props.display,
-            // height: "80vh",
           }}
         >
           <section className="container-fluid mt-4">
@@ -927,6 +942,7 @@ export default class AddEvent extends React.Component {
 
               <div className="mainForm shadow col-lg-5 p-5">
                 <section className="d-flex align-items-center mb-4">
+                  {/* update or add event form */}
                   <h1>
                     {this.state.editedId === ""
                       ? "Add New Event"
@@ -943,7 +959,7 @@ export default class AddEvent extends React.Component {
                 {this.renderFormPage()}
               </div>
 
-              {/* bootstrap accordian */}
+              {/* bootstrap accordian to show published events */}
               <article
                 className="col-lg-5 accordianContainer
                 px-2 p-lg-5
