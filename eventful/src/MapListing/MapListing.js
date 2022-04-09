@@ -286,7 +286,7 @@ export default function MapListing(props) {
         >
           {/* Inform users if there are no events today */}
           {props.data.length === 0 ? (
-            <div class="alert alert-info" role="alert">
+            <div className="alert alert-info" role="alert">
               There are no events today! Click on the calendar tab to check out
               more events, or use the date filter on the map (if you know the
               event date).

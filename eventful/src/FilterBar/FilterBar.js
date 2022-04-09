@@ -69,15 +69,14 @@ export default class FilterBar extends React.Component {
   // searchHashtags: [],
   searchEventByString = async (e) => {
     await this.updateFormField(e);
-    await setTimeout(
+    await setTimeout(() => {
       this.props.allInSearch(
         this.state.searchHashtags,
         this.state.searchCategories,
         this.state.searchEventStartDate,
         this.state.searchString
-      ),
-      1
-    );
+      );
+    }, 700);
   };
 
   updateFormFieldAndSearchByDate = async (e) => {
