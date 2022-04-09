@@ -138,7 +138,9 @@ class App extends React.Component {
       this.setState({
         data: [...response.data.data],
       });
-      this.FilterMapData();
+
+      // when user filter for event startDateTime, we also filter MapData as well
+      this.FilterMapData(startDateTime);
     } catch (e) {
       console.log(e);
     }
@@ -175,6 +177,7 @@ class App extends React.Component {
             mapDataLength={this.state.mapData.length}
             getAllEventsFromAPI={this.getAllEventsFromAPI}
             FilterMapData={this.FilterMapData}
+            // userFilteredDate={this.state.userFilteredDate}
           />
         )}
 
