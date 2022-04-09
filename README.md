@@ -1,30 +1,19 @@
-# event-ful
-
-//disable scroll when in other pages, or click to zoom in to user to solve th bugs
-load map first (No error)
-https://cheery-melomakarona-af8b24.netlify.app/
-
-load landing first
-https://tiny-starlight-6da1cc.netlify.app/
-
-priority:
-
 # eventful
 
+eventful is a central portal connecting event attendees and organizers in real-time. The front-end is built using React connecting to the restful API powered by Express and Node Js.
+
+The landing page below summarizes everything about this app.
+Access the live demo [here](https://thunderous-pixie-be41eb.netlify.app/).
+
 ![brand](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/landPage.png?raw=true)
-
-The landing page above summarizes everything about this app.
-Access the live demo [here]().
-
-Eventful is a central portal connecting event attendees and organizers in real-time. The front-end is built using React connecting to the restful API powered by Express and Node Js.
 
 ## Summary
 
 ### Project Context
 
-Covid19 has put a standstill to much of the face-to-face interaction with each other. In the early 2022, the world is slowly recovering from the impacts of the pandemic. In Singapore, the government has set aside [half a billion dollar](https://www.channelnewsasia.com/singapore/singapore-tourism-recovery-support-stb-covid-19-singaporeimagine-grants-2610691) to rejuvenate the tourism industry. Hence, there is a need to design a better event app to jump on the bandwagon.
+Covid19 has put a standstill to much of the face-to-face interaction with each other. In the early 2022, the world is slowly recovering from the impact of the pandemic. In Singapore, the government has set aside [half a billion dollar](https://www.channelnewsasia.com/singapore/singapore-tourism-recovery-support-stb-covid-19-singaporeimagine-grants-2610691) to rejuvenate the tourism industry. The need arises to design a better event app to jump on the bandwagon.
 
-The events are defined as follows but non-exhaustive:
+Events are defined as follows but non-exhaustive:
 
 - tourism events
 - school events
@@ -38,7 +27,7 @@ The event apps currently in the market only showcase the events in a list. It do
 1. Are there any good events today? Are these events near me?
 2. Is there a better way to plan my time going to some events? Rather than scanning through pages of listed events.
 
-The users today want instant answers to these questions. This app is designed for this, hoping to rejuvenate the travel, event and retail industries.
+The users today want instant answers to these questions. This app is designed for this, in a bid to rejuvenate the travel, event and retail industries.
 
 ## 1. Strategy
 
@@ -70,7 +59,7 @@ Below organizers are for the above corresponding event attendees.
 
 - Tourists like to explore ongoing events onsite, but reading and sorting out info through the information pamphlet is a pain
 
-- Diners like to grab the nearby cuisines with the offers from restaurants, but collection coupons is cumbersome
+- Diners like to grab the nearby cuisines with the offers from restaurants, but collecting discount coupons is cumbersome
 
 <em>Event Organizers</em>
 
@@ -83,28 +72,28 @@ Most organizers want crowds to their events instantly. However, this is not poss
 
 ### User stories
 
-As a student, I like go to school events without reading event posters or events near me because I want instant acces to these info.
+- As a student, I like go to school events without reading event posters or events near me because I want instant acces to these info.
 
-As a shopper, I like to instantly access promotional events near me because I have no time to collect value coupons or keep track of event dates.
+- As a shopper, I like to instantly access promotional events near me because I have no time to collect value coupons or keep track of event dates.
 
-As a tourist, I would like to plan my days around tourism events better rather than gathering info piecemeal, because I am on a trip to relax, not to do heavy planning.
+- As a tourist, I would like to plan my days around tourism events easily rather than gathering info piecemeal, because I am on a trip to relax, not to do heavy planning.
 
-As a diner, I would like to see restaurant offers near me once I stepped out the office, because I had a tiring day at work and I just want quick access to good food at great prices.
+- As a diner, I would like to see restaurant offers near me once I stepped out the office, because I had a tiring day at work and I just want quick access to good food at great prices.
 
-As a organizer, I want quick access to crowds to my events rather than doing heavy planning, because I want my marketing and promotional activities to be nimble and efficient (cost & time).
+- As a organizer, I want quick access to crowds to my events rather than doing heavy planning, because I want my marketing and promotional activities to be nimble and efficient (cost & time).
 
 ### Key features based on user story
 
 1. Display today's events on a map near the event attendee
 2. Display events for the month on a calendar so that the event attendees could easily plan their times
 3. Allow event organizers to publish events instantly, displaying the events on the map or calendar with their corporate logos and color for branding purposes
-4. QR code for the event organizers to paste the QR in the vicinity, so as to allow people to scan the code to explore nearby events
+4. QR code for the event organizers to publicise the QR code in the vicinity, so as to allow people to scan the code to explore nearby events
 
 ## 2. Scope
 
 ### Functional specification
 
-- Users could scan the QR to explore nearby events on the app
+- Users could scan the QR code to explore nearby events on the app
 
 ### Content
 
@@ -119,7 +108,7 @@ As a organizer, I want quick access to crowds to my events rather than doing hea
 
 The left diagram - site map
 
-- User through landing page could navigate to three main pages
+- User through the landing page could navigate to three main pages
 
 1. events on the calendar
 2. events on the map
@@ -133,13 +122,17 @@ The right diagram - react component design
 
 ### Restful API
 
-<em>Data schema design</em>
+A restful API built using express and hosted on Mongo Atlas Database is deployed as the backend.
 
 The detailed implementation can be found [here](https://github.com/Jerrysuper123/eventfulAPI).
+
+<em>Data schema design</em>
 
 ![data schema](https://github.com/Jerrysuper123/eventfulAPI/raw/main/images/dataBaseDesign.png)
 
 ## 4. Skeleton
+
+The original conceptual design is found below.
 
 Click [wireframe](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/wireframeEvent.pdf) to see the draft design.
 
@@ -147,11 +140,9 @@ Click [wireframe](https://github.com/Jerrysuper123/eventfulSources/blob/main/ima
 
 ### Colors
 
-- The first color below (orange "#E27D60") is the primary color used. The bright orange color gives a feel of liveliness, resembling the liveliness of events. Brand logo and icons are designed with this color.
+- The first colour below (orange "#E27D60") is the primary colour used. The bright orange color gives a feel of liveliness, resembling the liveliness of events. Brand logo and icons are designed with this color.
 
-- The fourth color (purple "#C38D9E) is used as contrast with the primary color.
-
-- The fifth color (dark green "#41B3A3") is also used to contrast with the primary color to bring out its liveliness.
+- The fourth colour (purple "#C38D9E) and the fifth colour (dark green "#41B3A3") are cold colours, which are in contrast with the warm. High contrast is used to bring out key information on the app e.g. event listing.
 
 - The rest of the colours are used mostly as the support hues.
 
@@ -161,7 +152,7 @@ Click [wireframe](https://github.com/Jerrysuper123/eventfulSources/blob/main/ima
 
 - These two simple sans-serif typefaces offer a clean, modern font pairing, giving a cool feel for the events listed on the app.
 
-- Roboto combines geometric forms with friendly, open curves, designed to facilitate a natural reading rhythm. The Roboto is mostly used in the event description page, where users need to read the text.
+- Roboto combines geometric forms with friendly, open curves, designed to facilitate a natural reading rhythm. The Roboto is mostly used in the event description page's text for better reading experience.
 
 ![font](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/fontEvent.png?raw=true)
 
@@ -226,4 +217,8 @@ event.returnValue = false;
 }
 ```
 
+- In order to fix below error, we have downgrade to React 17, instead of 18, because React 18 could not render the React LeafLet Map properly using createRoot.
+
+```
 react-dom.development.js:86 Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
+```
