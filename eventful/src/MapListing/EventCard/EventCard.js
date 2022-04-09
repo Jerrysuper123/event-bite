@@ -30,7 +30,11 @@ export default function EventCard(props) {
       />
       <div className="card-body">
         <div className="d-flex">
-          <h5 className="card-title">{props.eachEvent.title.slice(0, 20)}</h5>
+          <h5 className="card-title">
+            {props.eachEvent.title.length > 15
+              ? props.eachEvent.title.slice(0, 16) + "..."
+              : props.eachEvent.title}
+          </h5>
           <i
             className="ms-auto fa-brands fa-gratipay"
             style={{

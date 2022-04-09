@@ -71,7 +71,6 @@ export default function MapListing(props) {
   //set start as the user currentlocation
   //[1.3077699, 103.8812231]
   const [start, setStart] = useState([]);
-  console.log("start", start);
   const [endEvent, setEndEvent] = useState({});
 
   const showDestinationPopUp = () => {
@@ -85,7 +84,11 @@ export default function MapListing(props) {
     />
     <div class="card-body">
       <div class="d-flex">
-        <h6 class="mapCardTitle">${oneEventDetails.title.slice(0, 5)}...</h6>
+        <h6 class="mapCardTitle">${
+          oneEventDetails.title.length > 15
+            ? oneEventDetails.title.slice(0, 16) + "..."
+            : oneEventDetails.title
+        }</h6>
         <i
           class="ms-auto fa-brands fa-gratipay"
           style="
@@ -199,8 +202,17 @@ export default function MapListing(props) {
     // remove dependancy on routingMachine, just depends router to change from true to false
   }, [router]);
 
+  //Draw user's current location marker's  pop up on the map
   useEffect(() => {
+    drawPopUpAndZoom();
+    // only zoom in when map is created and there is current user's lat and lng in start[]
+  }, [map, start]);
+
+  const drawPopUpAndZoom = () => {
     if (!map) {
+      return;
+    }
+    if (start.length !== 2) {
       return;
     }
     map.setZoom(18).flyTo(start);
@@ -208,8 +220,7 @@ export default function MapListing(props) {
       .setLatLng(start)
       .setContent(`<h3 class="primaryColor">You are here!</h3>`)
       .openOn(map);
-    // map.setView(start, 20);
-  }, [start]);
+  };
 
   const [oneEventDetails, setOneEventDetails] = useState(null);
 
@@ -263,134 +274,151 @@ export default function MapListing(props) {
   };
 
   return (
-    <div
-      id="map"
-      style={{
-        display: props.display,
-      }}
-    >
-      <EventDetailsPage
-        // moreInfoBtnRef={moreInfoBtnRef}
-        data={oneEventDetails ? oneEventDetails : {}}
-        getAllEventsFromAPI={props.getAllEventsFromAPI}
-        setOneEventDetails={setOneEventDetails}
-        oneEventDetails={oneEventDetails}
-      />
-
-      <div className="mapEventListContainer">
-        <MapContainer
-          center={[1.3521, 103.8198]}
-          zoom={13}
+    //create map after other pages are loaded
+    <section>
+      {/* only load the map for one time when one switch active state to map the first time */}
+      {props.loadedMap ? (
+        <div
+          id="map"
           style={{
-            width: "100%",
-            height: "89vh",
-            zIndex: 0,
+            display: props.display,
           }}
-          id="my-leaflet-map"
-          //change the state of map when created
-          whenCreated={(map) => setMap(map)}
         >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            // credir: https://docs.stadiamaps.com/themes/
-            //https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png
-            //https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-            // id="mapbox/dark-v10"
+          {/* Inform users if there are no events today */}
+          {props.data.length === 0 ? (
+            <div class="alert alert-info" role="alert">
+              There are no events today! Click on the calendar tab to check out
+              more events, or use the date filter on the map (if you know the
+              event date).
+            </div>
+          ) : null}
+          <EventDetailsPage
+            // moreInfoBtnRef={moreInfoBtnRef}
+            data={oneEventDetails ? oneEventDetails : {}}
+            getAllEventsFromAPI={props.getAllEventsFromAPI}
+            setOneEventDetails={setOneEventDetails}
+            oneEventDetails={oneEventDetails}
           />
 
-          {/* user current location marker */}
-          {start.length === 2 ? (
-            <Marker
-              position={start}
-              icon={createCustomMarkerIcon(userLocationMarker)}
-            ></Marker>
-          ) : null}
+          <div className="mapEventListContainer">
+            <MapContainer
+              center={[1.3521, 103.8198]}
+              zoom={13}
+              // scrollWheelZoom={false}
+              style={{
+                width: "100%",
+                height: "89vh",
+                zIndex: 0,
+              }}
+              id="my-leaflet-map"
+              //change the state of map when created
+              whenCreated={(map) => setMap(map)}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                // credir: https://docs.stadiamaps.com/themes/
+                //https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png
+                //https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png
+                url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+                // id="mapbox/dark-v10"
+              />
 
-          {props.data.map((eachEvent) => {
-            return (
-              <React.Fragment key={eachEvent._id}>
+              {/* draw user's current location marker */}
+              {start.length === 2 ? (
                 <Marker
-                  position={eachEvent.latLng}
-                  key={eachEvent._id}
-                  icon={
-                    eachEvent.customizedMapMarker
-                      ? createCustomMarkerIcon(eachEvent.customizedMapMarker)
-                      : createCustomMarkerIcon(defaultMarker)
-                  }
-                >
-                  <Popup>
-                    <EventCard
-                      eachEvent={eachEvent}
-                      setOneEvent={setOneEvent}
-                      showRouter={showRouter}
-                    />
-                  </Popup>
-                </Marker>
-              </React.Fragment>
-            );
-          })}
-        </MapContainer>
+                  position={start}
+                  icon={createCustomMarkerIcon(userLocationMarker)}
+                ></Marker>
+              ) : null}
 
-        {/* Today's event list on the map */}
+              {props.data.map((eachEvent) => {
+                return (
+                  <React.Fragment key={eachEvent._id}>
+                    <Marker
+                      position={eachEvent.latLng}
+                      key={eachEvent._id}
+                      icon={
+                        eachEvent.customizedMapMarker
+                          ? createCustomMarkerIcon(
+                              eachEvent.customizedMapMarker
+                            )
+                          : createCustomMarkerIcon(defaultMarker)
+                      }
+                    >
+                      <Popup>
+                        <EventCard
+                          eachEvent={eachEvent}
+                          setOneEvent={setOneEvent}
+                          showRouter={showRouter}
+                        />
+                      </Popup>
+                    </Marker>
+                  </React.Fragment>
+                );
+              })}
+            </MapContainer>
 
-        {/* <Draggable> */}
-        <section
-          className="eventList"
-          style={{
-            height: eventListState === "hide" ? "6rem" : "100%",
-          }}
-        >
-          <span
-            style={{
-              fontSize: "0.8rem",
-              fontWeight: "600",
-            }}
-            className="text-light ms-auto me-2"
-          >
-            {props.data.length} results
-          </span>
-          <h2 className="text-light text-light">
-            {props.userFilteredDate ? (
-              props.userFilteredDate
-            ) : (
-              <span>Today</span>
-            )}
-            's events
-          </h2>
+            {/* Today's event list on the map */}
 
-          <div
-            style={{
-              fontSize: "1.3em",
-            }}
-            className="hideShowEvents"
-          >
-            {renderHideShowBtn()}
+            {/* <Draggable> */}
+            <section
+              className="eventList"
+              style={{
+                height: eventListState === "hide" ? "6rem" : "100%",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "0.8rem",
+                  fontWeight: "600",
+                }}
+                className="text-light ms-auto me-2"
+              >
+                {props.data.length} results
+              </span>
+              <h2 className="text-light text-light">
+                {props.userFilteredDate ? (
+                  props.userFilteredDate
+                ) : (
+                  <span>Today</span>
+                )}
+                's events
+              </h2>
+
+              <div
+                style={{
+                  fontSize: "1.3em",
+                }}
+                className="hideShowEvents"
+              >
+                {renderHideShowBtn()}
+              </div>
+
+              <section
+                className="listOfEvent mb-3"
+                style={{
+                  display: eventListState === "hide" ? "none" : "block",
+                }}
+              >
+                {props.data.map((eachEvent, index) => {
+                  return (
+                    <div key={index} className="eventListCard ms-1">
+                      <EventCard
+                        // moreInfoBtnRef={moreInfoBtnRef}
+                        eachEvent={eachEvent}
+                        setOneEvent={setOneEvent}
+                        showRouter={showRouter}
+                        margin={"2rem"}
+                      />
+                    </div>
+                  );
+                })}
+              </section>
+            </section>
+            {/* </Draggable> */}
           </div>
-
-          <section
-            className="listOfEvent mb-3"
-            style={{
-              display: eventListState === "hide" ? "none" : "block",
-            }}
-          >
-            {props.data.map((eachEvent, index) => {
-              return (
-                <div key={index} className="eventListCard ms-1">
-                  <EventCard
-                    // moreInfoBtnRef={moreInfoBtnRef}
-                    eachEvent={eachEvent}
-                    setOneEvent={setOneEvent}
-                    showRouter={showRouter}
-                    margin={"2rem"}
-                  />
-                </div>
-              );
-            })}
-          </section>
-        </section>
-        {/* </Draggable> */}
-      </div>
-    </div>
+        </div>
+      ) : null}
+    </section>
   );
 }

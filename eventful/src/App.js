@@ -19,7 +19,19 @@ class App extends React.Component {
     mapData: [],
     userFilteredDate: "",
     componentMounted: false,
+    loadedMap: false,
     //to selectbox and dropdown
+  };
+
+  componentDidUpdate = () => {
+    if (this.state.active === "map") {
+      //only when map is not loaded, then we load the map, to ensure we only load the map the first time
+      if (!this.state.loadedMap) {
+        this.setState({
+          loadedMap: true,
+        });
+      }
+    }
   };
 
   //add or update event or addEvent form
@@ -181,6 +193,7 @@ class App extends React.Component {
               ? null
               : this.state.userFilteredDate
           }
+          loadedMap={this.state.loadedMap}
         />
         <CalendarListing
           data={this.state.data}

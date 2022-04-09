@@ -149,3 +149,7 @@
 .mapCardTitle {
   font-size: 1rem !important;
 }
+
+.alert {
+  margin-bottom: 0;
+}
