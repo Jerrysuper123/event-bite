@@ -7,6 +7,13 @@ Access the live demo [here](https://thunderous-pixie-be41eb.netlify.app/).
 
 ![brand](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/landPage.png?raw=true)
 
+## If no events TODAY
+
+The map page dynamically filters only TODAY's events, so on a given day, there might not be any events from the organizer.
+
+You can click on the "create new event" tab in the navbar to create a new event. Once created, the new event will appear in TODAY's event list.
+![emptymap](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/map.png?raw=true)
+
 ## Summary
 
 ### Project Context
