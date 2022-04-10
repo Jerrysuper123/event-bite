@@ -133,7 +133,7 @@ The right diagram - react component design
 
 A restful API built using express and hosted on Mongo Atlas Database is deployed as the backend.
 
-The detailed implementation can be found [here](https://github.com/Jerrysuper123/eventfulAPI).
+The detailed implementation can be found [here](https://github.com/Jerrysuper123/eventfulAPI). Note that organizer login was not implemented in this phase of the project.
 
 <em>Data schema design</em>
 
