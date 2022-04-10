@@ -3,8 +3,9 @@
 eventful is a central portal connecting event attendees and organizers in real-time. The front-end is built using React connecting to the restful API powered by Express and Node Js.
 
 The landing page below summarizes everything about this app.
-Access the live React front-end demo [here](https://thunderous-pixie-be41eb.netlify.app/).
-Access the back-end API implementation [here](https://github.com/Jerrysuper123/eventfulAPI).
+
+- Access the live React front-end demo [here](https://thunderous-pixie-be41eb.netlify.app/).
+- Access the back-end API implementation [here](https://github.com/Jerrysuper123/eventfulAPI).
 
 ![brand](https://github.com/Jerrysuper123/eventfulSources/blob/main/images/sources/landPage.png?raw=true)
 
