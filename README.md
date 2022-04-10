@@ -87,7 +87,7 @@ Most organizers want crowds to their events instantly. However, this is not poss
 
 - As a diner, I would like to see restaurant offers near me once I stepped out the office, because I had a tiring day at work and I just want quick access to good food at great prices.
 
-- As a organizer, I want quick access to crowds to my events rather than doing heavy planning, so that my marketing and promotional activities could be nimble and efficient (cost & time).
+- As an organizer, I want quick access to crowds to my events rather than doing heavy planning, so that my marketing and promotional activities could be nimble and efficient (cost & time).
 
 ### Key features based on user story
 
